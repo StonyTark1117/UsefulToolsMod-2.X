@@ -2,6 +2,7 @@ package com.stonytark.usefultoolsmod;
 
 import com.mojang.logging.LogUtils;
 import com.stonytark.usefultoolsmod.block.ModBlocks;
+import com.stonytark.usefultoolsmod.entity.ModEntities;
 import com.stonytark.usefultoolsmod.item.ModCreativeModeTabs;
 import com.stonytark.usefultoolsmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -37,6 +38,7 @@ public class UsefultoolsMod
         //Keep creative tabs above others just in case
         ModCreativeModeTabs.register(modEventBus);
 
+        ModEntities.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
