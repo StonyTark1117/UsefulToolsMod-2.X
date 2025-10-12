@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "usefultoolsmod:rgold"
+    },
+    "A": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "usefultoolsmod:rgoldore"
+  }
+}
