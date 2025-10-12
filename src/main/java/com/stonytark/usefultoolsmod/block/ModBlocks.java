@@ -26,11 +26,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> HRBLOCK = registerBlock("hrblock",
             () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHER_BRICKS)));
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> RGOLDORE = registerBlock("rgoldore",
             () -> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
-                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> SEMBLOCK = registerBlock("semblock",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -38,7 +38,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SOBLOCK = registerBlock("soblock",
             () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+                    .strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
 
 
 
