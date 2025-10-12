@@ -1,0 +1,17 @@
+{
+  "item.usefultoolsmod.rgold": "Reinforced Gold",
+  "item.usefultoolsmod.obshard": "Obsidian Shard",
+  "item.usefultoolsmod.sem": "Smooth Emerald Ingot",
+  "item.usefultoolsmod.obingot": "Obsidian Ingot",
+  "item.usefultoolsmod.grenade": "Grenade",
+  "item.usefultoolsmod.dynamite": "Dynamite",
+  "item.usefultoolsmod.hred": "Hardened Redstone",
+
+  "block.usefultoolsmod.rgoldblock": "Block of Reinforced Gold",
+  "block.usefultoolsmod.hrblock": "Block of Hardened Redstone",
+  "block.usefultoolsmod.rgoldore": "Ferrous Gold Ore",
+  "block.usefultoolsmod.semblock": "Block of Smooth Emerald",
+  "block.usefultoolsmod.soblock": "Block of Smooth Obsidian",
+
+  "creativetab.usefultoolsmod.useful_tools": "Useful Tools Mod"
+}
