@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "block.usefultoolsmod.rgoldblock",
+    "block.usefultoolsmod.hrblock",
+    "block.usefultoolsmod.rgoldore",
+    "block.usefultoolsmod.semblock",
+    "block.usefultoolsmod.soblock"
+  ]
+}
