@@ -2,9 +2,11 @@ package com.stonytark.usefultoolsmod.datagen;
 
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
 import com.stonytark.usefultoolsmod.block.ModBlocks;
+import com.stonytark.usefultoolsmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -35,5 +37,51 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.RGOLDORE.get());
+
+        tag(ModTags.Blocks.NEEDS_HRED_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_JEM_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_JOB_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_OP_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(Blocks.BEDROCK);
+
+        tag(ModTags.Blocks.NEEDS_RGOLD_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_SEM_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_SOB_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(Blocks.BEDROCK);
+
+        tag(ModTags.Blocks.INCORRECT_HRED_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_JEM_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_JOB_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_OP_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_RGOLD_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_SEM_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_SOB_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .add(Blocks.BEDROCK);
+
     }
 }

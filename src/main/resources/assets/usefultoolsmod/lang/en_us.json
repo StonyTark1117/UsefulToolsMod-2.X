@@ -7,6 +7,47 @@
   "item.usefultoolsmod.dynamite": "Dynamite",
   "item.usefultoolsmod.hred": "Hardened Redstone",
 
+  "item.usefultoolsmod.jemerald_sword": "Jagged Emerald Sword",
+  "item.usefultoolsmod.jemerald_pickaxe": "Jagged Emerald Pickaxe",
+  "item.usefultoolsmod.jemerald_shovel": "Jagged Emerald Shovel",
+  "item.usefultoolsmod.jemerald_axe": "Jagged Emerald Axe",
+  "item.usefultoolsmod.jemerald_hoe": "Jagged Emerald Hoe",
+
+  "item.usefultoolsmod.semerald_sword": "Smooth Emerald Sword",
+  "item.usefultoolsmod.semerald_pickaxe": "Smooth Emerald Pickaxe",
+  "item.usefultoolsmod.semerald_shovel": "Smooth Emerald Shovel",
+  "item.usefultoolsmod.semerald_axe": "Smooth Emerald Axe",
+  "item.usefultoolsmod.semerald_hoe": "Smooth Emerald Hoe",
+
+  "item.usefultoolsmod.sobsidian_sword": "Smooth Obsidian Sword",
+  "item.usefultoolsmod.sobsidian_pickaxe": "Smooth Obsidian Pickaxe",
+  "item.usefultoolsmod.sobsidian_shovel": "Smooth Obsidian Shovel",
+  "item.usefultoolsmod.sobsidian_axe": "Smooth Obsidian Axe",
+  "item.usefultoolsmod.sobsidian_hoe": "Smooth Obsidian Hoe",
+
+  "item.usefultoolsmod.jobsidian_sword": "Jagged Obsidian Sword",
+  "item.usefultoolsmod.jobsidian_pickaxe": "Jagged Obsidian Pickaxe",
+  "item.usefultoolsmod.jobsidian_shovel": "Jagged Obsidian Shovel",
+  "item.usefultoolsmod.jobsidian_axe": "Jagged Obsidian Axe",
+  "item.usefultoolsmod.jobsidian_hoe": "Jagged Obsidian Hoe",
+
+  "item.usefultoolsmod.overpower_sword": "OP Sword",
+  "item.usefultoolsmod.overpower_pickaxe": "OP Pickaxe",
+  "item.usefultoolsmod.overpower_shovel": "OP Shovel",
+  "item.usefultoolsmod.overpower_axe": "OP Axe",
+
+  "item.usefultoolsmod.hredstone_sword": "Hardened Redstone Sword",
+  "item.usefultoolsmod.hredstone_pickaxe": "Hardened Redstone Pickaxe",
+  "item.usefultoolsmod.hredstone_shovel": "Hardened Redstone Shovel",
+  "item.usefultoolsmod.hredstone_axe": "Hardened Redstone Axe",
+  "item.usefultoolsmod.hredstone_hoe": "Hardened Redstone Hoe",
+
+  "item.usefultoolsmod.rgold_sword": "Hardened Redstone Sword",
+  "item.usefultoolsmod.rgold_pickaxe": "Reinforced Gold Pickaxe",
+  "item.usefultoolsmod.rgold_shovel": "Reinforced Gold Shovel",
+  "item.usefultoolsmod.rgold_axe": "Reinforced Gold Axe",
+  "item.usefultoolsmod.rgold_hoe": "Reinforced Gold Hoe",
+
   "block.usefultoolsmod.rgoldblock": "Block of Reinforced Gold",
   "block.usefultoolsmod.hrblock": "Block of Hardened Redstone",
   "block.usefultoolsmod.rgoldore": "Ferrous Gold Ore",
