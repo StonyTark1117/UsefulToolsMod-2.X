@@ -6,6 +6,7 @@ import com.stonytark.usefultoolsmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -19,8 +20,30 @@ public class ModItemTagProvider extends ItemTagsProvider {
         super(packOutput, completableFuture, lookupCompletableFuture, UsefultoolsMod.MOD_ID, existingFileHelper);
     }
 
+
+
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.EMERALD_HELMET.get())
+                .add(ModItems.EMERALD_CHESTPLATE.get())
+                .add(ModItems.EMERALD_LEGGINGS.get())
+                .add(ModItems.EMERALD_BOOTS.get())
+                .add(ModItems.HRED_HELMET.get())
+                .add(ModItems.HRED_CHESTPLATE.get())
+                .add(ModItems.HRED_LEGGINGS.get())
+                .add(ModItems.HRED_BOOTS.get())
+                .add(ModItems.OBSIDIAN_HELMET.get())
+                .add(ModItems.OBSIDIAN_CHESTPLATE.get())
+                .add(ModItems.OBSIDIAN_LEGGINGS.get())
+                .add(ModItems.OBSIDIAN_BOOTS.get())
+                .add(ModItems.RGOLD_HELMET.get())
+                .add(ModItems.RGOLD_CHESTPLATE.get())
+                .add(ModItems.RGOLD_LEGGINGS.get())
+                .add(ModItems.RGOLD_BOOTS.get())
+                .add(ModItems.OVERPOWER_HELMET.get())
+                .add(ModItems.OVERPOWER_CHESTPLATE.get())
+                .add(ModItems.OVERPOWER_LEGGINGS.get())
+                .add(ModItems.OVERPOWER_BOOTS.get());
     }
 }

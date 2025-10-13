@@ -31,10 +31,10 @@
   "item.usefultoolsmod.jobsidian_axe": "Jagged Obsidian Axe",
   "item.usefultoolsmod.jobsidian_hoe": "Jagged Obsidian Hoe",
 
-  "item.usefultoolsmod.overpower_sword": "OP Sword",
-  "item.usefultoolsmod.overpower_pickaxe": "OP Pickaxe",
-  "item.usefultoolsmod.overpower_shovel": "OP Shovel",
-  "item.usefultoolsmod.overpower_axe": "OP Axe",
+  "item.usefultoolsmod.overpower_sword": "Overpowered Sword",
+  "item.usefultoolsmod.overpower_pickaxe": "Overpowered Pickaxe",
+  "item.usefultoolsmod.overpower_shovel": "Overpowered Shovel",
+  "item.usefultoolsmod.overpower_axe": "Overpowered Axe",
 
   "item.usefultoolsmod.hredstone_sword": "Hardened Redstone Sword",
   "item.usefultoolsmod.hredstone_pickaxe": "Hardened Redstone Pickaxe",
@@ -47,6 +47,31 @@
   "item.usefultoolsmod.rgold_shovel": "Reinforced Gold Shovel",
   "item.usefultoolsmod.rgold_axe": "Reinforced Gold Axe",
   "item.usefultoolsmod.rgold_hoe": "Reinforced Gold Hoe",
+
+  "item.usefultoolsmod.emerald_helmet": "Emerald Helmet",
+  "item.usefultoolsmod.emerald_chestplate": "Emerald Chestplate",
+  "item.usefultoolsmod.emerald_leggings": "Emerald Leggings",
+  "item.usefultoolsmod.emerald_boots": "Emerald Boots",
+
+  "item.usefultoolsmod.hred_helmet": "Hardened Redstone Helmet",
+  "item.usefultoolsmod.hred_chestplate": "Hardened Redstone Chestplate",
+  "item.usefultoolsmod.hred_leggings": "Hardened Redstone Leggings",
+  "item.usefultoolsmod.hred_boots": "Hardened Redstone Boots",
+
+  "item.usefultoolsmod.obsidian_helmet": "Obsidian Helmet",
+  "item.usefultoolsmod.obsidian_chestplate": "Obsidian Chestplate",
+  "item.usefultoolsmod.obsidian_leggings": "Obsidian Leggings",
+  "item.usefultoolsmod.obsidian_boots": "Obsidian Boots",
+
+  "item.usefultoolsmod.rgold_helmet": "Reinforced Gold Helmet",
+  "item.usefultoolsmod.rgold_chestplate": "Reinforced Gold Chestplate",
+  "item.usefultoolsmod.rgold_leggings": "Reinforced Gold Leggings",
+  "item.usefultoolsmod.rgold_boots": "Reinforced Gold Boots",
+
+  "item.usefultoolsmod.overpower_helmet": "Overpowered Helmet",
+  "item.usefultoolsmod.overpower_chestplate": "Overpowered Chestplate",
+  "item.usefultoolsmod.overpower_leggings": "Overpowered Leggings",
+  "item.usefultoolsmod.overpower_boots": "Overpowered Boots",
 
   "block.usefultoolsmod.rgoldblock": "Block of Reinforced Gold",
   "block.usefultoolsmod.hrblock": "Block of Hardened Redstone",

@@ -72,6 +72,31 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.OVERPOWER_SWORD.get());
                         output.accept(ModItems.OVERPOWER_SHOVEL.get());
 
+                        output.accept(ModItems.EMERALD_HELMET.get());
+                        output.accept(ModItems.EMERALD_CHESTPLATE.get());
+                        output.accept(ModItems.EMERALD_LEGGINGS.get());
+                        output.accept(ModItems.EMERALD_BOOTS.get());
+
+                        output.accept(ModItems.HRED_HELMET.get());
+                        output.accept(ModItems.HRED_CHESTPLATE.get());
+                        output.accept(ModItems.HRED_LEGGINGS.get());
+                        output.accept(ModItems.HRED_BOOTS.get());
+
+                        output.accept(ModItems.OBSIDIAN_HELMET.get());
+                        output.accept(ModItems.OBSIDIAN_CHESTPLATE.get());
+                        output.accept(ModItems.OBSIDIAN_LEGGINGS.get());
+                        output.accept(ModItems.OBSIDIAN_BOOTS.get());
+
+                        output.accept(ModItems.RGOLD_HELMET.get());
+                        output.accept(ModItems.RGOLD_CHESTPLATE.get());
+                        output.accept(ModItems.RGOLD_LEGGINGS.get());
+                        output.accept(ModItems.RGOLD_BOOTS.get());
+
+                        output.accept(ModItems.OVERPOWER_HELMET.get());
+                        output.accept(ModItems.OVERPOWER_CHESTPLATE.get());
+                        output.accept(ModItems.OVERPOWER_LEGGINGS.get());
+                        output.accept(ModItems.OVERPOWER_BOOTS.get());
+
                     }).build());
 
 

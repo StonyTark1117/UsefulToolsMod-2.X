@@ -148,6 +148,71 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.RGOLD, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.RGOLD, 0, -3f))));
 
+    public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet",
+            () -> new ArmorItem(ModArmorMaterials.EMERALD_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final RegistryObject<Item> EMERALD_CHESTPLATE = ITEMS.register("emerald_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.EMERALD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final RegistryObject<Item> EMERALD_LEGGINGS = ITEMS.register("emerald_leggings",
+            () -> new ArmorItem(ModArmorMaterials.EMERALD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final RegistryObject<Item> EMERALD_BOOTS = ITEMS.register("emerald_boots",
+            () -> new ArmorItem(ModArmorMaterials.EMERALD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+
+    public static final RegistryObject<Item> HRED_HELMET = ITEMS.register("hred_helmet",
+            () -> new ArmorItem(ModArmorMaterials.HRED_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(20))));
+    public static final RegistryObject<Item> HRED_CHESTPLATE = ITEMS.register("hred_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.HRED_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(20))));
+    public static final RegistryObject<Item> HRED_LEGGINGS = ITEMS.register("hred_leggings",
+            () -> new ArmorItem(ModArmorMaterials.HRED_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(20))));
+    public static final RegistryObject<Item> HRED_BOOTS = ITEMS.register("hred_boots",
+            () -> new ArmorItem(ModArmorMaterials.HRED_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(20))));
+
+    public static final RegistryObject<Item> OBSIDIAN_HELMET = ITEMS.register("obsidian_helmet",
+            () -> new ArmorItem(ModArmorMaterials.OBSIDIAN_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
+    public static final RegistryObject<Item> OBSIDIAN_CHESTPLATE = ITEMS.register("obsidian_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.OBSIDIAN_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45))));
+    public static final RegistryObject<Item> OBSIDIAN_LEGGINGS = ITEMS.register("obsidian_leggings",
+            () -> new ArmorItem(ModArmorMaterials.OBSIDIAN_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
+    public static final RegistryObject<Item> OBSIDIAN_BOOTS = ITEMS.register("obsidian_boots",
+            () -> new ArmorItem(ModArmorMaterials.OBSIDIAN_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
+
+    public static final RegistryObject<Item> RGOLD_HELMET = ITEMS.register("rgold_helmet",
+            () -> new ArmorItem(ModArmorMaterials.RGOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
+    public static final RegistryObject<Item> RGOLD_CHESTPLATE = ITEMS.register("rgold_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.RGOLD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(18))));
+    public static final RegistryObject<Item> RGOLD_LEGGINGS = ITEMS.register("rgold_leggings",
+            () -> new ArmorItem(ModArmorMaterials.RGOLD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(18))));
+    public static final RegistryObject<Item> RGOLD_BOOTS = ITEMS.register("rgold_boots",
+            () -> new ArmorItem(ModArmorMaterials.RGOLD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
+
+    public static final RegistryObject<Item> OVERPOWER_HELMET = ITEMS.register("overpower_helmet",
+            () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(100))));
+    public static final RegistryObject<Item> OVERPOWER_CHESTPLATE = ITEMS.register("overpower_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(100))));
+    public static final RegistryObject<Item> OVERPOWER_LEGGINGS = ITEMS.register("overpower_leggings",
+            () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(100))));
+    public static final RegistryObject<Item> OVERPOWER_BOOTS = ITEMS.register("overpower_boots",
+            () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(100))));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
