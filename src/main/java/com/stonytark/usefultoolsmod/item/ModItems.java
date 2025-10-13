@@ -3,6 +3,7 @@ package com.stonytark.usefultoolsmod.item;
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
 import com.stonytark.usefultoolsmod.item.custom.Dynamite;
 import com.stonytark.usefultoolsmod.item.custom.Grenade;
+import com.stonytark.usefultoolsmod.item.custom.ModArmorItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -201,7 +202,7 @@ public class ModItems {
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
 
     public static final RegistryObject<Item> OVERPOWER_HELMET = ITEMS.register("overpower_helmet",
-            () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+            () -> new ModArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(100))));
     public static final RegistryObject<Item> OVERPOWER_CHESTPLATE = ITEMS.register("overpower_chestplate",
             () -> new ArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
