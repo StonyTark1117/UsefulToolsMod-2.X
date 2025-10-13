@@ -1,0 +1,5 @@
+// 1.21.1	2025-10-12T16:32:49.389846927	Tags for minecraft:block mod id usefultoolsmod
+dcdc0a1ff8eb570708f84eb8f053dc678061e558 data/minecraft/tags/block/mineable/pickaxe.json
+8529375b079df54bb7e9c8a5cfe6b131f2d9593e data/minecraft/tags/block/needs_diamond_tool.json
+f2c900c7c779f89f6a58c6c288582fac50166da8 data/minecraft/tags/block/needs_iron_tool.json
+5c38bb9f131059f30030e472ad3ed601714aae51 data/minecraft/tags/block/needs_stone_tool.json
