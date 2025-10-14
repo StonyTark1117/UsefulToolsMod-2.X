@@ -5,6 +5,8 @@ import com.stonytark.usefultoolsmod.entity.ai.goal.FollowPlayerGoal;
 import com.stonytark.usefultoolsmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -152,6 +154,27 @@ public class GhostEntity extends Animal {
         else{
             --this.idleAnimationTimeout;
         }
+    }
+
+
+    /* SOUNDS */
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.GHAST_AMBIENT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundEvents.GHAST_HURT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.GHAST_DEATH;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.stonytark.usefultoolsmod.item.custom;
 
-import com.stonytark.usefultoolsmod.entity.EntityGrenade;
+import com.stonytark.usefultoolsmod.entity.custom.GrenadeEntity;
 import com.stonytark.usefultoolsmod.entity.ModEntities;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -25,7 +25,7 @@ public class Grenade extends Item {
                 SoundEvents.TNT_PRIMED, SoundSource.PLAYERS, 0.7F, 0.8F + level.random.nextFloat() * 0.2F);
 
         if (!level.isClientSide) {
-            EntityGrenade grenade = new EntityGrenade(ModEntities.GRENADE.get(), level, player);
+            GrenadeEntity grenade = new GrenadeEntity(ModEntities.GRENADE.get(), level, player);
             grenade.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.1F, 1.0F);
             level.addFreshEntity(grenade);
         }

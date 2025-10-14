@@ -1,4 +1,4 @@
-package com.stonytark.usefultoolsmod.entity;
+package com.stonytark.usefultoolsmod.entity.custom;
 
 import com.stonytark.usefultoolsmod.item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
@@ -9,14 +9,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
-public class EntityGrenade extends ThrowableItemProjectile {
+public class GrenadeEntity extends ThrowableItemProjectile {
     private static final float EXPLOSION_RADIUS = 10.0F;
 
-    public EntityGrenade(EntityType<? extends EntityGrenade> type, Level level) {
+    public GrenadeEntity(EntityType<? extends GrenadeEntity> type, Level level) {
         super(type, level);
     }
 
-    public EntityGrenade(EntityType<? extends EntityGrenade> type, Level level, LivingEntity thrower) {
+    public GrenadeEntity(EntityType<? extends GrenadeEntity> type, Level level, LivingEntity thrower) {
         super(type, thrower, level);
     }
 

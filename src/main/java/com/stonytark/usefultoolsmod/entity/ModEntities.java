@@ -1,6 +1,7 @@
 package com.stonytark.usefultoolsmod.entity;
 
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
+import com.stonytark.usefultoolsmod.entity.custom.GrenadeEntity;
 import com.stonytark.usefultoolsmod.entity.custom.GhostEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -13,9 +14,9 @@ public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, UsefultoolsMod.MOD_ID);
 
-    public static final RegistryObject<EntityType<EntityGrenade>> GRENADE =
+    public static final RegistryObject<EntityType<GrenadeEntity>> GRENADE =
             ENTITY_TYPES.register("grenade",
-                    () -> EntityType.Builder.<EntityGrenade>of(EntityGrenade::new, MobCategory.MISC)
+                    () -> EntityType.Builder.<GrenadeEntity>of(GrenadeEntity::new, MobCategory.MISC)
                             .sized(0.25F, 0.25F)
                             .clientTrackingRange(4)
                             .updateInterval(10)
