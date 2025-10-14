@@ -56,7 +56,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" A ")
                 .pattern("ABA")
                 .pattern(" A ")
-                .define('A', Items.CLAY).define('B', Items.REDSTONE)
+                .define('A', Items.CLAY_BALL).define('B', Items.REDSTONE)
                 .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SEM.get())

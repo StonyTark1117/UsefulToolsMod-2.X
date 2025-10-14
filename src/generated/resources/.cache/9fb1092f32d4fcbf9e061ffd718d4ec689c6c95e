@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-13T23:44:27.773147094	Recipes
+// 1.21.1	2025-10-14T02:08:11.722367901	Recipes
 f86675a77d6dc888f3ad82a99177be0d768e2333 data/usefultoolsmod/advancement/recipes/combat/emerald_boots.json
 221e03ae1fc64e4224299d6f3b2d6dfd07af074d data/usefultoolsmod/advancement/recipes/combat/emerald_chestplate.json
 d8f793927b145dbf349a6499131fa127d06f43b9 data/usefultoolsmod/advancement/recipes/combat/emerald_helmet.json
@@ -82,7 +82,7 @@ e0751a3d0189f707661d2faeb3b6360d0d9f2dc5 data/usefultoolsmod/advancement/recipes
 c0c095bd585022ae078db9d62f585adc5b2a0d87 data/usefultoolsmod/recipe/emerald_helmet.json
 8f75aa88a89cf7d1eb93eec9f4ba508c9a170a75 data/usefultoolsmod/recipe/emerald_leggings.json
 4308f60735046630cabcd6e82077101be84694a4 data/usefultoolsmod/recipe/hrblock.json
-af53523af28209c264269e985fe4bf6f04414a94 data/usefultoolsmod/recipe/hred.json
+f3fee347cc4db9e14d6a4ae61978b40e7e64d54c data/usefultoolsmod/recipe/hred.json
 560a3e5425abf27e3e28d8b24eacaed37901687d data/usefultoolsmod/recipe/hred_boots.json
 fb44bc36e3c5c3fa9e894e820e9f14c7ff1e96f5 data/usefultoolsmod/recipe/hred_chestplate.json
 5628f0204868348091c320392babb32a4e8e2d83 data/usefultoolsmod/recipe/hred_from_block.json
