@@ -76,6 +76,9 @@
   "block.usefultoolsmod.rgoldblock": "Block of Reinforced Gold",
   "block.usefultoolsmod.hrblock": "Block of Hardened Redstone",
   "block.usefultoolsmod.rgoldore": "Ferrous Gold Ore",
+  "block.usefultoolsmod.rgoldore_nether_ore": "Ferrous Nether Gold Ore",
+  "block.usefultoolsmod.rgold_end_ore": "Ferrous End Gold Ore",
+  "block.usefultoolsmod.rgold_deepslate_ore": "Ferrous Deepslate Gold Ore",
   "block.usefultoolsmod.semblock": "Block of Smooth Emerald",
   "block.usefultoolsmod.soblock": "Block of Smooth Obsidian",
 

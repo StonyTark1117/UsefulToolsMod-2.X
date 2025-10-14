@@ -22,7 +22,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
-        List<ItemLike> RGOLD_SMELTABLES = List.of(ModItems.RGOLD.get(), ModBlocks.RGOLDORE.get());
+        List<ItemLike> RGOLD_SMELTABLES = List.of(ModItems.RGOLD.get(), ModBlocks.RGOLDORE.get(), ModBlocks.RGOLD_END_ORE.get(), ModBlocks.RGOLD_NETHER_ORE.get(), ModBlocks.RGOLD_DEEPSLATE_ORE.get());
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.RGOLDBLOCK.get())
                 .pattern("AAA")

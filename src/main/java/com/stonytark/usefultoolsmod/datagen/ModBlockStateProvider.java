@@ -22,6 +22,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RGOLDORE);
         blockWithItem(ModBlocks.SEMBLOCK);
         blockWithItem(ModBlocks.SOBLOCK);
+        blockWithItem(ModBlocks.RGOLD_NETHER_ORE);
+        blockWithItem(ModBlocks.RGOLD_END_ORE);
+        blockWithItem(ModBlocks.RGOLD_DEEPSLATE_ORE);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

@@ -52,6 +52,9 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.RGOLDBLOCK.get());
                         output.accept(ModBlocks.RGOLDORE.get());
+                        output.accept(ModBlocks.RGOLD_NETHER_ORE.get());
+                        output.accept(ModBlocks.RGOLD_END_ORE.get());
+                        output.accept(ModBlocks.RGOLD_DEEPSLATE_ORE.get());
                         output.accept(ModItems.RGOLD.get());
                         output.accept(ModItems.RGOLD_AXE.get());
                         output.accept(ModItems.RGOLD_PICKAXE.get());
