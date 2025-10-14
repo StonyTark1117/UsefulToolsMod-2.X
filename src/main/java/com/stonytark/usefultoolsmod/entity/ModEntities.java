@@ -1,6 +1,7 @@
 package com.stonytark.usefultoolsmod.entity;
 
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
+import com.stonytark.usefultoolsmod.entity.custom.GhostEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +21,10 @@ public class ModEntities {
                             .updateInterval(10)
                             .build("grenade") // <-- just use the name as a string
             );
+
+    public static final RegistryObject<EntityType> GHOST =
+            ENTITY_TYPES.register("ghost", () -> EntityType.Builder.of(GhostEntity::new, MobCategory.MONSTER)
+                    .sized(1.5f, 1.5f).build("ghost"));
 
     public static void register(IEventBus modEventBus) {
         ENTITY_TYPES.register(modEventBus);

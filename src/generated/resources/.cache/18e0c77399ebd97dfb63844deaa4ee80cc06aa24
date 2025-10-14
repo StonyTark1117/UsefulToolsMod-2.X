@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-12T23:47:12.035127891	Item Models: usefultoolsmod
+// 1.21.1	2025-10-13T20:50:37.331934551	Item Models: usefultoolsmod
 7b3271688784e4a54222755f661fc31c3c356eb2 assets/usefultoolsmod/models/item/emerald_boots.json
 ab110dddc8ddb2b9a6165ba4e7f6b17f667916dd assets/usefultoolsmod/models/item/emerald_boots_amethyst_trim.json
 c3ff4b77cf65c46e282faca17dde017c91af17fb assets/usefultoolsmod/models/item/emerald_boots_copper_trim.json
@@ -43,6 +43,7 @@ c3f0142ddc6632ee12c149356a3fb4500dadbccf assets/usefultoolsmod/models/item/emera
 460122a84e3b950bb6e45cb956b7d59204aaf533 assets/usefultoolsmod/models/item/emerald_leggings_netherite_trim.json
 ea004e1ad1bf369a791a053789a20be583cee9ae assets/usefultoolsmod/models/item/emerald_leggings_quartz_trim.json
 cc1bd57172850f55b1e298047350ff47fec2c379 assets/usefultoolsmod/models/item/emerald_leggings_redstone_trim.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/usefultoolsmod/models/item/ghost_spawn_egg.json
 bfa51f5e931f158ef45ca7ea2da8305a4f1bfd97 assets/usefultoolsmod/models/item/hred.json
 7709273b2e52e65e77528deb3e87e8eab4f2bb6e assets/usefultoolsmod/models/item/hred_boots.json
 5e0e8d368e83e36e905bb8a42f0ce232b15b927b assets/usefultoolsmod/models/item/hred_boots_amethyst_trim.json

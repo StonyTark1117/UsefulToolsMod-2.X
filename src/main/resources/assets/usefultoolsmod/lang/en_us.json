@@ -79,5 +79,8 @@
   "block.usefultoolsmod.semblock": "Block of Smooth Emerald",
   "block.usefultoolsmod.soblock": "Block of Smooth Obsidian",
 
+  "item.usefultoolsmod.ghost_spawn_egg": "Ghost Spawn Egg",
+  "entity.usefultoolsmod.ghost": "Ghost",
+
   "creativetab.usefultoolsmod.useful_tools": "Useful Tools Mod"
 }

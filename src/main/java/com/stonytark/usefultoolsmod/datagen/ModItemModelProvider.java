@@ -121,6 +121,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.OVERPOWER_CHESTPLATE);
         trimmedArmorItem(ModItems.OVERPOWER_LEGGINGS);
         trimmedArmorItem(ModItems.OVERPOWER_BOOTS);
+
+        withExistingParent(ModItems.GHOST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     // Shoutout to El_Redstoniano for making this

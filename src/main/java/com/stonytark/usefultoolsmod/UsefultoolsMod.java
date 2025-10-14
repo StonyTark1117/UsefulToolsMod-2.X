@@ -3,8 +3,10 @@ package com.stonytark.usefultoolsmod;
 import com.mojang.logging.LogUtils;
 import com.stonytark.usefultoolsmod.block.ModBlocks;
 import com.stonytark.usefultoolsmod.entity.ModEntities;
+import com.stonytark.usefultoolsmod.entity.client.GhostRenderer;
 import com.stonytark.usefultoolsmod.item.ModCreativeModeTabs;
 import com.stonytark.usefultoolsmod.item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -95,7 +97,7 @@ public class UsefultoolsMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(ModEntities.GHOST.get(), GhostRenderer::new);
         }
     }
 }

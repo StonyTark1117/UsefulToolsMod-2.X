@@ -97,6 +97,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.OVERPOWER_LEGGINGS.get());
                         output.accept(ModItems.OVERPOWER_BOOTS.get());
 
+                        output.accept(ModItems.GHOST_SPAWN_EGG.get());
+
                     }).build());
 
 
