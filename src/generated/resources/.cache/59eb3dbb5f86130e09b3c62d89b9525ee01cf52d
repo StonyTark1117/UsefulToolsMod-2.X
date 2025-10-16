@@ -1,5 +1,6 @@
-// 1.21.1	2025-10-13T23:44:27.773004184	Loot Tables
+// 1.21.1	2025-10-15T22:58:47.215507561	Loot Tables
 ca5b8d02eb2d9053e24d04aea77010614e9eb266 data/usefultoolsmod/loot_table/blocks/hrblock.json
+c4248fef7730697c6b11e360f85ababfca1f13ca data/usefultoolsmod/loot_table/blocks/lblock.json
 f2d6b878d49341982a8df7fa2d5abcdc3d53f62d data/usefultoolsmod/loot_table/blocks/rgold_deepslate_ore.json
 a3487b4cf829ba1c8d696e44a77536a6f725769a data/usefultoolsmod/loot_table/blocks/rgold_end_ore.json
 98537432eec80db0aa727852fdfab91a6963e499 data/usefultoolsmod/loot_table/blocks/rgold_nether_ore.json

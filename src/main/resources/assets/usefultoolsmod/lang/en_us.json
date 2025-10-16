@@ -6,6 +6,7 @@
   "item.usefultoolsmod.grenade": "Grenade",
   "item.usefultoolsmod.dynamite": "Dynamite",
   "item.usefultoolsmod.hred": "Hardened Redstone",
+  "item.usefultoolsmod.rlapis": "Reinforced Lapis Lazuli",
 
   "item.usefultoolsmod.jemerald_sword": "Jagged Emerald Sword",
   "item.usefultoolsmod.jemerald_pickaxe": "Jagged Emerald Pickaxe",
@@ -81,6 +82,19 @@
   "block.usefultoolsmod.rgold_deepslate_ore": "Ferrous Deepslate Gold Ore",
   "block.usefultoolsmod.semblock": "Block of Smooth Emerald",
   "block.usefultoolsmod.soblock": "Block of Smooth Obsidian",
+
+  "block.usefultoolsmod.lblock": "Block of Reinforced Lapis Lazuli",
+
+  "item.usefultoolsmod.rlapis_sword": "Hardened Lapis Sword",
+  "item.usefultoolsmod.rlapis_pickaxe": "Reinforced Lapis Pickaxe",
+  "item.usefultoolsmod.rlapis_shovel": "Reinforced Lapis Shovel",
+  "item.usefultoolsmod.rlapis_axe": "Reinforced Lapis Axe",
+  "item.usefultoolsmod.rlapis_hoe": "Reinforced Lapis Hoe",
+
+  "item.usefultoolsmod.rlapis_helmet": "Reinforced Lapis Helmet",
+  "item.usefultoolsmod.rlapis_chestplate": "Reinforced Lapis Chestplate",
+  "item.usefultoolsmod.rlapis_leggings": "Reinforced Lapis Leggings",
+  "item.usefultoolsmod.rlapis_boots": "Reinforced Lapis Boots",
 
   "item.usefultoolsmod.ghost_spawn_egg": "Ghost Spawn Egg",
   "entity.usefultoolsmod.ghost": "Ghost",

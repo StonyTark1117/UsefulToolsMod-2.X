@@ -52,6 +52,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.OBINGOT.get())
                 .unlockedBy(getHasName(ModItems.OBINGOT.get()), has(ModItems.OBINGOT.get())).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LBLOCK.get())
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.RLAPIS.get())
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RLAPIS.get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_NUGGET).define('B', Items.LAPIS_LAZULI)
+                .unlockedBy(getHasName(Items.LAPIS_LAZULI), has(Items.LAPIS_LAZULI)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HRED.get())
                 .pattern(" A ")
                 .pattern("ABA")
@@ -325,6 +339,41 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.RGOLD.get()).define('B', Items.STICK)
                 .unlockedBy(getHasName(ModItems.RGOLD.get()), has(ModItems.RGOLD.get())).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RLAPIS_HOE.get())
+                .pattern("AA ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.RLAPIS.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RLAPIS_AXE.get())
+                .pattern("AA ")
+                .pattern("AB ")
+                .pattern(" B ")
+                .define('A', ModItems.RLAPIS.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RLAPIS_SHOVEL.get())
+                .pattern(" A ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.RLAPIS.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RLAPIS_PICKAXE.get())
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.RLAPIS.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RLAPIS_SWORD.get())
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', ModItems.RLAPIS.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMERALD_CHESTPLATE.get())
                 .pattern("A A")
                 .pattern("AAA")
@@ -437,6 +486,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.RGOLD.get())
                 .unlockedBy(getHasName(ModItems.RGOLD.get()), has(ModItems.RGOLD.get())).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RLAPIS_CHESTPLATE.get())
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.RLAPIS.get())
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RLAPIS_BOOTS.get())
+                .pattern("   ")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', ModItems.RLAPIS.get())
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RLAPIS_LEGGINGS.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', ModItems.RLAPIS.get())
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RLAPIS_HELMET.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("   ")
+                .define('A', ModItems.RLAPIS.get())
+                .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.OVERPOWER_CHESTPLATE.get())
                 .pattern("ACA")
                 .pattern("ABA")
@@ -479,6 +556,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.SOBLOCK.get())
                 .unlockedBy(getHasName(ModBlocks.SOBLOCK.get()), has(ModBlocks.SOBLOCK.get()))
                 .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":sobingot_from_block");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RLAPIS.get(), 9)
+                .requires(ModBlocks.LBLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.LBLOCK.get()), has(ModBlocks.LBLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":rlapis_from_block");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.OBSHARD.get(), 3)
                 .requires(Items.OBSIDIAN)

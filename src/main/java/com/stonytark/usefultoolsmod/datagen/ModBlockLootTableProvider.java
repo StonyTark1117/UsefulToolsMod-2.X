@@ -32,6 +32,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HRBLOCK.get());
         dropSelf(ModBlocks.SEMBLOCK.get());
         dropSelf(ModBlocks.SOBLOCK.get());
+        dropSelf(ModBlocks.LBLOCK.get());
         // dropSelf(ModBlocks.MAGIC_BLOCK.get());
 
         this.add(ModBlocks.RGOLDORE.get(),

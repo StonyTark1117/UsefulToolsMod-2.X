@@ -34,6 +34,9 @@ public class ModItems {
     public static final RegistryObject<Item> HRED = ITEMS.register("hred",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> RLAPIS = ITEMS.register("rlapis",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> DYNAMITE = ITEMS.register("dynamite",
                     () -> new Dynamite(new Item.Properties()
                             .stacksTo(16)
@@ -151,6 +154,22 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.RGOLD, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.RGOLD, 0, -3f))));
 
+    public static final RegistryObject<Item> RLAPIS_SWORD = ITEMS.register("rlapis_sword",
+            () -> new SwordItem(ModToolTiers.RLAPIS, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.RLAPIS, 3, -2.4f))));
+    public static final RegistryObject<Item> RLAPIS_PICKAXE = ITEMS.register("rlapis_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.RLAPIS, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.RLAPIS, 1, -2.8f))));
+    public static final RegistryObject<Item> RLAPIS_SHOVEL = ITEMS.register("rlapis_shovel",
+            () -> new ShovelItem(ModToolTiers.RLAPIS, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.RLAPIS, 1.5f, -3f))));
+    public static final RegistryObject<Item> RLAPIS_AXE = ITEMS.register("rlapis_axe",
+            () -> new AxeItem(ModToolTiers.RLAPIS, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.RLAPIS, 6, -3.2f))));
+    public static final RegistryObject<Item> RLAPIS_HOE = ITEMS.register("rlapis_hoe",
+            () -> new HoeItem(ModToolTiers.RLAPIS, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.RLAPIS, 0, -3f))));
+
     public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet",
             () -> new ArmorItem(ModArmorMaterials.EMERALD_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
@@ -202,6 +221,19 @@ public class ModItems {
     public static final RegistryObject<Item> RGOLD_BOOTS = ITEMS.register("rgold_boots",
             () -> new ArmorItem(ModArmorMaterials.RGOLD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
+
+    public static final RegistryObject<Item> RLAPIS_HELMET = ITEMS.register("rlapis_helmet",
+            () -> new ArmorItem(ModArmorMaterials.RLAPIS_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(17))));
+    public static final RegistryObject<Item> RLAPIS_CHESTPLATE = ITEMS.register("rlapis_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.RLAPIS_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(17))));
+    public static final RegistryObject<Item> RLAPIS_LEGGINGS = ITEMS.register("rlapis_leggings",
+            () -> new ArmorItem(ModArmorMaterials.RLAPIS_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(17))));
+    public static final RegistryObject<Item> RLAPIS_BOOTS = ITEMS.register("rlapis_boots",
+            () -> new ArmorItem(ModArmorMaterials.RLAPIS_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(17))));
 
     public static final RegistryObject<Item> OVERPOWER_HELMET = ITEMS.register("overpower_helmet",
             () -> new ModArmorItem(ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,

@@ -67,6 +67,7 @@ public class UsefultoolsMod
             event.accept(ModItems.SEM);
             event.accept(ModItems.OBINGOT);
             event.accept(ModItems.HRED);
+            event.accept(ModItems.RLAPIS);
         }
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.GRENADE);
@@ -77,9 +78,13 @@ public class UsefultoolsMod
             event.accept(ModBlocks.HRBLOCK);
             event.accept(ModBlocks.SEMBLOCK);
             event.accept(ModBlocks.SOBLOCK);
+            event.accept(ModBlocks.LBLOCK);
         }
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.RGOLDORE);
+            event.accept(ModBlocks.RGOLD_DEEPSLATE_ORE);
+            event.accept(ModBlocks.RGOLD_END_ORE);
+            event.accept(ModBlocks.RGOLD_NETHER_ORE);
         }
     }
 

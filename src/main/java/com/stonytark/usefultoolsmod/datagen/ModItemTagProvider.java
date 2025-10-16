@@ -44,6 +44,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.OVERPOWER_HELMET.get())
                 .add(ModItems.OVERPOWER_CHESTPLATE.get())
                 .add(ModItems.OVERPOWER_LEGGINGS.get())
-                .add(ModItems.OVERPOWER_BOOTS.get());
+                .add(ModItems.OVERPOWER_BOOTS.get())
+                .add(ModItems.RLAPIS_HELMET.get())
+                .add(ModItems.RLAPIS_CHESTPLATE.get())
+                .add(ModItems.RLAPIS_LEGGINGS.get())
+                .add(ModItems.RLAPIS_BOOTS.get());
+
     }
 }

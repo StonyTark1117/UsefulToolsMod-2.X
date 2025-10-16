@@ -56,8 +56,8 @@
   ],
   "spawners": {
     "type": "usefultoolsmod:ghost",
-    "maxCount": 3,
+    "maxCount": 1,
     "minCount": 1,
-    "weight": 15
+    "weight": 10
   }
 }

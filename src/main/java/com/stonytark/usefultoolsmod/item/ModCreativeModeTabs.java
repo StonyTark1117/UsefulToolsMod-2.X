@@ -35,6 +35,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SOBSIDIAN_SWORD.get());
                         output.accept(ModItems.SOBSIDIAN_SHOVEL.get());
                         output.accept(ModItems.SOBSIDIAN_HOE.get());
+                        output.accept(ModItems.OBSIDIAN_HELMET.get());
+                        output.accept(ModItems.OBSIDIAN_CHESTPLATE.get());
+                        output.accept(ModItems.OBSIDIAN_LEGGINGS.get());
+                        output.accept(ModItems.OBSIDIAN_BOOTS.get());
 
                         output.accept(ModBlocks.SEMBLOCK.get());
                         output.accept(ModItems.SEM.get());
@@ -48,7 +52,22 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.JEMERALD_SWORD.get());
                         output.accept(ModItems.JEMERALD_SHOVEL.get());
                         output.accept(ModItems.JEMERALD_HOE.get());
+                        output.accept(ModItems.EMERALD_HELMET.get());
+                        output.accept(ModItems.EMERALD_CHESTPLATE.get());
+                        output.accept(ModItems.EMERALD_LEGGINGS.get());
+                        output.accept(ModItems.EMERALD_BOOTS.get());
 
+                        output.accept(ModBlocks.LBLOCK.get());
+                        output.accept(ModItems.RLAPIS.get());
+                        output.accept(ModItems.RLAPIS_AXE.get());
+                        output.accept(ModItems.RLAPIS_PICKAXE.get());
+                        output.accept(ModItems.RLAPIS_SWORD.get());
+                        output.accept(ModItems.RLAPIS_SHOVEL.get());
+                        output.accept(ModItems.RLAPIS_HOE.get());
+                        output.accept(ModItems.RLAPIS_HELMET.get());
+                        output.accept(ModItems.RLAPIS_CHESTPLATE.get());
+                        output.accept(ModItems.RLAPIS_LEGGINGS.get());
+                        output.accept(ModItems.RLAPIS_BOOTS.get());
 
                         output.accept(ModBlocks.RGOLDBLOCK.get());
                         output.accept(ModBlocks.RGOLDORE.get());
@@ -61,6 +80,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RGOLD_SWORD.get());
                         output.accept(ModItems.RGOLD_SHOVEL.get());
                         output.accept(ModItems.RGOLD_HOE.get());
+                        output.accept(ModItems.RGOLD_HELMET.get());
+                        output.accept(ModItems.RGOLD_CHESTPLATE.get());
+                        output.accept(ModItems.RGOLD_LEGGINGS.get());
+                        output.accept(ModItems.RGOLD_BOOTS.get());
 
                         output.accept(ModItems.HRED.get());
                         output.accept(ModBlocks.HRBLOCK.get());
@@ -69,32 +92,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HREDSTONE_SWORD.get());
                         output.accept(ModItems.HREDSTONE_SHOVEL.get());
                         output.accept(ModItems.HREDSTONE_HOE.get());
-
-                        output.accept(ModItems.OVERPOWER_AXE.get());
-                        output.accept(ModItems.OVERPOWER_PICKAXE.get());
-                        output.accept(ModItems.OVERPOWER_SWORD.get());
-                        output.accept(ModItems.OVERPOWER_SHOVEL.get());
-
-                        output.accept(ModItems.EMERALD_HELMET.get());
-                        output.accept(ModItems.EMERALD_CHESTPLATE.get());
-                        output.accept(ModItems.EMERALD_LEGGINGS.get());
-                        output.accept(ModItems.EMERALD_BOOTS.get());
-
                         output.accept(ModItems.HRED_HELMET.get());
                         output.accept(ModItems.HRED_CHESTPLATE.get());
                         output.accept(ModItems.HRED_LEGGINGS.get());
                         output.accept(ModItems.HRED_BOOTS.get());
 
-                        output.accept(ModItems.OBSIDIAN_HELMET.get());
-                        output.accept(ModItems.OBSIDIAN_CHESTPLATE.get());
-                        output.accept(ModItems.OBSIDIAN_LEGGINGS.get());
-                        output.accept(ModItems.OBSIDIAN_BOOTS.get());
-
-                        output.accept(ModItems.RGOLD_HELMET.get());
-                        output.accept(ModItems.RGOLD_CHESTPLATE.get());
-                        output.accept(ModItems.RGOLD_LEGGINGS.get());
-                        output.accept(ModItems.RGOLD_BOOTS.get());
-
+                        output.accept(ModItems.OVERPOWER_AXE.get());
+                        output.accept(ModItems.OVERPOWER_PICKAXE.get());
+                        output.accept(ModItems.OVERPOWER_SWORD.get());
+                        output.accept(ModItems.OVERPOWER_SHOVEL.get());
                         output.accept(ModItems.OVERPOWER_HELMET.get());
                         output.accept(ModItems.OVERPOWER_CHESTPLATE.get());
                         output.accept(ModItems.OVERPOWER_LEGGINGS.get());

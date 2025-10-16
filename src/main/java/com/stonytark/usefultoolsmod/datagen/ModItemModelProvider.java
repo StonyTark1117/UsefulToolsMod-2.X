@@ -49,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.OBINGOT.get());
         basicItem(ModItems.HRED.get());
         basicItem(ModItems.SEM.get());
+        basicItem(ModItems.RLAPIS.get());
 
         //simpleBlockItem(ModBlocks.RGOLDBLOCK);
         //simpleBlockItem(ModBlocks.HRBLOCK);
@@ -97,6 +98,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.RGOLD_AXE);
         handheldItem(ModItems.RGOLD_HOE);
 
+        handheldItem(ModItems.RLAPIS_SWORD);
+        handheldItem(ModItems.RLAPIS_PICKAXE);
+        handheldItem(ModItems.RLAPIS_SHOVEL);
+        handheldItem(ModItems.RLAPIS_AXE);
+        handheldItem(ModItems.RLAPIS_HOE);
+
         trimmedArmorItem(ModItems.EMERALD_HELMET);
         trimmedArmorItem(ModItems.EMERALD_CHESTPLATE);
         trimmedArmorItem(ModItems.EMERALD_LEGGINGS);
@@ -116,6 +123,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.RGOLD_CHESTPLATE);
         trimmedArmorItem(ModItems.RGOLD_LEGGINGS);
         trimmedArmorItem(ModItems.RGOLD_BOOTS);
+
+        trimmedArmorItem(ModItems.RLAPIS_HELMET);
+        trimmedArmorItem(ModItems.RLAPIS_CHESTPLATE);
+        trimmedArmorItem(ModItems.RLAPIS_LEGGINGS);
+        trimmedArmorItem(ModItems.RLAPIS_BOOTS);
 
         trimmedArmorItem(ModItems.OVERPOWER_HELMET);
         trimmedArmorItem(ModItems.OVERPOWER_CHESTPLATE);

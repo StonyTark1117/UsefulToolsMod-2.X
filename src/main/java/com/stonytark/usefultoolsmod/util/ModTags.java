@@ -14,6 +14,8 @@ public class ModTags {
  public static class Blocks {
      public static TagKey<Block> NEEDS_RGOLD_TOOL = createTag("needs_rgold_tool");
      public static TagKey<Block> INCORRECT_RGOLD_TOOL = createTag("incorrect_rgold_tool");
+     public static TagKey<Block> NEEDS_RLAPIS_TOOL = createTag("needs_rlapis_tool");
+     public static TagKey<Block> INCORRECT_RLAPIS_TOOL = createTag("incorrect_rlapis_tool");
      public static TagKey<Block> NEEDS_HRED_TOOL = createTag("needs_hred_tool");
      public static TagKey<Block> INCORRECT_HRED_TOOL = createTag("incorrect_hred_tool");
      public static TagKey<Block> NEEDS_JEM_TOOL = createTag("needs_jem_tool");
