@@ -24,6 +24,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RGOLDBLOCK.get())
                 .add(ModBlocks.HRBLOCK.get())
                 .add(ModBlocks.RGOLDORE.get())
+                .add(ModBlocks.RGOLD_NETHER_ORE.get())
+                .add(ModBlocks.RGOLD_END_ORE.get())
+                .add(ModBlocks.RGOLD_DEEPSLATE_ORE.get())
                 .add(ModBlocks.SEMBLOCK.get())
                 .add(ModBlocks.SOBLOCK.get())
                 .add(ModBlocks.LBLOCK.get());
@@ -38,7 +41,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SEMBLOCK.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.RGOLDORE.get());
+                .add(ModBlocks.RGOLDORE.get())
+                .add(ModBlocks.RGOLD_NETHER_ORE.get())
+                .add(ModBlocks.RGOLD_END_ORE.get())
+                .add(ModBlocks.RGOLD_DEEPSLATE_ORE.get());
 
         tag(ModTags.Blocks.NEEDS_HRED_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
