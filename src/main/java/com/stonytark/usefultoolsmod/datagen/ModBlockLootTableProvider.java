@@ -42,7 +42,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.RGOLD_END_ORE.get(),
                 block -> createOreDrop(ModBlocks.RGOLD_END_ORE.get(), ModItems.RGOLD.get()));
         this.add(ModBlocks.RGOLD_DEEPSLATE_ORE.get(),
-                block -> createOreDrop(ModBlocks.RGOLD_END_ORE.get(), ModItems.RGOLD.get()));
+                block -> createOreDrop(ModBlocks.RGOLD_DEEPSLATE_ORE.get(), ModItems.RGOLD.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {
