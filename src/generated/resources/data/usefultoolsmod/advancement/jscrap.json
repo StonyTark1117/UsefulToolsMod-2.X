@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:root",
+  "criteria": {
+    "has_jscrap_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jscrap_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jscrap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jscrap_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jscrap.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jscrap_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

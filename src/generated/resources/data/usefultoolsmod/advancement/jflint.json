@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:root",
+  "criteria": {
+    "has_jflint_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jflint_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jflint.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jflint_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jflint.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jflint_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

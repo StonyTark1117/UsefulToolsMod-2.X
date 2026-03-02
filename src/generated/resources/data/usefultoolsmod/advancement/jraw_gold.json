@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:root",
+  "criteria": {
+    "has_jraw_gold_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jraw_gold_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jraw_gold.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jraw_gold_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jraw_gold.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jraw_gold_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

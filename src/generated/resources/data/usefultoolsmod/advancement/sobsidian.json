@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:obingot",
+  "criteria": {
+    "has_sobsidian_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:sobsidian_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.sobsidian.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:sobsidian_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.sobsidian.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_sobsidian_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

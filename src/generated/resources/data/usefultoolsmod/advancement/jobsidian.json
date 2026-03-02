@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:obingot",
+  "criteria": {
+    "has_jobsidian_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jobsidian_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jobsidian.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jobsidian_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jobsidian.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jobsidian_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

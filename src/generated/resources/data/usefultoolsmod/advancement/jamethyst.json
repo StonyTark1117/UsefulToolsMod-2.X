@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:root",
+  "criteria": {
+    "has_jamethyst_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jamethyst_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jamethyst.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jamethyst_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jamethyst.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jamethyst_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:sem",
+  "criteria": {
+    "has_semerald_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:semerald_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.semerald.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:semerald_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.semerald.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_semerald_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

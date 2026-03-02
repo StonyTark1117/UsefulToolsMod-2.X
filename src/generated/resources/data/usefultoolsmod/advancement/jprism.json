@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:root",
+  "criteria": {
+    "has_jprism_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jprism_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jprism.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jprism_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jprism.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jprism_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
