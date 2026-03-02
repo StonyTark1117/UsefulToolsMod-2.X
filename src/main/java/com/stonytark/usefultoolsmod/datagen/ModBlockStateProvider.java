@@ -34,13 +34,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void spectralInfuser() {
-        ModelFile off = models().orientable("spectral_infuser",
+        ModelFile off = models().orientableWithBottom("spectral_infuser",
                 modLoc("block/spectral_infuser_side"),
                 modLoc("block/spectral_infuser_front"),
+                modLoc("block/spectral_infuser_side"),
                 modLoc("block/spectral_infuser_top"));
-        ModelFile on = models().orientable("spectral_infuser_on",
+        ModelFile on = models().orientableWithBottom("spectral_infuser_on",
                 modLoc("block/spectral_infuser_side"),
                 modLoc("block/spectral_infuser_front_on"),
+                modLoc("block/spectral_infuser_side"),
                 modLoc("block/spectral_infuser_top"));
 
         var builder = getVariantBuilder(ModBlocks.SPECTRAL_INFUSER.get());

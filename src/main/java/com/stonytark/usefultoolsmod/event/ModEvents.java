@@ -76,22 +76,34 @@ public class ModEvents {
         Player player = event.player;
         if (player == null || player.isSpectator()) return;
 
-        if (Config.opToolEffectsEnabled) {
+        if (Config.overpowerEnabled && Config.opToolEffectsEnabled) {
             handleOpToolEffects(player, player.getMainHandItem());
             handleOpToolEffects(player, player.getOffhandItem());
         }
-        if (Config.opArmorEffectsEnabled) {
+        if (Config.overpowerEnabled && Config.opArmorEffectsEnabled) {
             spawnArmorAuraIfOp(player);
         }
 
         if (!player.level().isClientSide) {
-            handleCoalToolBurning(player);
-            handleCoalArmorBurning(player);
-            handleSnowIceMelt(player);
-            handleIceFireProtection(player);
-            handleSprismWaterEffects(player);
-            handleFniBootsFire(player);
-            handleFniArmorBonus(player);
+            if (Config.coalEnabled && Config.coalFireEffects) {
+                handleCoalToolBurning(player);
+                handleCoalArmorBurning(player);
+            }
+            if (Config.snowEnabled && Config.snowMeltEffects) {
+                handleSnowMelt(player);
+                handleSnowFireProtection(player);
+            }
+            if (Config.iceEnabled && Config.iceEffects) {
+                handleIceMelt(player);
+                handleIceFireProtection(player);
+            }
+            if (Config.sprismEnabled && Config.sprismWaterEffects) {
+                handleSprismWaterEffects(player);
+            }
+            if (Config.fniEnabled && Config.fniFireEffects) {
+                handleFniBootsFire(player);
+                handleFniArmorBonus(player);
+            }
         }
     }
 
@@ -252,7 +264,6 @@ public class ModEvents {
     // -----------------------------------------------------------------------
 
     private static void handleCoalToolBurning(Player player) {
-        if (!Config.coalFireEffectsEnabled) return;
 
         UUID uuid      = player.getUUID();
         ItemStack main = player.getMainHandItem();
@@ -342,8 +353,6 @@ public class ModEvents {
     };
 
     private static void handleCoalArmorBurning(Player player) {
-        if (!Config.coalFireEffectsEnabled) return;
-
         UUID uuid = player.getUUID();
 
         // Water extinguishes worn armor burning
@@ -431,10 +440,10 @@ public class ModEvents {
     }
 
     // -----------------------------------------------------------------------
-    // Snow / Ice melt mechanics
+    // Snow melt mechanics
     // -----------------------------------------------------------------------
 
-    private static void handleSnowIceMelt(Player player) {
+    private static void handleSnowMelt(Player player) {
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
 
         // Snow tools melt every 40 ticks when held
@@ -446,6 +455,42 @@ public class ModEvents {
             if (isSnowTool(off))  { off.hurtAndBreak(1, player, EquipmentSlot.OFFHAND);   melted = true; }
             if (melted) spawnMeltParticles(player, serverLevel);
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // Snow fire protection — absorbs fire at heavy durability cost
+    // -----------------------------------------------------------------------
+
+    private static void handleSnowFireProtection(Player player) {
+        if (!(player.level() instanceof ServerLevel serverLevel)) return;
+        if (!player.isOnFire()) return;
+
+        ItemStack main = player.getMainHandItem();
+        ItemStack off  = player.getOffhandItem();
+
+        boolean hasProtector = isSnowTool(main) || isSnowTool(off);
+        if (!hasProtector) return;
+
+        player.clearFire();
+
+        if (player.tickCount % 20 == 0) {
+            if (isSnowTool(main)) main.hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
+            if (isSnowTool(off))  off.hurtAndBreak(5,  player, EquipmentSlot.OFFHAND);
+        }
+
+        if (player.tickCount % 8 == 0) {
+            serverLevel.sendParticles(ParticleTypes.FALLING_WATER,
+                    player.getX(), player.getY() + 1.0, player.getZ(),
+                    6, 0.4, 0.4, 0.4, 0.05);
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Ice melt mechanics
+    // -----------------------------------------------------------------------
+
+    private static void handleIceMelt(Player player) {
+        if (!(player.level() instanceof ServerLevel serverLevel)) return;
 
         // Ice tools + armor melt every 60 ticks
         if (player.tickCount % 60 == 0) {
@@ -480,7 +525,7 @@ public class ModEvents {
     }
 
     // -----------------------------------------------------------------------
-    // Ice / Snow fire protection — absorbs fire at heavy durability cost
+    // Ice fire protection — absorbs fire at heavy durability cost
     // -----------------------------------------------------------------------
 
     private static void handleIceFireProtection(Player player) {
@@ -490,9 +535,7 @@ public class ModEvents {
         ItemStack main = player.getMainHandItem();
         ItemStack off  = player.getOffhandItem();
 
-        // Check if any ice or snow item is present
-        boolean hasProtector = isSnowTool(main) || isIceTool(main)
-                            || isSnowTool(off)   || isIceTool(off);
+        boolean hasProtector = isIceTool(main) || isIceTool(off);
         if (!hasProtector) {
             for (EquipmentSlot slot : ARMOR_SLOTS) {
                 if (isIceArmor(player.getItemBySlot(slot))) { hasProtector = true; break; }
@@ -500,20 +543,17 @@ public class ModEvents {
         }
         if (!hasProtector) return;
 
-        // Suppress fire every tick while a protector exists
         player.clearFire();
 
-        // Heavy durability drain once per second (5 per relevant item)
         if (player.tickCount % 20 == 0) {
-            if (isSnowTool(main) || isIceTool(main)) main.hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
-            if (isSnowTool(off)  || isIceTool(off))  off.hurtAndBreak(5,  player, EquipmentSlot.OFFHAND);
+            if (isIceTool(main)) main.hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
+            if (isIceTool(off))  off.hurtAndBreak(5,  player, EquipmentSlot.OFFHAND);
             for (EquipmentSlot slot : ARMOR_SLOTS) {
                 ItemStack piece = player.getItemBySlot(slot);
                 if (isIceArmor(piece)) piece.hurtAndBreak(5, player, slot);
             }
         }
 
-        // Steam/sizzle particles while absorbing fire
         if (player.tickCount % 8 == 0) {
             serverLevel.sendParticles(ParticleTypes.FALLING_WATER,
                     player.getX(), player.getY() + 1.0, player.getZ(),
@@ -658,6 +698,7 @@ public class ModEvents {
      */
     @SubscribeEvent
     public static void onFniRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (!Config.fniEnabled || !Config.fniFireEffects) return;
         Player player = event.getEntity();
         if (!player.isShiftKeyDown()) return;
         if (event.getHand() != InteractionHand.MAIN_HAND) return;

@@ -59,6 +59,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.RLAPIS.get())
                 .unlockedBy(getHasName(ModItems.RLAPIS.get()), has(ModItems.RLAPIS.get())).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, Blocks.ICE)
+                .pattern("SSS")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('S', Items.SNOWBALL)
+                .unlockedBy(getHasName(Items.SNOWBALL), has(Items.SNOWBALL)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RLAPIS.get())
                 .pattern("AAA")
                 .pattern("ABA")

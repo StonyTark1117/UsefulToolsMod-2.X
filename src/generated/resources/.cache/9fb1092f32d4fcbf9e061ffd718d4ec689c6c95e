@@ -1,4 +1,6 @@
-// 1.21.1	2026-03-01T19:00:07.752778507	Recipes
+// 1.21.1	2026-03-01T21:53:49.856890656	Recipes
+9d8796229abc82330ef9f65fb601b59dacff0754 data/minecraft/advancement/recipes/building_blocks/ice.json
+af8912cc6dc94143027f4c0f82606058e73e67b5 data/minecraft/recipe/ice.json
 df8b1b6336ecf99d21119fd614079cf460d6c837 data/usefultoolsmod/advancement/recipes/combat/andesite_sword.json
 8541896c91c9fbf1ecac1e0f338924348f87a008 data/usefultoolsmod/advancement/recipes/combat/basalt_sword.json
 b5b2fdcec01be7048eb1b439df24378f1256664c data/usefultoolsmod/advancement/recipes/combat/blackstone_sword.json

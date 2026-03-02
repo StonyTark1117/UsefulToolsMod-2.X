@@ -215,27 +215,18 @@ public class GhostEntity extends Animal {
 
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
-        // Ghosts are invulnerable to everything except /kill and void damage
-        return !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
-    }
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return false;
 
-    @Override
-    public boolean hurt(DamageSource source, float amount) {
-        // Always allow void/kill commands through
-        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            return super.hurt(source, amount);
-        }
-
-        // Only ectoplasm-infused weapons can harm ghosts
+        // Allow damage from ectoplasm-infused weapons
         Entity attacker = source.getEntity();
         if (attacker instanceof LivingEntity living) {
             ItemStack weapon = living.getMainHandItem();
             if (EctoplasmInfusionHelper.isInfused(weapon)) {
-                return super.hurt(source, amount);
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     @Nullable

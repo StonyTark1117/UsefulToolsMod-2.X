@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-01T19:00:07.751665057	Block States: usefultoolsmod
+// 1.21.1	2026-03-01T20:58:25.916275821	Block States: usefultoolsmod
 27912d38744b1cc8c3eb862f6956339bcc798286 assets/usefultoolsmod/blockstates/hrblock.json
 3132eb64502b8000f4e89644e024acf6e7d2d900 assets/usefultoolsmod/blockstates/lblock.json
 2be29d792f064198e06cc078aba38a7977a665cd assets/usefultoolsmod/blockstates/rgold_deepslate_ore.json
@@ -18,8 +18,8 @@ c9dcebbe5cf1f7b513581dd903e1552b61f8b068 assets/usefultoolsmod/models/block/lblo
 829a91edf514e1481f041a84742ad8f6616a443a assets/usefultoolsmod/models/block/rgoldore.json
 b2f2c684c36a356b17d9af9849e3fa47e0cb9559 assets/usefultoolsmod/models/block/semblock.json
 ef406c10aa7e62861d7d5c20ec471b65b7dbed10 assets/usefultoolsmod/models/block/soblock.json
-713f6fef0ef8618e498c8ffc9c1bd88d6d38f0a4 assets/usefultoolsmod/models/block/spectral_infuser.json
-8d37fee2467bfea0742bcb3851429c444de4bf6f assets/usefultoolsmod/models/block/spectral_infuser_on.json
+34fad391203dd50606497065d18b908bc2855c93 assets/usefultoolsmod/models/block/spectral_infuser.json
+3681be1ce3c9d26959ef664bd6132796ec164258 assets/usefultoolsmod/models/block/spectral_infuser_on.json
 88e740b8902e4f30d81bb8e1eee03cd0a4423f66 assets/usefultoolsmod/models/item/hrblock.json
 515d2f323517c960500405b1ff113e9ec0eccc80 assets/usefultoolsmod/models/item/lblock.json
 213c58755de2db9e99cc46c70cda0eab0e6b8248 assets/usefultoolsmod/models/item/rgold_deepslate_ore.json

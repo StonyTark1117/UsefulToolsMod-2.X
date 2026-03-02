@@ -162,7 +162,9 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
 
     public static void tick(Level level, BlockPos pos, BlockState state,
                             SpectralInfuserBlockEntity be) {
-        if (be.hasRecipe()) {
+        boolean powered = level.hasNeighborSignal(pos);
+
+        if (!powered && be.hasRecipe()) {
             be.progress++;
             if (!state.getValue(SpectralInfuserBlock.LIT)) {
                 level.setBlock(pos, state.setValue(SpectralInfuserBlock.LIT, true), 3);

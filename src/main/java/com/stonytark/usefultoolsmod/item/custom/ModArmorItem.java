@@ -35,7 +35,8 @@ public class ModArmorItem extends ArmorItem {
 
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-        if(!level.isClientSide() && hasFullSuitOfArmorOn(player) && Config.opArmorEffectsEnabled) {
+        if(!level.isClientSide() && hasFullSuitOfArmorOn(player)
+                && Config.overpowerEnabled && Config.opArmorEffectsEnabled) {
             evaluateArmorEffects(player);
         }
     }
