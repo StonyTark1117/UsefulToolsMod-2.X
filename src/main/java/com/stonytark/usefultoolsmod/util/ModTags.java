@@ -18,6 +18,8 @@ public class ModTags {
      public static TagKey<Block> INCORRECT_RLAPIS_TOOL = createTag("incorrect_rlapis_tool");
      public static TagKey<Block> NEEDS_HRED_TOOL = createTag("needs_hred_tool");
      public static TagKey<Block> INCORRECT_HRED_TOOL = createTag("incorrect_hred_tool");
+     public static TagKey<Block> NEEDS_HGLOW_TOOL = createTag("needs_hglow_tool");
+     public static TagKey<Block> INCORRECT_HGLOW_TOOL = createTag("incorrect_hglow_tool");
      public static TagKey<Block> NEEDS_JEM_TOOL = createTag("needs_jem_tool");
      public static TagKey<Block> INCORRECT_JEM_TOOL = createTag("incorrect_jem_tool");
      public static TagKey<Block> NEEDS_SEM_TOOL = createTag("needs_sem_tool");

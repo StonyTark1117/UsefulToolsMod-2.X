@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-15T22:58:47.215089241	Block States: usefultoolsmod
+// 1.21.1	2026-03-01T19:00:07.751665057	Block States: usefultoolsmod
 27912d38744b1cc8c3eb862f6956339bcc798286 assets/usefultoolsmod/blockstates/hrblock.json
 3132eb64502b8000f4e89644e024acf6e7d2d900 assets/usefultoolsmod/blockstates/lblock.json
 2be29d792f064198e06cc078aba38a7977a665cd assets/usefultoolsmod/blockstates/rgold_deepslate_ore.json
@@ -8,6 +8,7 @@ bac279f1bef20b066c772b881caac4eff97861d4 assets/usefultoolsmod/blockstates/rgold
 065f919a13025917a01ab52687d2019e3a8ec4ab assets/usefultoolsmod/blockstates/rgoldore.json
 8a3125701937b63d218cfe549137b9d43e9ebcdd assets/usefultoolsmod/blockstates/semblock.json
 21cf66b6d8ad06a69a71e33a37aeb8e06d079243 assets/usefultoolsmod/blockstates/soblock.json
+9fcbf617b2464dd45671db445527d915bfd30fcc assets/usefultoolsmod/blockstates/spectral_infuser.json
 3cfdd7a7fc49ed65006ebf634e38d03e1d175b81 assets/usefultoolsmod/models/block/hrblock.json
 c9dcebbe5cf1f7b513581dd903e1552b61f8b068 assets/usefultoolsmod/models/block/lblock.json
 8d06fd526af055661c4026ce7bcdf354024738c3 assets/usefultoolsmod/models/block/rgold_deepslate_ore.json
@@ -17,6 +18,8 @@ c9dcebbe5cf1f7b513581dd903e1552b61f8b068 assets/usefultoolsmod/models/block/lblo
 829a91edf514e1481f041a84742ad8f6616a443a assets/usefultoolsmod/models/block/rgoldore.json
 b2f2c684c36a356b17d9af9849e3fa47e0cb9559 assets/usefultoolsmod/models/block/semblock.json
 ef406c10aa7e62861d7d5c20ec471b65b7dbed10 assets/usefultoolsmod/models/block/soblock.json
+713f6fef0ef8618e498c8ffc9c1bd88d6d38f0a4 assets/usefultoolsmod/models/block/spectral_infuser.json
+8d37fee2467bfea0742bcb3851429c444de4bf6f assets/usefultoolsmod/models/block/spectral_infuser_on.json
 88e740b8902e4f30d81bb8e1eee03cd0a4423f66 assets/usefultoolsmod/models/item/hrblock.json
 515d2f323517c960500405b1ff113e9ec0eccc80 assets/usefultoolsmod/models/item/lblock.json
 213c58755de2db9e99cc46c70cda0eab0e6b8248 assets/usefultoolsmod/models/item/rgold_deepslate_ore.json
@@ -26,3 +29,4 @@ bd953ddeaac99a10019c59e8c9017f47dd095a4a assets/usefultoolsmod/models/item/rgold
 f4a4a65790d1395d8dc36403473c2ad30d89cf1e assets/usefultoolsmod/models/item/rgoldore.json
 320a1f90bfe7fb0ef413c0b5e2f769bd99740ac0 assets/usefultoolsmod/models/item/semblock.json
 050381a3700e8af024fae66d91e232b3185c81db assets/usefultoolsmod/models/item/soblock.json
+9c4e064d133cbe255a728bef4ffad1ca74e44adc assets/usefultoolsmod/models/item/spectral_infuser.json

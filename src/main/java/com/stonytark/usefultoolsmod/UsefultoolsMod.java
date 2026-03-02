@@ -2,10 +2,16 @@ package com.stonytark.usefultoolsmod;
 
 import com.mojang.logging.LogUtils;
 import com.stonytark.usefultoolsmod.block.ModBlocks;
+import com.stonytark.usefultoolsmod.block.entity.ModBlockEntityTypes;
+import com.stonytark.usefultoolsmod.block.entity.ModMenuTypes;
+import com.stonytark.usefultoolsmod.block.entity.SpectralInfuserMenu;
+import com.stonytark.usefultoolsmod.client.SpectralInfuserScreen;
 import com.stonytark.usefultoolsmod.entity.ModEntities;
 import com.stonytark.usefultoolsmod.entity.client.GhostRenderer;
 import com.stonytark.usefultoolsmod.item.ModCreativeModeTabs;
 import com.stonytark.usefultoolsmod.item.ModItems;
+import com.stonytark.usefultoolsmod.trigger.ModTriggers;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,6 +49,9 @@ public class UsefultoolsMod
         ModEntities.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntityTypes.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        ModTriggers.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -56,13 +65,14 @@ public class UsefultoolsMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.ECTOPLASM);
             event.accept(ModItems.RGOLD);
+            event.accept(ModItems.RAW_RGOLD);
             event.accept(ModItems.OBSHARD);
             event.accept(ModItems.SEM);
             event.accept(ModItems.OBINGOT);
@@ -79,6 +89,9 @@ public class UsefultoolsMod
             event.accept(ModBlocks.SEMBLOCK);
             event.accept(ModBlocks.SOBLOCK);
             event.accept(ModBlocks.LBLOCK);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModBlocks.SPECTRAL_INFUSER);
         }
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.RGOLDORE);
@@ -103,6 +116,8 @@ public class UsefultoolsMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.GHOST.get(), GhostRenderer::new);
+            event.enqueueWork(() ->
+                    MenuScreens.register(ModMenuTypes.SPECTRAL_INFUSER_MENU.get(), SpectralInfuserScreen::new));
         }
     }
 }

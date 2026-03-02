@@ -1,5 +1,9 @@
 {
   "values": [
-    "usefultoolsmod:rgoldore"
+    "usefultoolsmod:rgoldore",
+    "usefultoolsmod:rgold_nether_ore",
+    "usefultoolsmod:rgold_end_ore",
+    "usefultoolsmod:rgold_deepslate_ore",
+    "usefultoolsmod:spectral_infuser"
   ]
 }

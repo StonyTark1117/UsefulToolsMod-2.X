@@ -1,6 +1,7 @@
 package com.stonytark.usefultoolsmod.item.custom;
 
 import com.google.common.collect.ImmutableMap;
+import com.stonytark.usefultoolsmod.Config;
 import com.stonytark.usefultoolsmod.item.ModArmorMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -34,7 +35,7 @@ public class ModArmorItem extends ArmorItem {
 
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-        if(!level.isClientSide() && hasFullSuitOfArmorOn(player)) {
+        if(!level.isClientSide() && hasFullSuitOfArmorOn(player) && Config.opArmorEffectsEnabled) {
             evaluateArmorEffects(player);
         }
     }

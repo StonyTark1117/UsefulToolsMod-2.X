@@ -1,6 +1,7 @@
 package com.stonytark.usefultoolsmod.block;
 
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
+import com.stonytark.usefultoolsmod.block.custom.SpectralInfuserBlock;
 import com.stonytark.usefultoolsmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -56,7 +57,12 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
-
+    public static final RegistryObject<Block> SPECTRAL_INFUSER = registerBlock("spectral_infuser",
+            () -> new SpectralInfuserBlock(BlockBehaviour.Properties.of()
+                    .strength(3.5f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+                    .lightLevel(state -> state.getValue(SpectralInfuserBlock.LIT) ? 13 : 0)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){

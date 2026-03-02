@@ -1,9 +1,14 @@
 package com.stonytark.usefultoolsmod.entity.custom;
 
 import com.stonytark.usefultoolsmod.entity.ModEntities;
+import com.stonytark.usefultoolsmod.entity.ai.goal.FollowActiveGhostGoal;
 import com.stonytark.usefultoolsmod.entity.ai.goal.FollowPlayerGoal;
+import com.stonytark.usefultoolsmod.entity.ai.goal.HideBehindAdultGoal;
+import com.stonytark.usefultoolsmod.entity.ai.goal.ObserveFriendlyMobGoal;
 import com.stonytark.usefultoolsmod.item.ModItems;
+import com.stonytark.usefultoolsmod.item.custom.EctoplasmInfusionHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -21,40 +26,61 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumSet;
-import java.util.List;
-
 public class GhostEntity extends Animal {
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-    private int lifetime = 0; // ticks since spawn
+    private int lifetime = 0;
     private static final int MAX_LIFETIME = 5 * 60 * 20; // 5 minutes
-
+    private static final int MAX_SOLID_DEPTH = 3;
 
     public GhostEntity(EntityType<? extends Animal> type, Level level) {
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 10, true);
         this.setNoGravity(true);
-        this.noPhysics = true; // pass through blocks
+        this.noPhysics = true;
     }
 
     /* ---------------- AI ---------------- */
 
     @Override
     protected void registerGoals() {
-        // Wander a bit in the air
-        this.goalSelector.addGoal(0, new RandomStrollGoal(this, 1.0D, 40));
+        // ---- Baby-only goals (canUse() is gated by isBaby()) ----
 
-        // Look at nearby players
-        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        // Priority 0: Hide behind adult ghost (or block cover) when any non-ghost is nearby
+        this.goalSelector.addGoal(0, new HideBehindAdultGoal(this, 1.3D));
 
-        // Occasionally look around
-        this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
+        // Priority 1: Follow a parent/adult ghost when not hiding (vanilla FollowParentGoal
+        //             checks isAdult() internally, so it only fires for babies)
+        this.goalSelector.addGoal(1, new FollowParentGoal(this, 1.1D));
 
-        // Follow players when visible
-        this.goalSelector.addGoal(3, new FollowPlayerGoal(this, 1.3D, 8.0F, 2.0F));
+        // ---- Adult-only goals (canUse() returns false when isBaby()) ----
+
+        // Priority 0: Seek a breeding partner when in love mode (only active during love mode)
+        this.goalSelector.addGoal(0, new BreedGoal(this, 1.0D));
+
+        // Priority 0: Follow visible player (yields when in love mode)
+        this.goalSelector.addGoal(0, new FollowPlayerGoal(this, 1.2D, 10.0F, 1.0));
+
+        // Priority 1: Observe nearby animals/villagers (ghosts excluded — prevents deadlock loops)
+        this.goalSelector.addGoal(1, new ObserveFriendlyMobGoal(this, 0.9D, 10.0F, GhostEntity.class));
+
+        // Priority 2: Trail a nearby ghost that is already heading toward a real target
+        this.goalSelector.addGoal(2, new FollowActiveGhostGoal(this, 1.0D, 12.0F));
+
+        // ---- Shared goals (all ages) ----
+
+        // Priority 3: Gentle aerial wandering
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+
+        // Priority 4: Look at nearby players
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
+
+        // Priority 5: Occasional random look-around
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -82,7 +108,13 @@ public class GhostEntity extends Animal {
         super.tick();
 
         if (!this.level().isClientSide) {
-            this.clearFire();               // never burn
+            this.clearFire();
+            constrainPosition();
+
+            lifetime++;
+            if (lifetime > MAX_LIFETIME) {
+                this.discard();
+            }
         }
 
         // Gentle hovering drift
@@ -94,15 +126,74 @@ public class GhostEntity extends Animal {
             ));
         }
 
-        if(this.level().isClientSide()){
+        if (this.level().isClientSide()) {
             this.setupAnimationStates();
         }
+    }
 
-        // 🕒 Despawn after 5 minutes
-        if (!this.level().isClientSide) {
-            lifetime++;
-            if (lifetime > MAX_LIFETIME) {
-                this.discard(); // removes the entity safely
+    /**
+     * Prevents the ghost from becoming permanently embedded in thick solid geometry.
+     *
+     * Rules:
+     * - If the ghost is inside a solid block AND there is air within 1–3 blocks in
+     *   some direction, push the ghost gently toward that air (allows thin-wall clipping).
+     * - If there is NO air within 3 blocks in ANY direction (completely buried), perform
+     *   a broader search and teleport the ghost to the nearest open position.
+     */
+    private void constrainPosition() {
+        Level level = this.level();
+        BlockPos pos = this.blockPosition();
+
+        if (level.getBlockState(pos).isAir()) return; // In open air — nothing to do
+
+        Direction bestDir = null;
+        int bestDist = MAX_SOLID_DEPTH + 1;
+
+        for (Direction dir : Direction.values()) {
+            for (int dist = 1; dist <= MAX_SOLID_DEPTH; dist++) {
+                BlockPos check = pos.relative(dir, dist);
+                if (level.getBlockState(check).isAir()) {
+                    if (dist < bestDist) {
+                        bestDist = dist;
+                        bestDir = dir;
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (bestDir != null) {
+            // Air is reachable — push gently toward it so the ghost slides out naturally
+            Vec3 push = Vec3.atLowerCornerOf(bestDir.getNormal()).normalize().scale(0.15 / bestDist);
+            Vec3 current = this.getDeltaMovement();
+            this.setDeltaMovement(
+                    current.x * 0.6 + push.x,
+                    current.y * 0.6 + push.y,
+                    current.z * 0.6 + push.z
+            );
+        } else {
+            // Completely buried (> 3 blocks of solid in every direction) — teleport out
+            teleportToNearestAir(pos);
+        }
+    }
+
+    /** BFS-like search for the nearest air position within a reasonable radius. */
+    private void teleportToNearestAir(BlockPos origin) {
+        Level level = this.level();
+        for (int r = MAX_SOLID_DEPTH + 1; r <= 16; r++) {
+            for (int dx = -r; dx <= r; dx++) {
+                for (int dy = -r; dy <= r; dy++) {
+                    for (int dz = -r; dz <= r; dz++) {
+                        if (Math.abs(dx) != r && Math.abs(dy) != r && Math.abs(dz) != r) continue;
+                        BlockPos check = origin.offset(dx, dy, dz);
+                        if (level.getBlockState(check).isAir()
+                                && level.getBlockState(check.above()).isAir()) {
+                            this.setPos(check.getX() + 0.5, check.getY() + 0.5, check.getZ() + 0.5);
+                            this.setDeltaMovement(Vec3.ZERO);
+                            return;
+                        }
+                    }
+                }
             }
         }
     }
@@ -124,16 +215,27 @@ public class GhostEntity extends Animal {
 
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
-        // Ignore most physical / environmental damage
-        if (source.is(DamageTypeTags.IS_EXPLOSION)
-                || source.is(DamageTypeTags.IS_PROJECTILE)
-                || source.is(DamageTypeTags.IS_FIRE)
-                || source.is(DamageTypeTags.IS_FALL)
-                || source.is(DamageTypeTags.BYPASSES_ARMOR)
-                || source.is(DamageTypeTags.IS_LIGHTNING)) {
-            return true;
+        // Ghosts are invulnerable to everything except /kill and void damage
+        return !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        // Always allow void/kill commands through
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            return super.hurt(source, amount);
         }
-        return super.isInvulnerableTo(source);
+
+        // Only ectoplasm-infused weapons can harm ghosts
+        Entity attacker = source.getEntity();
+        if (attacker instanceof LivingEntity living) {
+            ItemStack weapon = living.getMainHandItem();
+            if (EctoplasmInfusionHelper.isInfused(weapon)) {
+                return super.hurt(source, amount);
+            }
+        }
+
+        return false;
     }
 
     @Nullable
@@ -141,21 +243,18 @@ public class GhostEntity extends Animal {
         return (AgeableMob) ModEntities.GHOST.get().create(pLevel);
     }
 
-
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(ModItems.OBINGOT.get());
+        return pStack.is(ModItems.ECTOPLASM.get());
     }
 
-    private void setupAnimationStates(){
-        if(this.idleAnimationTimeout <+ 0) {
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 110;
             this.idleAnimationState.start(this.tickCount);
-        }
-        else{
+        } else {
             --this.idleAnimationTimeout;
         }
     }
-
 
     /* SOUNDS */
 
@@ -176,6 +275,4 @@ public class GhostEntity extends Animal {
     protected SoundEvent getDeathSound() {
         return SoundEvents.GHAST_DEATH;
     }
-
 }
-

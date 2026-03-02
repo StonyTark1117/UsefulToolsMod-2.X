@@ -58,6 +58,6 @@
     "type": "usefultoolsmod:ghost",
     "maxCount": 1,
     "minCount": 1,
-    "weight": 10
+    "weight": 20
   }
 }

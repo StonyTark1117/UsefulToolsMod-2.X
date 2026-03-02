@@ -33,16 +33,16 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SEMBLOCK.get());
         dropSelf(ModBlocks.SOBLOCK.get());
         dropSelf(ModBlocks.LBLOCK.get());
-        // dropSelf(ModBlocks.MAGIC_BLOCK.get());
+        dropSelf(ModBlocks.SPECTRAL_INFUSER.get());
 
         this.add(ModBlocks.RGOLDORE.get(),
-                block -> createOreDrop(ModBlocks.RGOLDORE.get(), ModItems.RGOLD.get()));
+                block -> createOreDrop(ModBlocks.RGOLDORE.get(), ModItems.RAW_RGOLD.get()));
         this.add(ModBlocks.RGOLD_NETHER_ORE.get(),
-                block -> createOreDrop(ModBlocks.RGOLD_NETHER_ORE.get(), ModItems.RGOLD.get()));
+                block -> createOreDrop(ModBlocks.RGOLD_NETHER_ORE.get(), ModItems.RAW_RGOLD.get()));
         this.add(ModBlocks.RGOLD_END_ORE.get(),
-                block -> createOreDrop(ModBlocks.RGOLD_END_ORE.get(), ModItems.RGOLD.get()));
+                block -> createOreDrop(ModBlocks.RGOLD_END_ORE.get(), ModItems.RAW_RGOLD.get()));
         this.add(ModBlocks.RGOLD_DEEPSLATE_ORE.get(),
-                block -> createOreDrop(ModBlocks.RGOLD_DEEPSLATE_ORE.get(), ModItems.RGOLD.get()));
+                block -> createOreDrop(ModBlocks.RGOLD_DEEPSLATE_ORE.get(), ModItems.RAW_RGOLD.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

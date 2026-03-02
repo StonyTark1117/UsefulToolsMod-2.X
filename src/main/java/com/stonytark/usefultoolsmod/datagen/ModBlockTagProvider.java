@@ -29,7 +29,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RGOLD_DEEPSLATE_ORE.get())
                 .add(ModBlocks.SEMBLOCK.get())
                 .add(ModBlocks.SOBLOCK.get())
-                .add(ModBlocks.LBLOCK.get());
+                .add(ModBlocks.LBLOCK.get())
+                .add(ModBlocks.SPECTRAL_INFUSER.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.RGOLDBLOCK.get())
@@ -44,9 +45,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RGOLDORE.get())
                 .add(ModBlocks.RGOLD_NETHER_ORE.get())
                 .add(ModBlocks.RGOLD_END_ORE.get())
-                .add(ModBlocks.RGOLD_DEEPSLATE_ORE.get());
+                .add(ModBlocks.RGOLD_DEEPSLATE_ORE.get())
+                .add(ModBlocks.SPECTRAL_INFUSER.get());
 
         tag(ModTags.Blocks.NEEDS_HRED_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_HGLOW_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(ModTags.Blocks.NEEDS_JEM_TOOL)
@@ -73,6 +78,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.BEDROCK);
 
         tag(ModTags.Blocks.INCORRECT_HRED_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_HGLOW_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
 
         tag(ModTags.Blocks.INCORRECT_JEM_TOOL)

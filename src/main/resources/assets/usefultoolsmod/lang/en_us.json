@@ -1,11 +1,13 @@
 {
   "item.usefultoolsmod.rgold": "Reinforced Gold",
+  "item.usefultoolsmod.raw_rgold": "Raw Ferrous Gold",
   "item.usefultoolsmod.obshard": "Obsidian Shard",
   "item.usefultoolsmod.sem": "Smooth Emerald Ingot",
   "item.usefultoolsmod.obingot": "Obsidian Ingot",
   "item.usefultoolsmod.grenade": "Grenade",
   "item.usefultoolsmod.dynamite": "Dynamite",
   "item.usefultoolsmod.hred": "Hardened Redstone",
+  "item.usefultoolsmod.hglow": "Hardened Glowstone",
   "item.usefultoolsmod.rlapis": "Reinforced Lapis Lazuli",
 
   "item.usefultoolsmod.jemerald_sword": "Jagged Emerald Sword",
@@ -43,6 +45,12 @@
   "item.usefultoolsmod.hredstone_axe": "Hardened Redstone Axe",
   "item.usefultoolsmod.hredstone_hoe": "Hardened Redstone Hoe",
 
+  "item.usefultoolsmod.hglowstone_sword": "Hardened Glowstone Sword",
+  "item.usefultoolsmod.hglowstone_pickaxe": "Hardened Glowstone Pickaxe",
+  "item.usefultoolsmod.hglowstone_shovel": "Hardened Glowstone Shovel",
+  "item.usefultoolsmod.hglowstone_axe": "Hardened Glowstone Axe",
+  "item.usefultoolsmod.hglowstone_hoe": "Hardened Glowstone Hoe",
+
   "item.usefultoolsmod.rgold_sword": "Reinforced Gold Sword",
   "item.usefultoolsmod.rgold_pickaxe": "Reinforced Gold Pickaxe",
   "item.usefultoolsmod.rgold_shovel": "Reinforced Gold Shovel",
@@ -58,6 +66,11 @@
   "item.usefultoolsmod.hred_chestplate": "Hardened Redstone Chestplate",
   "item.usefultoolsmod.hred_leggings": "Hardened Redstone Leggings",
   "item.usefultoolsmod.hred_boots": "Hardened Redstone Boots",
+
+  "item.usefultoolsmod.hglow_helmet": "Hardened Glowstone Helmet",
+  "item.usefultoolsmod.hglow_chestplate": "Hardened Glowstone Chestplate",
+  "item.usefultoolsmod.hglow_leggings": "Hardened Glowstone Leggings",
+  "item.usefultoolsmod.hglow_boots": "Hardened Glowstone Boots",
 
   "item.usefultoolsmod.obsidian_helmet": "Obsidian Helmet",
   "item.usefultoolsmod.obsidian_chestplate": "Obsidian Chestplate",
@@ -97,7 +110,419 @@
   "item.usefultoolsmod.rlapis_boots": "Reinforced Lapis Boots",
 
   "item.usefultoolsmod.ghost_spawn_egg": "Ghost Spawn Egg",
+  "item.usefultoolsmod.ectoplasm": "Ectoplasm",
   "entity.usefultoolsmod.ghost": "Ghost",
 
-  "creativetab.usefultoolsmod.useful_tools": "Useful Tools Mod"
+  "item.usefultoolsmod.coal_dust": "Coal Dust",
+  "item.usefultoolsmod.hardened_coal": "Hardened Coal",
+
+  "item.usefultoolsmod.coal_sword": "Coal Sword",
+  "item.usefultoolsmod.coal_pickaxe": "Coal Pickaxe",
+  "item.usefultoolsmod.coal_shovel": "Coal Shovel",
+  "item.usefultoolsmod.coal_axe": "Coal Axe",
+  "item.usefultoolsmod.coal_hoe": "Coal Hoe",
+
+  "item.usefultoolsmod.coal_helmet": "Coal Helmet",
+  "item.usefultoolsmod.coal_chestplate": "Coal Chestplate",
+  "item.usefultoolsmod.coal_leggings": "Coal Leggings",
+  "item.usefultoolsmod.coal_boots": "Coal Boots",
+
+  "creativetab.usefultoolsmod.useful_tools": "Useful Tools Mod",
+
+  "advancements.usefultoolsmod.root.title": "A Useful Start",
+  "advancements.usefultoolsmod.root.description": "Mine a Ferrous Gold Ore",
+
+  "advancements.usefultoolsmod.rgold.title": "Reinforced Gold",
+  "advancements.usefultoolsmod.rgold.description": "Smelt Raw Ferrous Gold into an ingot",
+
+  "advancements.usefultoolsmod.ore_found.title": "Ferrous Discovery",
+  "advancements.usefultoolsmod.ore_found.description": "Find a Ferrous Gold Ore",
+
+  "advancements.usefultoolsmod.nether_ore.title": "Nether Prospecting",
+  "advancements.usefultoolsmod.nether_ore.description": "Find Ferrous Nether Gold Ore deep underground",
+
+  "advancements.usefultoolsmod.end_ore.title": "Ends and Ores",
+  "advancements.usefultoolsmod.end_ore.description": "Find Ferrous End Gold Ore in the outer islands",
+
+  "advancements.usefultoolsmod.deepslate_ore.title": "Deep Pockets",
+  "advancements.usefultoolsmod.deepslate_ore.description": "Find Ferrous Deepslate Gold Ore far underground",
+
+  "advancements.usefultoolsmod.rgold_tools.title": "Golden Warrior",
+  "advancements.usefultoolsmod.rgold_tools.description": "Forge a Reinforced Gold Sword",
+
+  "advancements.usefultoolsmod.rgold_armor.title": "Gilded Guardian",
+  "advancements.usefultoolsmod.rgold_armor.description": "Don Reinforced Gold Armor",
+
+  "advancements.usefultoolsmod.obshard.title": "Shards of Shadow",
+  "advancements.usefultoolsmod.obshard.description": "Break apart an Obsidian block into shards",
+
+  "advancements.usefultoolsmod.obingot.title": "Obsidian Refined",
+  "advancements.usefultoolsmod.obingot.description": "Craft an Obsidian Ingot from shards and iron",
+
+  "advancements.usefultoolsmod.jobsidian.title": "Jagged Edge",
+  "advancements.usefultoolsmod.jobsidian.description": "Craft a Jagged Obsidian Sword",
+
+  "advancements.usefultoolsmod.sobsidian.title": "Smooth Cutter",
+  "advancements.usefultoolsmod.sobsidian.description": "Craft a Smooth Obsidian Sword",
+
+  "advancements.usefultoolsmod.obsidian_armor.title": "Obsidian Guardian",
+  "advancements.usefultoolsmod.obsidian_armor.description": "Assemble a full suit of Obsidian Armor",
+
+  "advancements.usefultoolsmod.sem.title": "Emerald Refined",
+  "advancements.usefultoolsmod.sem.description": "Craft a Smooth Emerald Ingot",
+
+  "advancements.usefultoolsmod.jemerald.title": "Jagged Gem",
+  "advancements.usefultoolsmod.jemerald.description": "Forge a Jagged Emerald Sword",
+
+  "advancements.usefultoolsmod.semerald.title": "Smooth Gem",
+  "advancements.usefultoolsmod.semerald.description": "Forge a Smooth Emerald Sword",
+
+  "advancements.usefultoolsmod.emerald_armor.title": "Emerald Knight",
+  "advancements.usefultoolsmod.emerald_armor.description": "Assemble a full suit of Emerald Armor",
+
+  "advancements.usefultoolsmod.hred.title": "Clay and Redstone",
+  "advancements.usefultoolsmod.hred.description": "Craft Hardened Redstone",
+
+  "advancements.usefultoolsmod.hredstone_tools.title": "Red-Hot Blade",
+  "advancements.usefultoolsmod.hredstone_tools.description": "Forge a Hardened Redstone Sword",
+
+  "advancements.usefultoolsmod.hred_armor.title": "Redstone Plate",
+  "advancements.usefultoolsmod.hred_armor.description": "Assemble a full suit of Hardened Redstone Armor",
+
+  "advancements.usefultoolsmod.hglow.title": "Blaze and Glowstone",
+  "advancements.usefultoolsmod.hglow.description": "Craft Hardened Glowstone",
+
+  "advancements.usefultoolsmod.hglowstone_tools.title": "Gilded Blade",
+  "advancements.usefultoolsmod.hglowstone_tools.description": "Forge a Hardened Glowstone Sword",
+
+  "advancements.usefultoolsmod.hglow_armor.title": "Luminous Plate",
+  "advancements.usefultoolsmod.hglow_armor.description": "Assemble a full suit of Hardened Glowstone Armor",
+
+  "advancements.usefultoolsmod.rlapis.title": "Reinforced Lazuli",
+  "advancements.usefultoolsmod.rlapis.description": "Craft Reinforced Lapis Lazuli",
+
+  "advancements.usefultoolsmod.rlapis_tools.title": "Azure Edge",
+  "advancements.usefultoolsmod.rlapis_tools.description": "Forge a Reinforced Lapis Sword",
+
+  "advancements.usefultoolsmod.rlapis_armor.title": "Lapis Lorica",
+  "advancements.usefultoolsmod.rlapis_armor.description": "Assemble a full suit of Reinforced Lapis Armor",
+
+  "advancements.usefultoolsmod.coal_dust.title": "Powdered Black",
+  "advancements.usefultoolsmod.coal_dust.description": "Crush coal into usable dust",
+
+  "advancements.usefultoolsmod.hardened_coal.title": "Forged in Clay",
+  "advancements.usefultoolsmod.hardened_coal.description": "Bind coal dust with clay to form Hardened Coal",
+
+  "advancements.usefultoolsmod.coal_tools.title": "Coal-Forged Tools",
+  "advancements.usefultoolsmod.coal_tools.description": "Craft a Coal Pickaxe",
+
+  "advancements.usefultoolsmod.coal_trial_by_fire.title": "Trial by Fire",
+  "advancements.usefultoolsmod.coal_trial_by_fire.description": "Let a coal tool catch fire while holding it",
+
+  "advancements.usefultoolsmod.coal_armor.title": "Soot Suit",
+  "advancements.usefultoolsmod.coal_armor.description": "Craft a Coal Helmet",
+
+  "advancements.usefultoolsmod.coal_full_set.title": "Burning Commitment",
+  "advancements.usefultoolsmod.coal_full_set.description": "Assemble a full suit of Coal Armor",
+
+  "advancements.usefultoolsmod.grenade.title": "Hot Potato",
+  "advancements.usefultoolsmod.grenade.description": "Obtain a Grenade",
+
+  "advancements.usefultoolsmod.dynamite.title": "Yes Rico, Kaboom",
+  "advancements.usefultoolsmod.dynamite.description": "Obtain Dynamite",
+
+  "advancements.usefultoolsmod.ghost_encounter.title": "An Unusual Presence",
+  "advancements.usefultoolsmod.ghost_encounter.description": "Attract the attention of a Ghost",
+
+  "advancements.usefultoolsmod.ghost_companion.title": "Ghostly Companion",
+  "advancements.usefultoolsmod.ghost_companion.description": "Be followed by a Ghost more than once",
+
+  "advancements.usefultoolsmod.overpower.title": "Absolute Power",
+  "advancements.usefultoolsmod.overpower.description": "Obtain an Overpowered Sword",
+
+  "advancements.usefultoolsmod.overpower_set.title": "All Powerful",
+  "advancements.usefultoolsmod.overpower_set.description": "Collect the entire Overpowered set of tools and armor",
+
+  "item.usefultoolsmod.jraw_gold_sword": "Jagged Raw Gold Sword",
+  "item.usefultoolsmod.jraw_gold_pickaxe": "Jagged Raw Gold Pickaxe",
+  "item.usefultoolsmod.jraw_gold_shovel": "Jagged Raw Gold Shovel",
+  "item.usefultoolsmod.jraw_gold_axe": "Jagged Raw Gold Axe",
+  "item.usefultoolsmod.jraw_gold_hoe": "Jagged Raw Gold Hoe",
+
+  "item.usefultoolsmod.jraw_copper_sword": "Jagged Raw Copper Sword",
+  "item.usefultoolsmod.jraw_copper_pickaxe": "Jagged Raw Copper Pickaxe",
+  "item.usefultoolsmod.jraw_copper_shovel": "Jagged Raw Copper Shovel",
+  "item.usefultoolsmod.jraw_copper_axe": "Jagged Raw Copper Axe",
+  "item.usefultoolsmod.jraw_copper_hoe": "Jagged Raw Copper Hoe",
+
+  "item.usefultoolsmod.jraw_iron_sword": "Jagged Raw Iron Sword",
+  "item.usefultoolsmod.jraw_iron_pickaxe": "Jagged Raw Iron Pickaxe",
+  "item.usefultoolsmod.jraw_iron_shovel": "Jagged Raw Iron Shovel",
+  "item.usefultoolsmod.jraw_iron_axe": "Jagged Raw Iron Axe",
+  "item.usefultoolsmod.jraw_iron_hoe": "Jagged Raw Iron Hoe",
+
+  "item.usefultoolsmod.jraw_rgold_sword": "Jagged Raw Ferrous Gold Sword",
+  "item.usefultoolsmod.jraw_rgold_pickaxe": "Jagged Raw Ferrous Gold Pickaxe",
+  "item.usefultoolsmod.jraw_rgold_shovel": "Jagged Raw Ferrous Gold Shovel",
+  "item.usefultoolsmod.jraw_rgold_axe": "Jagged Raw Ferrous Gold Axe",
+  "item.usefultoolsmod.jraw_rgold_hoe": "Jagged Raw Ferrous Gold Hoe",
+
+  "item.usefultoolsmod.jscrap_sword": "Jagged Netherite Scrap Sword",
+  "item.usefultoolsmod.jscrap_pickaxe": "Jagged Netherite Scrap Pickaxe",
+  "item.usefultoolsmod.jscrap_shovel": "Jagged Netherite Scrap Shovel",
+  "item.usefultoolsmod.jscrap_axe": "Jagged Netherite Scrap Axe",
+  "item.usefultoolsmod.jscrap_hoe": "Jagged Netherite Scrap Hoe",
+
+  "advancements.usefultoolsmod.jraw_gold.title": "Unrefined Glitter",
+  "advancements.usefultoolsmod.jraw_gold.description": "Forge a Jagged Raw Gold Sword",
+  "advancements.usefultoolsmod.jraw_gold_set.title": "Fool's Arsenal",
+  "advancements.usefultoolsmod.jraw_gold_set.description": "Assemble a full set of Jagged Raw Gold tools",
+
+  "advancements.usefultoolsmod.jraw_copper.title": "Rough Around the Edges",
+  "advancements.usefultoolsmod.jraw_copper.description": "Forge a Jagged Raw Copper Sword",
+  "advancements.usefultoolsmod.jraw_copper_set.title": "Copper Cutting",
+  "advancements.usefultoolsmod.jraw_copper_set.description": "Assemble a full set of Jagged Raw Copper tools",
+
+  "advancements.usefultoolsmod.jraw_iron.title": "Still Sharp",
+  "advancements.usefultoolsmod.jraw_iron.description": "Forge a Jagged Raw Iron Sword",
+  "advancements.usefultoolsmod.jraw_iron_set.title": "Unrefined but Effective",
+  "advancements.usefultoolsmod.jraw_iron_set.description": "Assemble a full set of Jagged Raw Iron tools",
+
+  "advancements.usefultoolsmod.jraw_rgold.title": "Ferrous Edge",
+  "advancements.usefultoolsmod.jraw_rgold.description": "Forge a Jagged Raw Ferrous Gold Sword",
+  "advancements.usefultoolsmod.jraw_rgold_set.title": "Unprocessed Power",
+  "advancements.usefultoolsmod.jraw_rgold_set.description": "Assemble a full set of Jagged Raw Ferrous Gold tools",
+
+  "advancements.usefultoolsmod.jscrap.title": "Ancient Splinter",
+  "advancements.usefultoolsmod.jscrap.description": "Forge a Jagged Netherite Scrap Sword",
+  "advancements.usefultoolsmod.jscrap_set.title": "Scrap Metal Champion",
+  "advancements.usefultoolsmod.jscrap_set.description": "Assemble a full set of Jagged Netherite Scrap tools",
+
+  "item.usefultoolsmod.calcified_amethyst": "Calcified Amethyst",
+  "item.usefultoolsmod.glacial_shard": "Glacial Shard",
+  "item.usefultoolsmod.polished_quartz": "Polished Quartz",
+  "item.usefultoolsmod.polished_prismarine": "Polished Prismarine",
+
+  "item.usefultoolsmod.jamethyst_sword": "Jagged Amethyst Sword",
+  "item.usefultoolsmod.jamethyst_pickaxe": "Jagged Amethyst Pickaxe",
+  "item.usefultoolsmod.jamethyst_shovel": "Jagged Amethyst Shovel",
+  "item.usefultoolsmod.jamethyst_axe": "Jagged Amethyst Axe",
+  "item.usefultoolsmod.jamethyst_hoe": "Jagged Amethyst Hoe",
+
+  "item.usefultoolsmod.snow_sword": "Snow Sword",
+  "item.usefultoolsmod.snow_pickaxe": "Snow Pickaxe",
+  "item.usefultoolsmod.snow_shovel": "Snow Shovel",
+  "item.usefultoolsmod.snow_axe": "Snow Axe",
+  "item.usefultoolsmod.snow_hoe": "Snow Hoe",
+
+  "item.usefultoolsmod.jquartz_sword": "Jagged Quartz Sword",
+  "item.usefultoolsmod.jquartz_pickaxe": "Jagged Quartz Pickaxe",
+  "item.usefultoolsmod.jquartz_shovel": "Jagged Quartz Shovel",
+  "item.usefultoolsmod.jquartz_axe": "Jagged Quartz Axe",
+  "item.usefultoolsmod.jquartz_hoe": "Jagged Quartz Hoe",
+
+  "item.usefultoolsmod.jprism_sword": "Jagged Prismarine Sword",
+  "item.usefultoolsmod.jprism_pickaxe": "Jagged Prismarine Pickaxe",
+  "item.usefultoolsmod.jprism_shovel": "Jagged Prismarine Shovel",
+  "item.usefultoolsmod.jprism_axe": "Jagged Prismarine Axe",
+  "item.usefultoolsmod.jprism_hoe": "Jagged Prismarine Hoe",
+
+  "item.usefultoolsmod.camethyst_sword": "Calcite Amethyst Sword",
+  "item.usefultoolsmod.camethyst_pickaxe": "Calcite Amethyst Pickaxe",
+  "item.usefultoolsmod.camethyst_shovel": "Calcite Amethyst Shovel",
+  "item.usefultoolsmod.camethyst_axe": "Calcite Amethyst Axe",
+  "item.usefultoolsmod.camethyst_hoe": "Calcite Amethyst Hoe",
+  "item.usefultoolsmod.camethyst_helmet": "Calcite Amethyst Helmet",
+  "item.usefultoolsmod.camethyst_chestplate": "Calcite Amethyst Chestplate",
+  "item.usefultoolsmod.camethyst_leggings": "Calcite Amethyst Leggings",
+  "item.usefultoolsmod.camethyst_boots": "Calcite Amethyst Boots",
+
+  "item.usefultoolsmod.ice_sword": "Glacial Sword",
+  "item.usefultoolsmod.ice_pickaxe": "Glacial Pickaxe",
+  "item.usefultoolsmod.ice_shovel": "Glacial Shovel",
+  "item.usefultoolsmod.ice_axe": "Glacial Axe",
+  "item.usefultoolsmod.ice_hoe": "Glacial Hoe",
+  "item.usefultoolsmod.ice_helmet": "Glacial Helmet",
+  "item.usefultoolsmod.ice_chestplate": "Glacial Chestplate",
+  "item.usefultoolsmod.ice_leggings": "Glacial Leggings",
+  "item.usefultoolsmod.ice_boots": "Glacial Boots",
+
+  "item.usefultoolsmod.squartz_sword": "Smooth Quartz Sword",
+  "item.usefultoolsmod.squartz_pickaxe": "Smooth Quartz Pickaxe",
+  "item.usefultoolsmod.squartz_shovel": "Smooth Quartz Shovel",
+  "item.usefultoolsmod.squartz_axe": "Smooth Quartz Axe",
+  "item.usefultoolsmod.squartz_hoe": "Smooth Quartz Hoe",
+  "item.usefultoolsmod.squartz_helmet": "Smooth Quartz Helmet",
+  "item.usefultoolsmod.squartz_chestplate": "Smooth Quartz Chestplate",
+  "item.usefultoolsmod.squartz_leggings": "Smooth Quartz Leggings",
+  "item.usefultoolsmod.squartz_boots": "Smooth Quartz Boots",
+
+  "item.usefultoolsmod.sprism_sword": "Smooth Prismarine Sword",
+  "item.usefultoolsmod.sprism_pickaxe": "Smooth Prismarine Pickaxe",
+  "item.usefultoolsmod.sprism_shovel": "Smooth Prismarine Shovel",
+  "item.usefultoolsmod.sprism_axe": "Smooth Prismarine Axe",
+  "item.usefultoolsmod.sprism_hoe": "Smooth Prismarine Hoe",
+  "item.usefultoolsmod.sprism_helmet": "Smooth Prismarine Helmet",
+  "item.usefultoolsmod.sprism_chestplate": "Smooth Prismarine Chestplate",
+  "item.usefultoolsmod.sprism_leggings": "Smooth Prismarine Leggings",
+  "item.usefultoolsmod.sprism_boots": "Smooth Prismarine Boots",
+
+  "advancements.usefultoolsmod.jamethyst.title": "Violet Edge",
+  "advancements.usefultoolsmod.jamethyst.description": "Forge a Jagged Amethyst Sword",
+  "advancements.usefultoolsmod.jamethyst_set.title": "Crystal Cutter",
+  "advancements.usefultoolsmod.jamethyst_set.description": "Assemble a full set of Jagged Amethyst tools",
+
+  "advancements.usefultoolsmod.snow_tools.title": "Frosty Blade",
+  "advancements.usefultoolsmod.snow_tools.description": "Forge a Snow Sword",
+  "advancements.usefultoolsmod.snow_set.title": "Frozen Arsenal",
+  "advancements.usefultoolsmod.snow_set.description": "Assemble a full set of Snow tools",
+
+  "advancements.usefultoolsmod.jquartz.title": "Crystal Clear",
+  "advancements.usefultoolsmod.jquartz.description": "Forge a Jagged Quartz Sword",
+  "advancements.usefultoolsmod.jquartz_set.title": "Nether Crystal",
+  "advancements.usefultoolsmod.jquartz_set.description": "Assemble a full set of Jagged Quartz tools",
+
+  "advancements.usefultoolsmod.jprism.title": "From the Deep",
+  "advancements.usefultoolsmod.jprism.description": "Forge a Jagged Prismarine Sword",
+  "advancements.usefultoolsmod.jprism_set.title": "Reef Raider",
+  "advancements.usefultoolsmod.jprism_set.description": "Assemble a full set of Jagged Prismarine tools",
+
+  "advancements.usefultoolsmod.calcified_amethyst.title": "Geode Refined",
+  "advancements.usefultoolsmod.calcified_amethyst.description": "Craft a Calcified Amethyst",
+
+  "advancements.usefultoolsmod.camethyst_tools.title": "Amethyst Arsenal",
+  "advancements.usefultoolsmod.camethyst_tools.description": "Forge a Calcified Amethyst Sword",
+  "advancements.usefultoolsmod.camethyst_set.title": "Crystal Knight",
+  "advancements.usefultoolsmod.camethyst_set.description": "Assemble a full Calcified Amethyst set",
+
+  "advancements.usefultoolsmod.glacial_shard.title": "Heart of Ice",
+  "advancements.usefultoolsmod.glacial_shard.description": "Craft a Glacial Shard",
+
+  "advancements.usefultoolsmod.ice_tools.title": "Frozen Steel",
+  "advancements.usefultoolsmod.ice_tools.description": "Forge a Glacial Sword",
+  "advancements.usefultoolsmod.ice_set.title": "Glacial Guardian",
+  "advancements.usefultoolsmod.ice_set.description": "Assemble a full Glacial set",
+
+  "advancements.usefultoolsmod.polished_quartz.title": "Nether Polish",
+  "advancements.usefultoolsmod.polished_quartz.description": "Craft Polished Quartz",
+
+  "advancements.usefultoolsmod.squartz_tools.title": "Quartz Blade",
+  "advancements.usefultoolsmod.squartz_tools.description": "Forge a Smooth Quartz Sword",
+  "advancements.usefultoolsmod.squartz_set.title": "Quartz Guardian",
+  "advancements.usefultoolsmod.squartz_set.description": "Assemble a full Smooth Quartz set",
+
+  "advancements.usefultoolsmod.polished_prismarine.title": "Ocean Polished",
+  "advancements.usefultoolsmod.polished_prismarine.description": "Craft Polished Prismarine",
+
+  "advancements.usefultoolsmod.sprism_tools.title": "Tidal Edge",
+  "advancements.usefultoolsmod.sprism_tools.description": "Forge a Smooth Prismarine Sword",
+  "advancements.usefultoolsmod.sprism_set.title": "Ocean Guardian",
+  "advancements.usefultoolsmod.sprism_set.description": "Assemble a full Smooth Prismarine set",
+
+  "item.usefultoolsmod.jflint_sword": "Flint Sword",
+  "item.usefultoolsmod.jflint_pickaxe": "Flint Pickaxe",
+  "item.usefultoolsmod.jflint_shovel": "Flint Shovel",
+  "item.usefultoolsmod.jflint_axe": "Flint Axe",
+  "item.usefultoolsmod.jflint_hoe": "Flint Hoe",
+
+  "item.usefultoolsmod.fni_sword": "Flint-Iron Sword",
+  "item.usefultoolsmod.fni_pickaxe": "Flint-Iron Pickaxe",
+  "item.usefultoolsmod.fni_shovel": "Flint-Iron Shovel",
+  "item.usefultoolsmod.fni_axe": "Flint-Iron Axe",
+  "item.usefultoolsmod.fni_hoe": "Flint-Iron Hoe",
+  "item.usefultoolsmod.fni_helmet": "Flint-Iron Helmet",
+  "item.usefultoolsmod.fni_chestplate": "Flint-Iron Chestplate",
+  "item.usefultoolsmod.fni_leggings": "Flint-Iron Leggings",
+  "item.usefultoolsmod.fni_boots": "Flint-Iron Boots",
+
+  "advancements.usefultoolsmod.jflint.title": "Chipped Edge",
+  "advancements.usefultoolsmod.jflint.description": "Craft a Flint Sword",
+  "advancements.usefultoolsmod.fni_tools.title": "Spark and Steel",
+  "advancements.usefultoolsmod.fni_tools.description": "Forge a Flint-Iron Sword",
+  "advancements.usefultoolsmod.fni_set.title": "Walking Bonfire",
+  "advancements.usefultoolsmod.fni_set.description": "Assemble a full Flint-Iron set",
+
+  "item.usefultoolsmod.andesite_sword": "Andesite Sword",
+  "item.usefultoolsmod.andesite_pickaxe": "Andesite Pickaxe",
+  "item.usefultoolsmod.andesite_shovel": "Andesite Shovel",
+  "item.usefultoolsmod.andesite_axe": "Andesite Axe",
+  "item.usefultoolsmod.andesite_hoe": "Andesite Hoe",
+
+  "item.usefultoolsmod.basalt_sword": "Basalt Sword",
+  "item.usefultoolsmod.basalt_pickaxe": "Basalt Pickaxe",
+  "item.usefultoolsmod.basalt_shovel": "Basalt Shovel",
+  "item.usefultoolsmod.basalt_axe": "Basalt Axe",
+  "item.usefultoolsmod.basalt_hoe": "Basalt Hoe",
+
+  "item.usefultoolsmod.blackstone_sword": "Blackstone Sword",
+  "item.usefultoolsmod.blackstone_pickaxe": "Blackstone Pickaxe",
+  "item.usefultoolsmod.blackstone_shovel": "Blackstone Shovel",
+  "item.usefultoolsmod.blackstone_axe": "Blackstone Axe",
+  "item.usefultoolsmod.blackstone_hoe": "Blackstone Hoe",
+
+  "item.usefultoolsmod.calcite_sword": "Calcite Sword",
+  "item.usefultoolsmod.calcite_pickaxe": "Calcite Pickaxe",
+  "item.usefultoolsmod.calcite_shovel": "Calcite Shovel",
+  "item.usefultoolsmod.calcite_axe": "Calcite Axe",
+  "item.usefultoolsmod.calcite_hoe": "Calcite Hoe",
+
+  "item.usefultoolsmod.deepslate_sword": "Deepslate Sword",
+  "item.usefultoolsmod.deepslate_pickaxe": "Deepslate Pickaxe",
+  "item.usefultoolsmod.deepslate_shovel": "Deepslate Shovel",
+  "item.usefultoolsmod.deepslate_axe": "Deepslate Axe",
+  "item.usefultoolsmod.deepslate_hoe": "Deepslate Hoe",
+
+  "item.usefultoolsmod.diorite_sword": "Diorite Sword",
+  "item.usefultoolsmod.diorite_pickaxe": "Diorite Pickaxe",
+  "item.usefultoolsmod.diorite_shovel": "Diorite Shovel",
+  "item.usefultoolsmod.diorite_axe": "Diorite Axe",
+  "item.usefultoolsmod.diorite_hoe": "Diorite Hoe",
+
+  "item.usefultoolsmod.end_stone_sword": "End Stone Sword",
+  "item.usefultoolsmod.end_stone_pickaxe": "End Stone Pickaxe",
+  "item.usefultoolsmod.end_stone_shovel": "End Stone Shovel",
+  "item.usefultoolsmod.end_stone_axe": "End Stone Axe",
+  "item.usefultoolsmod.end_stone_hoe": "End Stone Hoe",
+
+  "item.usefultoolsmod.granite_sword": "Granite Sword",
+  "item.usefultoolsmod.granite_pickaxe": "Granite Pickaxe",
+  "item.usefultoolsmod.granite_shovel": "Granite Shovel",
+  "item.usefultoolsmod.granite_axe": "Granite Axe",
+  "item.usefultoolsmod.granite_hoe": "Granite Hoe",
+
+  "item.usefultoolsmod.netherrack_sword": "Netherrack Sword",
+  "item.usefultoolsmod.netherrack_pickaxe": "Netherrack Pickaxe",
+  "item.usefultoolsmod.netherrack_shovel": "Netherrack Shovel",
+  "item.usefultoolsmod.netherrack_axe": "Netherrack Axe",
+  "item.usefultoolsmod.netherrack_hoe": "Netherrack Hoe",
+
+  "item.usefultoolsmod.sandstone_sword": "Sandstone Sword",
+  "item.usefultoolsmod.sandstone_pickaxe": "Sandstone Pickaxe",
+  "item.usefultoolsmod.sandstone_shovel": "Sandstone Shovel",
+  "item.usefultoolsmod.sandstone_axe": "Sandstone Axe",
+  "item.usefultoolsmod.sandstone_hoe": "Sandstone Hoe",
+
+  "item.usefultoolsmod.smooth_basalt_sword": "Smooth Basalt Sword",
+  "item.usefultoolsmod.smooth_basalt_pickaxe": "Smooth Basalt Pickaxe",
+  "item.usefultoolsmod.smooth_basalt_shovel": "Smooth Basalt Shovel",
+  "item.usefultoolsmod.smooth_basalt_axe": "Smooth Basalt Axe",
+  "item.usefultoolsmod.smooth_basalt_hoe": "Smooth Basalt Hoe",
+
+  "item.usefultoolsmod.terracotta_sword": "Terracotta Sword",
+  "item.usefultoolsmod.terracotta_pickaxe": "Terracotta Pickaxe",
+  "item.usefultoolsmod.terracotta_shovel": "Terracotta Shovel",
+  "item.usefultoolsmod.terracotta_axe": "Terracotta Axe",
+  "item.usefultoolsmod.terracotta_hoe": "Terracotta Hoe",
+
+  "item.usefultoolsmod.tuff_sword": "Tuff Sword",
+  "item.usefultoolsmod.tuff_pickaxe": "Tuff Pickaxe",
+  "item.usefultoolsmod.tuff_shovel": "Tuff Shovel",
+  "item.usefultoolsmod.tuff_axe": "Tuff Axe",
+  "item.usefultoolsmod.tuff_hoe": "Tuff Hoe",
+
+  "advancements.usefultoolsmod.stone_toolkit.title": "Geologist's Toolkit",
+  "advancements.usefultoolsmod.stone_toolkit.description": "Craft a pickaxe from every rock variant",
+
+  "block.usefultoolsmod.spectral_infuser": "Spectral Infuser",
+  "tooltip.usefultoolsmod.ectoplasm_infused": "Ectoplasm Infused"
 }
