@@ -80,7 +80,7 @@ public class ModEvents {
             handleOpToolEffects(player, player.getMainHandItem());
             handleOpToolEffects(player, player.getOffhandItem());
         }
-        if (Config.opArmorEffectsEnabled && !player.level().isClientSide) {
+        if (Config.opArmorEffectsEnabled) {
             spawnArmorAuraIfOp(player);
         }
 
@@ -377,8 +377,9 @@ public class ModEvents {
             player.setRemainingFireTicks(100);
         }
 
-        // Durability drain once per second
+        // Damage player and drain durability once per second
         if (player.tickCount % 20 == 0) {
+            player.hurt(player.damageSources().inFire(), 0.5f);
             for (EquipmentSlot slot : ARMOR_SLOTS) {
                 ItemStack piece = player.getItemBySlot(slot);
                 if (isCoalArmor(piece) && CoalBurningHelper.isBurning(piece)) {
@@ -751,15 +752,72 @@ public class ModEvents {
     }
 
     // -----------------------------------------------------------------------
-    // Ectoplasm infusion tooltip
+    // Item tooltips
     // -----------------------------------------------------------------------
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
+
         if (EctoplasmInfusionHelper.isInfused(stack)) {
             event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.ectoplasm_infused")
                     .withStyle(ChatFormatting.DARK_AQUA));
         }
+
+        // Coal tools / armor
+        if (isCoalTool(stack) || isCoalArmor(stack)) {
+            if (CoalBurningHelper.isBurning(stack)) {
+                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.burning")
+                        .withStyle(ChatFormatting.RED));
+                // Coal tools: -2 dur/s, coal armor: -1 dur/s
+                double drainPerSecond = isCoalTool(stack) ? 2.0 : 1.0;
+                addTimeRemaining(event, stack, drainPerSecond);
+            } else {
+                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.flammable")
+                        .withStyle(ChatFormatting.GOLD));
+            }
+        }
+
+        // Snow tools
+        if (isSnowTool(stack)) {
+            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
+                    .withStyle(ChatFormatting.AQUA));
+            // -1 dur / 40 ticks = 0.5 dur/s
+            addTimeRemaining(event, stack, 0.5);
+        }
+
+        // Ice tools
+        if (isIceTool(stack)) {
+            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
+                    .withStyle(ChatFormatting.AQUA));
+            // -1 dur / 60 ticks = 1/3 dur/s
+            addTimeRemaining(event, stack, 1.0 / 3.0);
+        }
+
+        // Ice armor
+        if (isIceArmor(stack)) {
+            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_worn")
+                    .withStyle(ChatFormatting.AQUA));
+            // -1 dur / 60 ticks = 1/3 dur/s
+            addTimeRemaining(event, stack, 1.0 / 3.0);
+        }
+    }
+
+    private static void addTimeRemaining(ItemTooltipEvent event, ItemStack stack, double drainPerSecond) {
+        if (!stack.isDamageableItem()) return;
+        int remaining = stack.getMaxDamage() - stack.getDamageValue();
+        int totalSeconds = (int) Math.ceil(remaining / drainPerSecond);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        String time;
+        if (minutes > 0) {
+            time = minutes + "m " + seconds + "s";
+        } else {
+            time = seconds + "s";
+        }
+
+        event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.time_remaining", time)
+                .withStyle(ChatFormatting.GRAY));
     }
 }

@@ -524,5 +524,10 @@
   "advancements.usefultoolsmod.stone_toolkit.description": "Craft a pickaxe from every rock variant",
 
   "block.usefultoolsmod.spectral_infuser": "Spectral Infuser",
-  "tooltip.usefultoolsmod.ectoplasm_infused": "Ectoplasm Infused"
+  "tooltip.usefultoolsmod.ectoplasm_infused": "Ectoplasm Infused",
+  "tooltip.usefultoolsmod.burning": "Burning",
+  "tooltip.usefultoolsmod.flammable": "Flammable",
+  "tooltip.usefultoolsmod.melts_when_held": "Melts when held",
+  "tooltip.usefultoolsmod.melts_when_worn": "Melts when worn",
+  "tooltip.usefultoolsmod.time_remaining": "%s remaining"
 }
