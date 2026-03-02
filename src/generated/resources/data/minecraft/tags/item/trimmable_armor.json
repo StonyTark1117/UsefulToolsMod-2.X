@@ -35,6 +35,10 @@
     "usefultoolsmod:fni_helmet",
     "usefultoolsmod:fni_chestplate",
     "usefultoolsmod:fni_leggings",
-    "usefultoolsmod:fni_boots"
+    "usefultoolsmod:fni_boots",
+    "usefultoolsmod:ecto_helmet",
+    "usefultoolsmod:ecto_chestplate",
+    "usefultoolsmod:ecto_leggings",
+    "usefultoolsmod:ecto_boots"
   ]
 }

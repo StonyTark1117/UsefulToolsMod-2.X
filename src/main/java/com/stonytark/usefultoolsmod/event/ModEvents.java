@@ -6,6 +6,7 @@ import com.stonytark.usefultoolsmod.item.ModArmorMaterials;
 import com.stonytark.usefultoolsmod.item.ModItems;
 import com.stonytark.usefultoolsmod.item.custom.CoalArmorItem;
 import com.stonytark.usefultoolsmod.item.custom.CoalBurningHelper;
+import com.stonytark.usefultoolsmod.item.custom.EctoplasmArmorHelper;
 import com.stonytark.usefultoolsmod.item.custom.EctoplasmInfusionHelper;
 import com.stonytark.usefultoolsmod.trigger.ModTriggers;
 import net.minecraft.ChatFormatting;
@@ -28,7 +29,10 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -103,6 +107,18 @@ public class ModEvents {
             if (Config.fniEnabled && Config.fniFireEffects) {
                 handleFniBootsFire(player);
                 handleFniArmorBonus(player);
+            }
+            if (Config.ectoplasmSetEnabled && Config.ectoplasmWallPhasing) {
+                handleEctoWallPhasing(player);
+            }
+            if (Config.spectralInfuserEnabled && Config.infusedToolEffects) {
+                handleInfusedToolEffects(player);
+            }
+            if (Config.cakeEnabled && Config.cakeHungerEffects) {
+                handleCakeHungerDrain(player);
+            }
+            if (Config.cakeEnabled && Config.cakeArmorEffects) {
+                handleCakeArmorEffects(player);
             }
         }
     }
@@ -803,6 +819,16 @@ public class ModEvents {
         if (EctoplasmInfusionHelper.isInfused(stack)) {
             event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.ectoplasm_infused")
                     .withStyle(ChatFormatting.DARK_AQUA));
+            if (stack.getItem() instanceof PickaxeItem) {
+                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_sight")
+                        .withStyle(ChatFormatting.GRAY));
+            } else if (stack.getItem() instanceof ShovelItem) {
+                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_efficiency")
+                        .withStyle(ChatFormatting.GRAY));
+            } else if (stack.getItem() instanceof HoeItem) {
+                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_fortune")
+                        .withStyle(ChatFormatting.GRAY));
+            }
         }
 
         // Coal tools / armor
@@ -860,5 +886,239 @@ public class ModEvents {
 
         event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.time_remaining", time)
                 .withStyle(ChatFormatting.GRAY));
+    }
+
+    // -----------------------------------------------------------------------
+    // Ectoplasm wall phasing
+    // -----------------------------------------------------------------------
+
+    /** Tracks which players are currently phasing through walls. */
+    private static final Set<UUID> PHASING_PLAYERS = new HashSet<>();
+
+    /**
+     * Full ecto armor set allows the player to phase through walls ≤ 3 blocks thick.
+     * When inside a solid block: noPhysics=true, Slowness I, SOUL_FIRE_FLAME particles.
+     * If the player loses armor while inside a wall, they are teleported to safety.
+     */
+    private static void handleEctoWallPhasing(Player player) {
+        boolean hasFullSet = EctoplasmArmorHelper.hasFullEctoArmorSet(player);
+        boolean isPhasing = PHASING_PLAYERS.contains(player.getUUID());
+        Level level = player.level();
+        BlockPos feetPos = player.blockPosition();
+        BlockPos headPos = feetPos.above();
+
+        boolean inSolid = !level.getBlockState(feetPos).getCollisionShape(level, feetPos).isEmpty()
+                       || !level.getBlockState(headPos).getCollisionShape(level, headPos).isEmpty();
+
+        if (hasFullSet && inSolid && (isPhasing || player.isShiftKeyDown())) {
+            // Must sneak to initiate phasing; once inside, continue until exit
+            if (!isPhasing) {
+                // Entering wall — check thickness
+                int thickness = measureWallThickness(player, level);
+                if (thickness > 3 || thickness == 0) {
+                    // Wall too thick or couldn't find exit; deny entry
+                    player.noPhysics = false;
+                    return;
+                }
+            }
+
+            // Allow phasing
+            player.noPhysics = true;
+            PHASING_PLAYERS.add(player.getUUID());
+
+            // Apply Slowness I while phasing
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 0, false, false, true));
+
+            // Spawn particles
+            if (level instanceof ServerLevel serverLevel && player.tickCount % 4 == 0) {
+                serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                        player.getX(), player.getY() + 1.0, player.getZ(),
+                        3, 0.3, 0.5, 0.3, 0.01);
+            }
+        } else if (isPhasing) {
+            // Player left the wall or lost armor
+            player.noPhysics = false;
+            PHASING_PLAYERS.remove(player.getUUID());
+
+            if (!hasFullSet && inSolid) {
+                // Lost armor while inside wall — teleport to safety
+                teleportToSafety(player, level);
+            }
+        } else {
+            // Not phasing, not in solid — ensure noPhysics is off
+            player.noPhysics = false;
+        }
+    }
+
+    /**
+     * Measures how many consecutive solid blocks exist from the player's position
+     * outward in their horizontal look direction. Returns 0 if no exit found within 4 blocks.
+     */
+    private static int measureWallThickness(Player player, Level level) {
+        // Get horizontal look direction as a unit vector
+        float yaw = player.getYRot();
+        double dx = -Math.sin(Math.toRadians(yaw));
+        double dz = Math.cos(Math.toRadians(yaw));
+
+        // Normalize to dominant axis for block scanning
+        Direction dir;
+        if (Math.abs(dx) > Math.abs(dz)) {
+            dir = dx > 0 ? Direction.EAST : Direction.WEST;
+        } else {
+            dir = dz > 0 ? Direction.SOUTH : Direction.NORTH;
+        }
+
+        BlockPos checkPos = player.blockPosition();
+        int solidCount = 0;
+
+        for (int i = 0; i < 4; i++) {
+            checkPos = checkPos.relative(dir);
+            BlockPos checkHead = checkPos.above();
+
+            boolean feetSolid = !level.getBlockState(checkPos).getCollisionShape(level, checkPos).isEmpty();
+            boolean headSolid = !level.getBlockState(checkHead).getCollisionShape(level, checkHead).isEmpty();
+
+            if (feetSolid || headSolid) {
+                solidCount++;
+            } else {
+                // Found exit
+                return solidCount;
+            }
+        }
+
+        // No exit within 4 blocks
+        return 0;
+    }
+
+    // -----------------------------------------------------------------------
+    // Cake hunger drain + armor effects
+    // -----------------------------------------------------------------------
+
+    private static void handleCakeHungerDrain(Player player) {
+        if (!(player.level() instanceof ServerLevel serverLevel)) return;
+        if (player.getFoodData().getFoodLevel() > 6) return; // only when starving (≤3 bars)
+        if (player.tickCount % 40 != 0) return;
+
+        // Scan held cake tools
+        ItemStack main = player.getMainHandItem();
+        ItemStack off  = player.getOffhandItem();
+        if (isCakeTool(main) && main.isDamageableItem()) {
+            main.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+            player.getFoodData().eat(1, 0.1f);
+            spawnCakeParticles(player, serverLevel);
+        }
+        if (isCakeTool(off) && off.isDamageableItem()) {
+            off.hurtAndBreak(1, player, EquipmentSlot.OFFHAND);
+            player.getFoodData().eat(1, 0.1f);
+            spawnCakeParticles(player, serverLevel);
+        }
+
+        // Scan equipped cake armor
+        for (EquipmentSlot slot : ARMOR_SLOTS) {
+            ItemStack piece = player.getItemBySlot(slot);
+            if (isCakeArmor(piece) && piece.isDamageableItem()) {
+                piece.hurtAndBreak(1, player, slot);
+                player.getFoodData().eat(1, 0.1f);
+                spawnCakeParticles(player, serverLevel);
+            }
+        }
+    }
+
+    private static void handleCakeArmorEffects(Player player) {
+        // Boots → Speed I (sugar rush)
+        if (isCakeArmor(player.getItemBySlot(EquipmentSlot.FEET))) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        }
+        // Leggings → Jump Boost I (light and fluffy)
+        if (isCakeArmor(player.getItemBySlot(EquipmentSlot.LEGS))) {
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        }
+        // Chestplate → Regeneration I (comfort food healing)
+        if (isCakeArmor(player.getItemBySlot(EquipmentSlot.CHEST))) {
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        }
+        // Helmet → Saturation (keeps hunger satisfied)
+        if (isCakeArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
+            player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 60, 0, false, false, true));
+        }
+
+        // Full set → Absorption I (frosting shield — 2 extra hearts)
+        boolean fullSet = isCakeArmor(player.getItemBySlot(EquipmentSlot.HEAD))
+                && isCakeArmor(player.getItemBySlot(EquipmentSlot.CHEST))
+                && isCakeArmor(player.getItemBySlot(EquipmentSlot.LEGS))
+                && isCakeArmor(player.getItemBySlot(EquipmentSlot.FEET));
+        if (fullSet) {
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 0, false, false, true));
+        }
+    }
+
+    private static void spawnCakeParticles(Player player, ServerLevel level) {
+        level.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                player.getX(), player.getY() + 1.0, player.getZ(),
+                5, 0.3, 0.3, 0.3, 0.01);
+    }
+
+    private static boolean isCakeTool(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        return stack.is(ModItems.CAKE_SWORD.get())
+            || stack.is(ModItems.CAKE_PICKAXE.get())
+            || stack.is(ModItems.CAKE_SHOVEL.get())
+            || stack.is(ModItems.CAKE_AXE.get())
+            || stack.is(ModItems.CAKE_HOE.get());
+    }
+
+    private static boolean isCakeArmor(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
+        return ModArmorMaterials.CAKE_ARMOR_MATERIAL.is(armor.getMaterial());
+    }
+
+    // -----------------------------------------------------------------------
+    // Ectoplasm-infused non-weapon tool effects
+    // -----------------------------------------------------------------------
+
+    private static void handleInfusedToolEffects(Player player) {
+        ItemStack main = player.getMainHandItem();
+        ItemStack off  = player.getOffhandItem();
+
+        applyInfusedEffect(player, main);
+        applyInfusedEffect(player, off);
+    }
+
+    private static void applyInfusedEffect(Player player, ItemStack stack) {
+        if (stack.isEmpty() || !EctoplasmInfusionHelper.isInfused(stack)) return;
+
+        // Pickaxe → Night Vision (spectral sight)
+        if (stack.getItem() instanceof PickaxeItem) {
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false, true));
+        }
+        // Shovel → Haste I (spectral efficiency)
+        else if (stack.getItem() instanceof ShovelItem) {
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, true));
+        }
+        // Hoe → Luck I (spectral fortune)
+        else if (stack.getItem() instanceof HoeItem) {
+            player.addEffect(new MobEffectInstance(MobEffects.LUCK, 60, 0, false, false, true));
+        }
+    }
+
+    /**
+     * Teleports the player to the nearest safe (non-solid) position above them.
+     */
+    private static void teleportToSafety(Player player, Level level) {
+        BlockPos pos = player.blockPosition();
+
+        // Try going up
+        for (int y = 0; y < 256; y++) {
+            BlockPos check = pos.above(y);
+            BlockPos checkHead = check.above();
+
+            boolean feetClear = level.getBlockState(check).getCollisionShape(level, check).isEmpty();
+            boolean headClear = level.getBlockState(checkHead).getCollisionShape(level, checkHead).isEmpty();
+
+            if (feetClear && headClear) {
+                player.teleportTo(check.getX() + 0.5, check.getY(), check.getZ() + 0.5);
+                return;
+            }
+        }
     }
 }

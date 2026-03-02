@@ -34,6 +34,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SOBLOCK.get());
         dropSelf(ModBlocks.LBLOCK.get());
         dropSelf(ModBlocks.SPECTRAL_INFUSER.get());
+        dropSelf(ModBlocks.HGLOW_BLOCK.get());
+        dropSelf(ModBlocks.RAW_RGOLD_BLOCK.get());
+        dropSelf(ModBlocks.ECTOPLASM_BLOCK.get());
+        dropSelf(ModBlocks.REFINED_ECTOPLASM_BLOCK.get());
+        dropSelf(ModBlocks.HARDENED_COAL_BLOCK.get());
+        dropSelf(ModBlocks.COAL_DUST_BLOCK.get());
+        dropSelf(ModBlocks.OBSHARD_BLOCK.get());
+        dropSelf(ModBlocks.CALCIFIED_AMETHYST_BLOCK.get());
+        dropSelf(ModBlocks.GLACIAL_SHARD_BLOCK.get());
+        dropSelf(ModBlocks.POLISHED_QUARTZ_BLOCK.get());
+        dropSelf(ModBlocks.POLISHED_PRISMARINE_BLOCK.get());
 
         this.add(ModBlocks.RGOLDORE.get(),
                 block -> createOreDrop(ModBlocks.RGOLDORE.get(), ModItems.RAW_RGOLD.get()));

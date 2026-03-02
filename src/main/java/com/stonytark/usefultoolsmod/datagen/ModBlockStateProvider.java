@@ -30,6 +30,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RGOLD_END_ORE);
         blockWithItem(ModBlocks.RGOLD_DEEPSLATE_ORE);
 
+        blockWithItem(ModBlocks.HGLOW_BLOCK);
+        blockWithItem(ModBlocks.RAW_RGOLD_BLOCK);
+        blockWithItem(ModBlocks.ECTOPLASM_BLOCK);
+        blockWithItem(ModBlocks.REFINED_ECTOPLASM_BLOCK);
+        blockWithItem(ModBlocks.HARDENED_COAL_BLOCK);
+        blockWithItem(ModBlocks.COAL_DUST_BLOCK);
+        blockWithItem(ModBlocks.OBSHARD_BLOCK);
+        blockWithItem(ModBlocks.CALCIFIED_AMETHYST_BLOCK);
+        blockWithItem(ModBlocks.GLACIAL_SHARD_BLOCK);
+        blockWithItem(ModBlocks.POLISHED_QUARTZ_BLOCK);
+        blockWithItem(ModBlocks.POLISHED_PRISMARINE_BLOCK);
+
         spectralInfuser();
     }
 

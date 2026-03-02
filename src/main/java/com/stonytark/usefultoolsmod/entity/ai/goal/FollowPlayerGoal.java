@@ -1,5 +1,7 @@
 package com.stonytark.usefultoolsmod.entity.ai.goal;
 
+import com.stonytark.usefultoolsmod.Config;
+import com.stonytark.usefultoolsmod.item.custom.EctoplasmArmorHelper;
 import com.stonytark.usefultoolsmod.trigger.ModTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Mob;
@@ -49,6 +51,9 @@ public class FollowPlayerGoal extends Goal {
         Player closestPlayer = null;
 
         for (Player player : players) {
+            if (Config.ectoplasmGhostAvoidance && EctoplasmArmorHelper.isGhostInvisible(player)) {
+                continue;
+            }
             double dist = mob.distanceToSqr(player);
             if (dist < closestDist && mob.hasLineOfSight(player)) {
                 closestDist = dist;
@@ -71,6 +76,10 @@ public class FollowPlayerGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
+        if (targetPlayer != null && Config.ectoplasmGhostAvoidance
+                && EctoplasmArmorHelper.isGhostInvisible(targetPlayer)) {
+            return false;
+        }
         return targetPlayer != null
                 && targetPlayer.isAlive()
                 && mob.distanceToSqr(targetPlayer) > variableStopDist * variableStopDist

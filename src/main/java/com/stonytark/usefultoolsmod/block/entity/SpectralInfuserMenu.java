@@ -93,7 +93,7 @@ public class SpectralInfuserMenu extends AbstractContainerMenu {
                 }
             } else {
                 // Player inventory → block entity slots
-                if (SpectralInfuserBlockEntity.isWeapon(original)) {
+                if (SpectralInfuserBlockEntity.isInfusable(original)) {
                     if (!this.moveItemStackTo(original, INPUT_SLOT, INPUT_SLOT + 1, false)) {
                         return ItemStack.EMPTY;
                     }

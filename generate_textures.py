@@ -246,12 +246,12 @@ JAGGED_TOOL_CONFIGS = {
     "jprism": {"target_hue": 170, "sat_set": 0.7, "val_mult": 0.75},
     "jflint": {"target_hue": 30, "sat_set": 0.15, "val_mult": 0.5},
     "snow": {"target_hue": 200, "sat_set": 0.15, "val_mult": 1.3, "val_add": 0.15},
-    "ice": {"target_hue": 195, "sat_set": 0.65, "val_mult": 0.95},
     "jraw_gold": {"target_hue": 45, "sat_set": 0.8, "val_mult": 0.9},
     "jraw_copper": {"target_hue": 25, "sat_set": 0.75, "val_mult": 0.8},
     "jraw_iron": {"target_hue": 25, "sat_set": 0.12, "val_mult": 0.7},
     "jraw_rgold": {"target_hue": 42, "sat_set": 0.6, "val_mult": 0.8},
     "jscrap": {"target_hue": 30, "sat_set": 0.25, "val_mult": 0.4},
+    "jecto": {"target_hue": 175, "sat_set": 0.4, "val_mult": 0.85},
 }
 
 
@@ -267,12 +267,16 @@ SMOOTH_TOOL_CONFIGS = {
     "camethyst": ("diamond", {"target_hue": 280, "sat_set": 0.65, "val_mult": 0.85}),
     "squartz": ("diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
     "sprism": ("diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
+    "ecto": ("diamond", {"target_hue": 175, "sat_set": 0.5, "val_mult": 0.8}),
+    "ice": ("diamond", {"target_hue": 195, "sat_set": 0.65, "val_mult": 0.95}),
     # Iron-based smooth tools
     "hredstone": ("iron", "remap_hred_tool"),
     "hglowstone": ("iron", {"target_hue": 41, "sat_set": 0.75, "val_mult": 1.1}),
     "coal": ("iron", "remap_coal_tool"),
     "fni": ("iron", "remap_fni_tool"),
     "rgold": ("iron", "remap_rgold_tool"),
+    # Wooden-based tools
+    "cake": ("wooden", {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.75}),
 }
 
 
@@ -288,6 +292,7 @@ ARMOR_CONFIGS = {
     "squartz": ("diamond", "diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
     "ice": ("diamond", "diamond", {"target_hue": 195, "sat_set": 0.65, "val_mult": 1.05}),
     "sprism": ("diamond", "diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
+    "ecto": ("diamond", "diamond", {"target_hue": 175, "sat_set": 0.5, "val_mult": 0.8}),
     "obsidian": ("netherite", "netherite", "remap_obsidian_armor"),
     "emerald": ("diamond", "diamond", "remap_emerald_armor"),
     # Iron-based armor
@@ -297,6 +302,28 @@ ARMOR_CONFIGS = {
     "fni": ("iron", "iron", "remap_fni_armor"),
     # Special base armors
     "rgold": ("golden", "iron", "remap_rgold"),
+    # Leather-based armor
+    "cake": ("leather", "leather", {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.75}),
+}
+
+
+# ---------------------------------------------------------------------------
+# Wood variant tool configs (applied to vanilla wooden_* tool shapes)
+# ---------------------------------------------------------------------------
+
+WOOD_TOOL_CONFIGS = {
+    # name: remap_kwargs
+    "oak": {"target_hue": 35, "sat_set": 0.45, "val_mult": 0.65},
+    "spruce": {"target_hue": 28, "sat_set": 0.50, "val_mult": 0.40},
+    "birch": {"target_hue": 45, "sat_set": 0.20, "val_mult": 1.0},
+    "jungle": {"target_hue": 20, "sat_set": 0.55, "val_mult": 0.60},
+    "acacia": {"target_hue": 20, "sat_set": 0.65, "val_mult": 0.70},
+    "dark_oak": {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.30},
+    "mangrove": {"target_hue": 10, "sat_set": 0.60, "val_mult": 0.50},
+    "cherry": {"target_hue": 340, "sat_set": 0.40, "val_mult": 0.85},
+    "bamboo": {"target_hue": 55, "sat_set": 0.35, "val_mult": 0.80},
+    "crimson": {"target_hue": 330, "sat_set": 0.70, "val_mult": 0.45},
+    "warped": {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.55},
 }
 
 
@@ -357,7 +384,7 @@ def generate_smooth_tools():
 
     # Cache vanilla tool bases
     vanilla_tools = {}
-    for base_prefix in ("diamond", "iron", "golden", "netherite"):
+    for base_prefix in ("diamond", "iron", "golden", "netherite", "wooden"):
         vanilla_tools[base_prefix] = {}
         for tool in TOOL_TYPES:
             vanilla_tools[base_prefix][tool] = extract_png(
@@ -378,7 +405,7 @@ def generate_armor_items_all():
 
     # Cache vanilla armor item bases
     vanilla_armor = {}
-    for base_prefix in ("diamond", "iron", "golden", "netherite", "chainmail"):
+    for base_prefix in ("diamond", "iron", "golden", "netherite", "chainmail", "leather"):
         vanilla_armor[base_prefix] = {}
         for piece in ARMOR_PIECES:
             vanilla_armor[base_prefix][piece] = extract_png(
@@ -399,7 +426,7 @@ def generate_armor_layers_all():
 
     # Cache vanilla armor layer bases
     vanilla_layers = {}
-    for base_prefix in ("diamond", "iron", "gold", "netherite", "chainmail"):
+    for base_prefix in ("diamond", "iron", "gold", "netherite", "chainmail", "leather"):
         vanilla_layers[base_prefix] = (
             extract_png(CLIENT_JAR, f"{V_ARMOR}/{base_prefix}_layer_1.png"),
             extract_png(CLIENT_JAR, f"{V_ARMOR}/{base_prefix}_layer_2.png"),
@@ -499,12 +526,63 @@ def generate_material_items():
     print("  hred.png")
     total += 1
 
-    # Ectoplasm: amethyst shard shifted to ghostly green-cyan
-    ecto = remap_hsv(amethyst_shard, target_hue=160, sat_set=0.55, val_mult=1.1, val_add=0.05)
-    ecto = blend_tint(ecto, (100, 240, 200), strength=0.3)
+    # Ectoplasm: slime ball base with spectral cyan-white ghost palette
+    slime_ball = extract_png(CLIENT_JAR, f"{V_ITEM}/slime_ball.png")
+    ecto = remap_hsv(slime_ball, target_hue=175, sat_set=0.4, val_mult=1.05)
+    ecto = blend_tint(ecto, (200, 240, 235), strength=0.35)
     ecto.save(ITEM_DIR / "ectoplasm.png")
     print("  ectoplasm.png")
     total += 1
+
+    # Refined Ectoplasm: slime ball base, more saturated/vivid than raw ectoplasm
+    recto = remap_hsv(slime_ball, target_hue=175, sat_set=0.6, val_mult=0.95)
+    recto = blend_tint(recto, (80, 220, 200), strength=0.3)
+    recto.save(ITEM_DIR / "refined_ectoplasm.png")
+    print("  refined_ectoplasm.png")
+    total += 1
+
+    # Obsidian Shard: amethyst shard shifted to dark obsidian purple
+    obs = remap_hsv(amethyst_shard, target_hue=275, sat_set=0.6, val_mult=0.45)
+    obs.save(ITEM_DIR / "obshard.png")
+    print("  obshard.png")
+    total += 1
+
+    # Obsidian Ingot: netherite ingot shifted to smooth obsidian purple
+    netherite_ingot = extract_png(CLIENT_JAR, f"{V_ITEM}/netherite_ingot.png")
+    obi = remap_hsv(netherite_ingot, target_hue=275, sat_set=0.5, val_mult=0.5)
+    obi.save(ITEM_DIR / "obingot.png")
+    print("  obingot.png")
+    total += 1
+
+    # Smooth Emerald Material: emerald with vivid green
+    emerald = extract_png(CLIENT_JAR, f"{V_ITEM}/emerald.png")
+    se = remap_hsv(emerald, target_hue=140, sat_set=0.75, val_mult=0.9)
+    se.save(ITEM_DIR / "sem.png")
+    print("  sem.png")
+    total += 1
+
+    # Reinforced Lapis: lapis lazuli with vivid blue
+    lapis = extract_png(CLIENT_JAR, f"{V_ITEM}/lapis_lazuli.png")
+    rl = remap_hsv(lapis, target_hue=230, sat_set=0.8, val_mult=0.8)
+    rl.save(ITEM_DIR / "rlapis.png")
+    print("  rlapis.png")
+    total += 1
+
+    return total
+
+
+def generate_wood_tools():
+    """Generate all wood variant tool textures using vanilla wooden_* as base shape."""
+    print("\n=== Wood Variant Tools (wooden base) ===")
+
+    # Load vanilla wooden tool bases
+    wooden = {}
+    for tool in TOOL_TYPES:
+        wooden[tool] = extract_png(CLIENT_JAR, f"{V_ITEM}/wooden_{tool}.png")
+
+    total = 0
+    for name, kwargs in WOOD_TOOL_CONFIGS.items():
+        total += gen_tools(wooden, name, **kwargs)
 
     return total
 
@@ -547,6 +625,206 @@ def generate_hglow_emissives():
     return total
 
 
+def generate_ecto_emissives():
+    """Generate emissive (_e) textures for ectoplasm items.
+    Regular ecto items get a soft green/blue glow; refined ecto items glow brighter.
+    """
+    print("\n=== Ecto Emissive Textures ===")
+    total = 0
+
+    BLOCK_DIR = TEX_ROOT / "block"
+
+    # --- Regular ectoplasm (soft glow) ---
+    soft = dict(val_mult=1.15, val_add=0.08, sat_mult=1.1)
+
+    # Ectoplasm material
+    src = load_local_png(ITEM_DIR / "ectoplasm.png")
+    em = remap_hsv(src, **soft)
+    em.save(ITEM_DIR / "ectoplasm_e.png")
+    total += 1
+
+    # Jagged ecto tools
+    for tool in TOOL_TYPES:
+        src = load_local_png(ITEM_DIR / f"jecto_{tool}.png")
+        em = remap_hsv(src, **soft)
+        em.save(ITEM_DIR / f"jecto_{tool}_e.png")
+        total += 1
+
+    # Ectoplasm block
+    src = load_local_png(BLOCK_DIR / "ectoplasm_block.png")
+    em = remap_hsv(src, **soft)
+    em.save(BLOCK_DIR / "ectoplasm_block_e.png")
+    total += 1
+
+    # --- Refined ectoplasm (brighter glow) ---
+    bright = dict(val_mult=1.35, val_add=0.18, sat_mult=1.25)
+
+    # Refined ectoplasm material
+    src = load_local_png(ITEM_DIR / "refined_ectoplasm.png")
+    em = remap_hsv(src, **bright)
+    em.save(ITEM_DIR / "refined_ectoplasm_e.png")
+    total += 1
+
+    # Refined ecto tools
+    for tool in TOOL_TYPES:
+        src = load_local_png(ITEM_DIR / f"ecto_{tool}.png")
+        em = remap_hsv(src, **bright)
+        em.save(ITEM_DIR / f"ecto_{tool}_e.png")
+        total += 1
+
+    # Ecto armor item emissives
+    for piece in ARMOR_PIECES:
+        src = load_local_png(ITEM_DIR / f"ecto_{piece}.png")
+        em = remap_hsv(src, **bright)
+        em.save(ITEM_DIR / f"ecto_{piece}_e.png")
+        total += 1
+
+    # Ecto armor layer emissives
+    for layer in ("1", "2"):
+        src = load_local_png(ARMOR_DIR / f"ecto_layer_{layer}.png")
+        em = remap_hsv(src, **bright)
+        em.save(ARMOR_DIR / f"ecto_layer_{layer}_e.png")
+        total += 1
+
+    # Refined ectoplasm block
+    src = load_local_png(BLOCK_DIR / "refined_ectoplasm_block.png")
+    em = remap_hsv(src, **bright)
+    em.save(BLOCK_DIR / "refined_ectoplasm_block_e.png")
+    total += 1
+
+    print(f"  {total} emissive textures")
+    return total
+
+
+def generate_block_textures():
+    """Generate block textures from vanilla block bases with HSV remapping."""
+    print("\n=== Block Textures ===")
+
+    V_BLOCK = "assets/minecraft/textures/block"
+    BLOCK_DIR = TEX_ROOT / "block"
+    os.makedirs(BLOCK_DIR, exist_ok=True)
+
+    # Load vanilla block bases
+    iron_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/iron_block.png")
+    gold_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/gold_block.png")
+    diamond_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/diamond_block.png")
+    emerald_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/emerald_block.png")
+    lapis_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/lapis_block.png")
+    coal_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/coal_block.png")
+    raw_gold_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/raw_gold_block.png")
+    amethyst_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/amethyst_block.png")
+    blue_ice = extract_png(CLIENT_JAR, f"{V_BLOCK}/blue_ice.png")
+    quartz_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/quartz_block_side.png")
+    prismarine = extract_png(CLIENT_JAR, f"{V_BLOCK}/prismarine.png")
+    slime_block = extract_png(CLIENT_JAR, f"{V_BLOCK}/slime_block.png")
+
+    total = 0
+
+    # --- Update 5 existing block textures ---
+
+    # Ferrous Gold Block: iron block with gold-iron alloy blend
+    rgb = remap_rgold_tool(iron_block)
+    rgb.save(BLOCK_DIR / "rgoldblock.png")
+    print("  rgoldblock.png (updated)")
+    total += 1
+
+    # Hardened Redstone Block: iron block shifted deep red
+    hrb = remap_hsv(iron_block, target_hue=0, sat_set=0.8, val_mult=0.8)
+    hrb.save(BLOCK_DIR / "hrblock.png")
+    print("  hrblock.png (updated)")
+    total += 1
+
+    # Smooth Emerald Block: emerald block vivid green
+    seb = remap_hsv(emerald_block, target_hue=140, sat_set=0.75, val_mult=0.9)
+    seb.save(BLOCK_DIR / "semblock.png")
+    print("  semblock.png (updated)")
+    total += 1
+
+    # Smooth Obsidian Block: diamond block shifted dark obsidian purple
+    sob = remap_hsv(diamond_block, target_hue=275, sat_set=0.5, val_mult=0.45)
+    sob.save(BLOCK_DIR / "soblock.png")
+    print("  soblock.png (updated)")
+    total += 1
+
+    # Reinforced Lapis Block: lapis block vivid blue
+    lb = remap_hsv(lapis_block, target_hue=230, sat_set=0.8, val_mult=0.85)
+    lb.save(BLOCK_DIR / "lblock.png")
+    print("  lblock.png (updated)")
+    total += 1
+
+    # --- 10 new storage block textures ---
+
+    # Hardened Glowstone Block: gold block shifted amber
+    hgb = remap_hsv(gold_block, target_hue=41, sat_set=0.75, val_mult=1.1)
+    hgb.save(BLOCK_DIR / "hglow_block.png")
+    print("  hglow_block.png")
+    total += 1
+
+    # Raw Ferrous Gold Block: raw gold block with ferrous blend
+    rrb = remap_rgold_tool(raw_gold_block)
+    rrb.save(BLOCK_DIR / "raw_rgold_block.png")
+    print("  raw_rgold_block.png")
+    total += 1
+
+    # Ectoplasm Block: slime block shifted ecto green (softer)
+    eb = remap_hsv(slime_block, target_hue=175, sat_set=0.4, val_mult=1.05)
+    eb = blend_tint(eb, (200, 240, 235), strength=0.35)
+    eb.save(BLOCK_DIR / "ectoplasm_block.png")
+    print("  ectoplasm_block.png")
+    total += 1
+
+    # Refined Ectoplasm Block: slime block shifted ecto cyan (more saturated)
+    reb = remap_hsv(slime_block, target_hue=175, sat_set=0.6, val_mult=0.95)
+    reb.save(BLOCK_DIR / "refined_ectoplasm_block.png")
+    print("  refined_ectoplasm_block.png")
+    total += 1
+
+    # Hardened Coal Block: coal block, charcoal grey
+    hcb = remap_hsv(coal_block, target_hue=0, sat_set=0.05, val_mult=0.5)
+    hcb.save(BLOCK_DIR / "hardened_coal_block.png")
+    print("  hardened_coal_block.png")
+    total += 1
+
+    # Coal Dust Block: coal block, very dark
+    cdb = remap_hsv(coal_block, target_hue=0, sat_set=0.03, val_mult=0.4)
+    cdb.save(BLOCK_DIR / "coal_dust_block.png")
+    print("  coal_dust_block.png")
+    total += 1
+
+    # Obsidian Shard Block: amethyst block, dark purple
+    osb = remap_hsv(amethyst_block, target_hue=275, sat_set=0.6, val_mult=0.45)
+    osb.save(BLOCK_DIR / "obshard_block.png")
+    print("  obshard_block.png")
+    total += 1
+
+    # Calcified Amethyst Block: amethyst block shifted beige
+    cab = remap_hsv(amethyst_block, target_hue=50, sat_mult=0.25, val_mult=1.25, val_add=0.12)
+    cab = blend_tint(cab, (225, 215, 195), strength=0.5)
+    cab.save(BLOCK_DIR / "calcified_amethyst_block.png")
+    print("  calcified_amethyst_block.png")
+    total += 1
+
+    # Glacial Shard Block: blue ice shifted ice blue
+    gsb = remap_hsv(blue_ice, target_hue=195, sat_set=0.65, val_mult=0.95)
+    gsb.save(BLOCK_DIR / "glacial_shard_block.png")
+    print("  glacial_shard_block.png")
+    total += 1
+
+    # Polished Quartz Block: quartz block warm white
+    pqb = remap_hsv(quartz_block, target_hue=35, sat_set=0.1, val_mult=1.15)
+    pqb.save(BLOCK_DIR / "polished_quartz_block.png")
+    print("  polished_quartz_block.png")
+    total += 1
+
+    # Polished Prismarine Block: prismarine vivid teal
+    ppb = remap_hsv(prismarine, target_hue=168, sat_set=0.75, val_mult=1.1)
+    ppb.save(BLOCK_DIR / "polished_prismarine_block.png")
+    print("  polished_prismarine_block.png")
+    total += 1
+
+    return total
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -562,10 +840,13 @@ if __name__ == "__main__":
 
     total = 0
     total += generate_jagged_tools()        # 12 sets × 5 = 60 tools
-    total += generate_smooth_tools()        # 10 sets × 5 = 50 tools
-    total += generate_armor_items_all()     # 12 sets × 4 = 48 armor items
-    total += generate_armor_layers_all()    # 12 sets × 2 = 24 armor layers
-    total += generate_material_items()      # 11 material items
+    total += generate_smooth_tools()        # 11 sets × 5 = 55 tools
+    total += generate_armor_items_all()     # 13 sets × 4 = 52 armor items
+    total += generate_armor_layers_all()    # 13 sets × 2 = 26 armor layers
+    total += generate_material_items()      # 16 material items
+    total += generate_block_textures()       # 15 block textures
+    total += generate_wood_tools()           # 11 sets × 5 = 55 tools
     total += generate_hglow_emissives()     # 12 emissive textures
+    total += generate_ecto_emissives()      # ~22 emissive textures
 
     print(f"\nDone! Generated {total} textures.")

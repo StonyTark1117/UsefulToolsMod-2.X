@@ -11,6 +11,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.critereon.ConsumeItemTrigger;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -18,6 +19,7 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.List;
@@ -412,7 +414,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
                                     new GhostNearbyTrigger.TriggerInstance(Optional.empty())))
                     .save(saver, id("ghost_encounter"));
 
-            Advancement.Builder.advancement()
+            AdvancementHolder ghostCompanion = Advancement.Builder.advancement()
                     .parent(ghostEncounter)
                     .display(ModItems.GHOST_SPAWN_EGG.get(), title("ghost_companion"), desc("ghost_companion"),
                             null, AdvancementType.GOAL, true, true, true)
@@ -420,6 +422,76 @@ public class ModAdvancementProvider extends AdvancementProvider {
                             ModTriggers.GHOST_NEARBY.get().createCriterion(
                                     new GhostNearbyTrigger.TriggerInstance(Optional.empty())))
                     .save(saver, id("ghost_companion"));
+
+            // ------------------------------------------------------------------
+            // SUB-BRANCH: Ectoplasm → Refined Ectoplasm → Ecto tools/armor
+            //                                            → Spectral Infuser
+            // ------------------------------------------------------------------
+            AdvancementHolder ectoplasmAdv = Advancement.Builder.advancement()
+                    .parent(ghostCompanion)
+                    .display(ModItems.ECTOPLASM.get(), title("ectoplasm"), desc("ectoplasm"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_ectoplasm",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTOPLASM.get()))
+                    .save(saver, id("ectoplasm"));
+
+            Advancement.Builder.advancement()
+                    .parent(ectoplasmAdv)
+                    .display(ModItems.JECTO_SWORD.get(), title("jecto"), desc("jecto"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_jecto_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.JECTO_SWORD.get()))
+                    .save(saver, id("jecto"));
+
+            AdvancementHolder refinedEctoplasm = Advancement.Builder.advancement()
+                    .parent(ectoplasmAdv)
+                    .display(ModItems.REFINED_ECTOPLASM.get(), title("refined_ectoplasm"), desc("refined_ectoplasm"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_refined_ectoplasm",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.REFINED_ECTOPLASM.get()))
+                    .save(saver, id("refined_ectoplasm"));
+
+            AdvancementHolder ectoTools = Advancement.Builder.advancement()
+                    .parent(refinedEctoplasm)
+                    .display(ModItems.ECTO_SWORD.get(), title("ecto_tools"), desc("ecto_tools"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_ecto_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_SWORD.get()))
+                    .save(saver, id("ecto_tools"));
+
+            Advancement.Builder.advancement()
+                    .parent(ectoTools)
+                    .display(ModItems.ECTO_HELMET.get(), title("ecto_set"), desc("ecto_set"),
+                            null, AdvancementType.GOAL, true, true, false)
+                    .addCriterion("has_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_SWORD.get()))
+                    .addCriterion("has_pickaxe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_PICKAXE.get()))
+                    .addCriterion("has_shovel",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_SHOVEL.get()))
+                    .addCriterion("has_axe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_AXE.get()))
+                    .addCriterion("has_hoe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_HOE.get()))
+                    .addCriterion("has_helmet",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_HELMET.get()))
+                    .addCriterion("has_chestplate",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_CHESTPLATE.get()))
+                    .addCriterion("has_leggings",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_LEGGINGS.get()))
+                    .addCriterion("has_boots",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ECTO_BOOTS.get()))
+                    .requirements(AdvancementRequirements.Strategy.AND)
+                    .save(saver, id("ecto_set"));
+
+            // Spectral Infuser (from ectoplasm branch)
+            Advancement.Builder.advancement()
+                    .parent(ectoplasmAdv)
+                    .display(ModBlocks.SPECTRAL_INFUSER.get(), title("spectral_infuser"), desc("spectral_infuser"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_spectral_infuser",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModBlocks.SPECTRAL_INFUSER.get()))
+                    .save(saver, id("spectral_infuser"));
 
             // ==================================================================
             // BRANCH: Raw Metal Jagged Tools (all from root)
@@ -944,6 +1016,68 @@ public class ModAdvancementProvider extends AdvancementProvider {
                             InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TUFF_PICKAXE.get()))
                     .requirements(AdvancementRequirements.Strategy.AND)
                     .save(saver, id("stone_toolkit"));
+
+            // ==================================================================
+            // BRANCH: Wood Toolkit (from root) — CHALLENGE
+            // Collect a sword crafted from every wood variant
+            // ==================================================================
+            Advancement.Builder.advancement()
+                    .parent(root)
+                    .display(ModItems.OAK_SWORD.get(), title("wood_toolkit"), desc("wood_toolkit"),
+                            null, AdvancementType.CHALLENGE, true, true, false)
+                    .addCriterion("has_oak_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.OAK_SWORD.get()))
+                    .addCriterion("has_spruce_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SPRUCE_SWORD.get()))
+                    .addCriterion("has_birch_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BIRCH_SWORD.get()))
+                    .addCriterion("has_jungle_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.JUNGLE_SWORD.get()))
+                    .addCriterion("has_acacia_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ACACIA_SWORD.get()))
+                    .addCriterion("has_dark_oak_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.DARK_OAK_SWORD.get()))
+                    .addCriterion("has_mangrove_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MANGROVE_SWORD.get()))
+                    .addCriterion("has_cherry_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHERRY_SWORD.get()))
+                    .addCriterion("has_bamboo_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BAMBOO_SWORD.get()))
+                    .addCriterion("has_crimson_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CRIMSON_SWORD.get()))
+                    .addCriterion("has_warped_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WARPED_SWORD.get()))
+                    .requirements(AdvancementRequirements.Strategy.AND)
+                    .save(saver, id("wood_toolkit"));
+
+            // ---------------------------------------------------------------
+            // Cake — novelty branch (from root)
+            // ---------------------------------------------------------------
+
+            AdvancementHolder cakeAdv = Advancement.Builder.advancement()
+                    .parent(root)
+                    .display(ModItems.CAKE_SWORD.get(), title("let_them_eat_cake"), desc("let_them_eat_cake"),
+                            null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("has_cake_sword",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CAKE_SWORD.get()))
+                    .addCriterion("has_cake_pickaxe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CAKE_PICKAXE.get()))
+                    .addCriterion("has_cake_axe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CAKE_AXE.get()))
+                    .addCriterion("has_cake_shovel",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CAKE_SHOVEL.get()))
+                    .addCriterion("has_cake_hoe",
+                            InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CAKE_HOE.get()))
+                    .requirements(AdvancementRequirements.Strategy.OR)
+                    .save(saver, id("let_them_eat_cake"));
+
+            Advancement.Builder.advancement()
+                    .parent(cakeAdv)
+                    .display(Items.CAKE, title("the_cake_is_a_lie"), desc("the_cake_is_a_lie"),
+                            null, AdvancementType.TASK, true, true, true)
+                    .addCriterion("eat_cake_tool",
+                            ConsumeItemTrigger.TriggerInstance.usedItem(ModItems.CAKE_SWORD.get()))
+                    .save(saver, id("the_cake_is_a_lie"));
         }
 
         // -----------------------------------------------------------------------

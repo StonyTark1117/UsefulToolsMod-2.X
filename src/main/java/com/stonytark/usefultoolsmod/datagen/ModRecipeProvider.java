@@ -664,6 +664,116 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.SEMBLOCK.get()), has(ModBlocks.SEMBLOCK.get()))
                 .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":sem_from_block");
 
+        // Hardened Glowstone Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HGLOW_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.HGLOW.get())
+                .unlockedBy(getHasName(ModItems.HGLOW.get()), has(ModItems.HGLOW.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.HGLOW.get(), 9)
+                .requires(ModBlocks.HGLOW_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.HGLOW_BLOCK.get()), has(ModBlocks.HGLOW_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":hglow_from_block");
+
+        // Raw Ferrous Gold Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.RAW_RGOLD_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.RAW_RGOLD.get())
+                .unlockedBy(getHasName(ModItems.RAW_RGOLD.get()), has(ModItems.RAW_RGOLD.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_RGOLD.get(), 9)
+                .requires(ModBlocks.RAW_RGOLD_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.RAW_RGOLD_BLOCK.get()), has(ModBlocks.RAW_RGOLD_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":raw_rgold_from_block");
+
+        // Ectoplasm Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ECTOPLASM_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ECTOPLASM.get(), 9)
+                .requires(ModBlocks.ECTOPLASM_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.ECTOPLASM_BLOCK.get()), has(ModBlocks.ECTOPLASM_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":ectoplasm_from_block");
+
+        // Refined Ectoplasm Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REFINED_ECTOPLASM_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.REFINED_ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.REFINED_ECTOPLASM.get(), 9)
+                .requires(ModBlocks.REFINED_ECTOPLASM_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.REFINED_ECTOPLASM_BLOCK.get()), has(ModBlocks.REFINED_ECTOPLASM_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":refined_ectoplasm_from_block");
+
+        // Hardened Coal Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HARDENED_COAL_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.HARDENED_COAL.get())
+                .unlockedBy(getHasName(ModItems.HARDENED_COAL.get()), has(ModItems.HARDENED_COAL.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.HARDENED_COAL.get(), 9)
+                .requires(ModBlocks.HARDENED_COAL_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.HARDENED_COAL_BLOCK.get()), has(ModBlocks.HARDENED_COAL_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":hardened_coal_from_block");
+
+        // Coal Dust Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COAL_DUST_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.COAL_DUST.get())
+                .unlockedBy(getHasName(ModItems.COAL_DUST.get()), has(ModItems.COAL_DUST.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COAL_DUST.get(), 9)
+                .requires(ModBlocks.COAL_DUST_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.COAL_DUST_BLOCK.get()), has(ModBlocks.COAL_DUST_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":coal_dust_from_block");
+
+        // Obsidian Shard Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OBSHARD_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.OBSHARD.get())
+                .unlockedBy(getHasName(ModItems.OBSHARD.get()), has(ModItems.OBSHARD.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.OBSHARD.get(), 9)
+                .requires(ModBlocks.OBSHARD_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.OBSHARD_BLOCK.get()), has(ModBlocks.OBSHARD_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":obshard_from_obshard_block");
+
+        // Calcified Amethyst Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CALCIFIED_AMETHYST_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.CALCIFIED_AMETHYST.get())
+                .unlockedBy(getHasName(ModItems.CALCIFIED_AMETHYST.get()), has(ModItems.CALCIFIED_AMETHYST.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CALCIFIED_AMETHYST.get(), 9)
+                .requires(ModBlocks.CALCIFIED_AMETHYST_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.CALCIFIED_AMETHYST_BLOCK.get()), has(ModBlocks.CALCIFIED_AMETHYST_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":calcified_amethyst_from_block");
+
+        // Glacial Shard Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GLACIAL_SHARD_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.GLACIAL_SHARD.get())
+                .unlockedBy(getHasName(ModItems.GLACIAL_SHARD.get()), has(ModItems.GLACIAL_SHARD.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GLACIAL_SHARD.get(), 9)
+                .requires(ModBlocks.GLACIAL_SHARD_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.GLACIAL_SHARD_BLOCK.get()), has(ModBlocks.GLACIAL_SHARD_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":glacial_shard_from_block");
+
+        // Polished Quartz Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POLISHED_QUARTZ_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.POLISHED_QUARTZ.get())
+                .unlockedBy(getHasName(ModItems.POLISHED_QUARTZ.get()), has(ModItems.POLISHED_QUARTZ.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.POLISHED_QUARTZ.get(), 9)
+                .requires(ModBlocks.POLISHED_QUARTZ_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.POLISHED_QUARTZ_BLOCK.get()), has(ModBlocks.POLISHED_QUARTZ_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":polished_quartz_from_block");
+
+        // Polished Prismarine Block
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POLISHED_PRISMARINE_BLOCK.get())
+                .pattern("AAA").pattern("AAA").pattern("AAA")
+                .define('A', ModItems.POLISHED_PRISMARINE.get())
+                .unlockedBy(getHasName(ModItems.POLISHED_PRISMARINE.get()), has(ModItems.POLISHED_PRISMARINE.get())).save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.POLISHED_PRISMARINE.get(), 9)
+                .requires(ModBlocks.POLISHED_PRISMARINE_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.POLISHED_PRISMARINE_BLOCK.get()), has(ModBlocks.POLISHED_PRISMARINE_BLOCK.get()))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":polished_prismarine_from_block");
+
         oreSmelting(pRecipeOutput, RGOLD_SMELTABLES, RecipeCategory.MISC, ModItems.RGOLD.get(), 0.25f, 200, "rgold");
         oreBlasting(pRecipeOutput, RGOLD_SMELTABLES, RecipeCategory.MISC, ModItems.RGOLD.get(), 0.25f, 100, "rgold");
 
@@ -803,6 +913,121 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pRecipeOutput);
 
         // -----------------------------------------------------------------
+        // Ectoplasm set
+        // -----------------------------------------------------------------
+
+        // Refined Ectoplasm: 4 ectoplasm (cross) + 1 diamond (center)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.REFINED_ECTOPLASM.get())
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', ModItems.ECTOPLASM.get())
+                .define('B', Items.DIAMOND)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get()))
+                .save(pRecipeOutput);
+
+        // Jagged Ecto tools (raw ectoplasm)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.JECTO_SWORD.get())
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', ModItems.ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.JECTO_PICKAXE.get())
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.JECTO_AXE.get())
+                .pattern("AA ")
+                .pattern("AB ")
+                .pattern(" B ")
+                .define('A', ModItems.ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.JECTO_SHOVEL.get())
+                .pattern(" A ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.JECTO_HOE.get())
+                .pattern("AA ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.ECTOPLASM.get()), has(ModItems.ECTOPLASM.get())).save(pRecipeOutput);
+
+        // Ecto tools (refined ectoplasm)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.ECTO_SWORD.get())
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.ECTO_PICKAXE.get())
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.ECTO_AXE.get())
+                .pattern("AA ")
+                .pattern("AB ")
+                .pattern(" B ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.ECTO_SHOVEL.get())
+                .pattern(" A ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.ECTO_HOE.get())
+                .pattern("AA ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get()).define('B', Items.STICK)
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        // Ecto armor
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ECTO_HELMET.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("   ")
+                .define('A', ModItems.REFINED_ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ECTO_CHESTPLATE.get())
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.REFINED_ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ECTO_LEGGINGS.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', ModItems.REFINED_ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ECTO_BOOTS.get())
+                .pattern("   ")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', ModItems.REFINED_ECTOPLASM.get())
+                .unlockedBy(getHasName(ModItems.REFINED_ECTOPLASM.get()), has(ModItems.REFINED_ECTOPLASM.get())).save(pRecipeOutput);
+
+        // -----------------------------------------------------------------
         // Coal material recipes
         // -----------------------------------------------------------------
 
@@ -909,6 +1134,82 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pRecipeOutput);
 
         // -----------------------------------------------------------------
+        // Cake tools + armor
+        // -----------------------------------------------------------------
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.CAKE_SWORD.get())
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', Items.CAKE).define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.CAKE_PICKAXE.get())
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', Items.CAKE).define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.CAKE_SHOVEL.get())
+                .pattern(" A ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', Items.CAKE).define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.CAKE_AXE.get())
+                .pattern("AA ")
+                .pattern("AB ")
+                .pattern(" B ")
+                .define('A', Items.CAKE).define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.CAKE_HOE.get())
+                .pattern("AA ")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', Items.CAKE).define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CAKE_HELMET.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("   ")
+                .define('A', Items.CAKE)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CAKE_CHESTPLATE.get())
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', Items.CAKE)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CAKE_LEGGINGS.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', Items.CAKE)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CAKE_BOOTS.get())
+                .pattern("   ")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', Items.CAKE)
+                .unlockedBy(getHasName(Items.CAKE), has(Items.CAKE))
+                .save(pRecipeOutput);
+
+        // -----------------------------------------------------------------
         // Crystal / element material crafting
         // -----------------------------------------------------------------
 
@@ -931,6 +1232,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', Items.BLUE_ICE)
                 .unlockedBy(getHasName(Items.PACKED_ICE), has(Items.PACKED_ICE))
                 .save(pRecipeOutput);
+
+        // Blue Ice → 9 Packed Ice (reverse of vanilla 9 packed → 1 blue)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PACKED_ICE, 9)
+                .requires(Items.BLUE_ICE)
+                .unlockedBy(getHasName(Items.BLUE_ICE), has(Items.BLUE_ICE))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":packed_ice_from_blue_ice");
+
+        // Packed Ice → 9 Ice (reverse of vanilla 9 ice → 1 packed)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ICE, 9)
+                .requires(Items.PACKED_ICE)
+                .unlockedBy(getHasName(Items.PACKED_ICE), has(Items.PACKED_ICE))
+                .save(pRecipeOutput, UsefultoolsMod.MOD_ID + ":ice_from_packed_ice");
 
         // Polished Quartz: + pattern with quartz around smooth quartz block
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLISHED_QUARTZ.get())
@@ -1281,6 +1594,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stoneVariantTools(pRecipeOutput, ModItems.SMOOTH_BASALT_SWORD.get(), ModItems.SMOOTH_BASALT_PICKAXE.get(), ModItems.SMOOTH_BASALT_SHOVEL.get(), ModItems.SMOOTH_BASALT_AXE.get(), ModItems.SMOOTH_BASALT_HOE.get(), Items.SMOOTH_BASALT);
         stoneVariantTools(pRecipeOutput, ModItems.TERRACOTTA_SWORD.get(), ModItems.TERRACOTTA_PICKAXE.get(), ModItems.TERRACOTTA_SHOVEL.get(), ModItems.TERRACOTTA_AXE.get(), ModItems.TERRACOTTA_HOE.get(), Items.TERRACOTTA);
         stoneVariantTools(pRecipeOutput, ModItems.TUFF_SWORD.get(), ModItems.TUFF_PICKAXE.get(), ModItems.TUFF_SHOVEL.get(), ModItems.TUFF_AXE.get(), ModItems.TUFF_HOE.get(), Items.TUFF);
+
+        // -----------------------------------------------------------------
+        // Wood Variant Tools
+        // -----------------------------------------------------------------
+        stoneVariantTools(pRecipeOutput, ModItems.OAK_SWORD.get(), ModItems.OAK_PICKAXE.get(), ModItems.OAK_SHOVEL.get(), ModItems.OAK_AXE.get(), ModItems.OAK_HOE.get(), Items.OAK_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.SPRUCE_SWORD.get(), ModItems.SPRUCE_PICKAXE.get(), ModItems.SPRUCE_SHOVEL.get(), ModItems.SPRUCE_AXE.get(), ModItems.SPRUCE_HOE.get(), Items.SPRUCE_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.BIRCH_SWORD.get(), ModItems.BIRCH_PICKAXE.get(), ModItems.BIRCH_SHOVEL.get(), ModItems.BIRCH_AXE.get(), ModItems.BIRCH_HOE.get(), Items.BIRCH_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.JUNGLE_SWORD.get(), ModItems.JUNGLE_PICKAXE.get(), ModItems.JUNGLE_SHOVEL.get(), ModItems.JUNGLE_AXE.get(), ModItems.JUNGLE_HOE.get(), Items.JUNGLE_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.ACACIA_SWORD.get(), ModItems.ACACIA_PICKAXE.get(), ModItems.ACACIA_SHOVEL.get(), ModItems.ACACIA_AXE.get(), ModItems.ACACIA_HOE.get(), Items.ACACIA_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.DARK_OAK_SWORD.get(), ModItems.DARK_OAK_PICKAXE.get(), ModItems.DARK_OAK_SHOVEL.get(), ModItems.DARK_OAK_AXE.get(), ModItems.DARK_OAK_HOE.get(), Items.DARK_OAK_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.MANGROVE_SWORD.get(), ModItems.MANGROVE_PICKAXE.get(), ModItems.MANGROVE_SHOVEL.get(), ModItems.MANGROVE_AXE.get(), ModItems.MANGROVE_HOE.get(), Items.MANGROVE_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.CHERRY_SWORD.get(), ModItems.CHERRY_PICKAXE.get(), ModItems.CHERRY_SHOVEL.get(), ModItems.CHERRY_AXE.get(), ModItems.CHERRY_HOE.get(), Items.CHERRY_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.BAMBOO_SWORD.get(), ModItems.BAMBOO_PICKAXE.get(), ModItems.BAMBOO_SHOVEL.get(), ModItems.BAMBOO_AXE.get(), ModItems.BAMBOO_HOE.get(), Items.BAMBOO_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.CRIMSON_SWORD.get(), ModItems.CRIMSON_PICKAXE.get(), ModItems.CRIMSON_SHOVEL.get(), ModItems.CRIMSON_AXE.get(), ModItems.CRIMSON_HOE.get(), Items.CRIMSON_PLANKS);
+        stoneVariantTools(pRecipeOutput, ModItems.WARPED_SWORD.get(), ModItems.WARPED_PICKAXE.get(), ModItems.WARPED_SHOVEL.get(), ModItems.WARPED_AXE.get(), ModItems.WARPED_HOE.get(), Items.WARPED_PLANKS);
 
     }
 

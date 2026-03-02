@@ -1,0 +1,32 @@
+{
+  "parent": "usefultoolsmod:let_them_eat_cake",
+  "criteria": {
+    "eat_cake_tool": {
+      "conditions": {
+        "item": {
+          "items": "usefultoolsmod:cake_sword"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.the_cake_is_a_lie.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:cake"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.the_cake_is_a_lie.title"
+    }
+  },
+  "requirements": [
+    [
+      "eat_cake_tool"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -14,9 +14,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,7 +33,7 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             return switch (slot) {
-                case 0 -> isWeapon(stack);
+                case 0 -> isInfusable(stack);
                 case 1 -> stack.is(ModItems.ECTOPLASM.get());
                 case 2 -> false; // output only
                 default -> false;
@@ -188,7 +188,7 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
         ItemStack input = itemHandler.getStackInSlot(0);
         ItemStack fuel = itemHandler.getStackInSlot(1);
         ItemStack output = itemHandler.getStackInSlot(2);
-        return isWeapon(input) && fuel.is(ModItems.ECTOPLASM.get())
+        return isInfusable(input) && fuel.is(ModItems.ECTOPLASM.get())
                 && !fuel.isEmpty() && output.isEmpty();
     }
 
@@ -210,9 +210,9 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
         progress = 0;
     }
 
-    public static boolean isWeapon(ItemStack stack) {
+    public static boolean isInfusable(ItemStack stack) {
         if (stack.isEmpty()) return false;
-        return stack.getItem() instanceof SwordItem
-                || stack.getItem() instanceof AxeItem;
+        return stack.getItem() instanceof TieredItem
+                || stack.getItem() instanceof ArmorItem;
     }
 }

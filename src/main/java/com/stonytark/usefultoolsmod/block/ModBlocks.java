@@ -57,6 +57,51 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
+    // Storage blocks
+    public static final RegistryObject<Block> HGLOW_BLOCK = registerBlock("hglow_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> RAW_RGOLD_BLOCK = registerBlock("raw_rgold_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> ECTOPLASM_BLOCK = registerBlock("ectoplasm_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(2.5f).requiresCorrectToolForDrops().sound(SoundType.SLIME_BLOCK)));
+
+    public static final RegistryObject<Block> REFINED_ECTOPLASM_BLOCK = registerBlock("refined_ectoplasm_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.SLIME_BLOCK)));
+
+    public static final RegistryObject<Block> HARDENED_COAL_BLOCK = registerBlock("hardened_coal_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> COAL_DUST_BLOCK = registerBlock("coal_dust_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(2f).requiresCorrectToolForDrops().sound(SoundType.SAND)));
+
+    public static final RegistryObject<Block> OBSHARD_BLOCK = registerBlock("obshard_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
+    public static final RegistryObject<Block> CALCIFIED_AMETHYST_BLOCK = registerBlock("calcified_amethyst_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
+    public static final RegistryObject<Block> GLACIAL_SHARD_BLOCK = registerBlock("glacial_shard_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.GLASS)));
+
+    public static final RegistryObject<Block> POLISHED_QUARTZ_BLOCK = registerBlock("polished_quartz_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> POLISHED_PRISMARINE_BLOCK = registerBlock("polished_prismarine_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(3.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
     public static final RegistryObject<Block> SPECTRAL_INFUSER = registerBlock("spectral_infuser",
             () -> new SpectralInfuserBlock(BlockBehaviour.Properties.of()
                     .strength(3.5f)

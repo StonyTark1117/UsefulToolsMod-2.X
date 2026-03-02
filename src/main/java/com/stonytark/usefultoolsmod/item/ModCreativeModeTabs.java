@@ -31,6 +31,7 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.OBINGOT.get());
                             output.accept(ModItems.OBSHARD.get());
                             output.accept(ModBlocks.SOBLOCK.get());
+                            output.accept(ModBlocks.OBSHARD_BLOCK.get());
                             output.accept(ModItems.JOBSIDIAN_AXE.get());
                             output.accept(ModItems.JOBSIDIAN_PICKAXE.get());
                             output.accept(ModItems.JOBSIDIAN_SWORD.get());
@@ -85,6 +86,7 @@ public class ModCreativeModeTabs {
                         // --- Ferrous Gold ---
                         if (Config.ferrousGoldEnabled) {
                             output.accept(ModBlocks.RGOLDBLOCK.get());
+                            output.accept(ModBlocks.RAW_RGOLD_BLOCK.get());
                             output.accept(ModBlocks.RGOLDORE.get());
                             output.accept(ModBlocks.RGOLD_NETHER_ORE.get());
                             output.accept(ModBlocks.RGOLD_END_ORE.get());
@@ -120,6 +122,7 @@ public class ModCreativeModeTabs {
                         // --- Hardened Glowstone ---
                         if (Config.hardenedGlowstoneEnabled) {
                             output.accept(ModItems.HGLOW.get());
+                            output.accept(ModBlocks.HGLOW_BLOCK.get());
                             output.accept(ModItems.HGLOWSTONE_AXE.get());
                             output.accept(ModItems.HGLOWSTONE_PICKAXE.get());
                             output.accept(ModItems.HGLOWSTONE_SWORD.get());
@@ -152,6 +155,27 @@ public class ModCreativeModeTabs {
                         // --- Spectral Infuser ---
                         if (Config.spectralInfuserEnabled) {
                             output.accept(ModBlocks.SPECTRAL_INFUSER.get());
+                        }
+
+                        // --- Ectoplasm Set ---
+                        if (Config.ectoplasmSetEnabled) {
+                            output.accept(ModBlocks.ECTOPLASM_BLOCK.get());
+                            output.accept(ModItems.JECTO_SWORD.get());
+                            output.accept(ModItems.JECTO_PICKAXE.get());
+                            output.accept(ModItems.JECTO_SHOVEL.get());
+                            output.accept(ModItems.JECTO_AXE.get());
+                            output.accept(ModItems.JECTO_HOE.get());
+                            output.accept(ModItems.REFINED_ECTOPLASM.get());
+                            output.accept(ModBlocks.REFINED_ECTOPLASM_BLOCK.get());
+                            output.accept(ModItems.ECTO_SWORD.get());
+                            output.accept(ModItems.ECTO_PICKAXE.get());
+                            output.accept(ModItems.ECTO_SHOVEL.get());
+                            output.accept(ModItems.ECTO_AXE.get());
+                            output.accept(ModItems.ECTO_HOE.get());
+                            output.accept(ModItems.ECTO_HELMET.get());
+                            output.accept(ModItems.ECTO_CHESTPLATE.get());
+                            output.accept(ModItems.ECTO_LEGGINGS.get());
+                            output.accept(ModItems.ECTO_BOOTS.get());
                         }
 
                         // --- Raw Metal Jagged tools ---
@@ -190,13 +214,17 @@ public class ModCreativeModeTabs {
                         // --- Crystal material items (shown if any crystal set is enabled) ---
                         if (Config.jaggedCrystalEnabled || Config.smoothCrystalEnabled) {
                             output.accept(ModItems.CALCIFIED_AMETHYST.get());
+                            output.accept(ModBlocks.CALCIFIED_AMETHYST_BLOCK.get());
                             output.accept(ModItems.POLISHED_QUARTZ.get());
+                            output.accept(ModBlocks.POLISHED_QUARTZ_BLOCK.get());
                         }
                         if (Config.iceEnabled || Config.snowEnabled) {
                             output.accept(ModItems.GLACIAL_SHARD.get());
+                            output.accept(ModBlocks.GLACIAL_SHARD_BLOCK.get());
                         }
                         if (Config.jaggedCrystalEnabled || Config.sprismEnabled) {
                             output.accept(ModItems.POLISHED_PRISMARINE.get());
+                            output.accept(ModBlocks.POLISHED_PRISMARINE_BLOCK.get());
                         }
 
                         // --- Jagged Crystal (Amethyst, Quartz, Prismarine) ---
@@ -300,6 +328,75 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.FNI_BOOTS.get());
                         }
 
+                        // --- Wood Variants ---
+                        if (Config.woodVariantsEnabled) {
+                            output.accept(ModItems.OAK_SWORD.get());
+                            output.accept(ModItems.OAK_PICKAXE.get());
+                            output.accept(ModItems.OAK_SHOVEL.get());
+                            output.accept(ModItems.OAK_AXE.get());
+                            output.accept(ModItems.OAK_HOE.get());
+
+                            output.accept(ModItems.SPRUCE_SWORD.get());
+                            output.accept(ModItems.SPRUCE_PICKAXE.get());
+                            output.accept(ModItems.SPRUCE_SHOVEL.get());
+                            output.accept(ModItems.SPRUCE_AXE.get());
+                            output.accept(ModItems.SPRUCE_HOE.get());
+
+                            output.accept(ModItems.BIRCH_SWORD.get());
+                            output.accept(ModItems.BIRCH_PICKAXE.get());
+                            output.accept(ModItems.BIRCH_SHOVEL.get());
+                            output.accept(ModItems.BIRCH_AXE.get());
+                            output.accept(ModItems.BIRCH_HOE.get());
+
+                            output.accept(ModItems.JUNGLE_SWORD.get());
+                            output.accept(ModItems.JUNGLE_PICKAXE.get());
+                            output.accept(ModItems.JUNGLE_SHOVEL.get());
+                            output.accept(ModItems.JUNGLE_AXE.get());
+                            output.accept(ModItems.JUNGLE_HOE.get());
+
+                            output.accept(ModItems.ACACIA_SWORD.get());
+                            output.accept(ModItems.ACACIA_PICKAXE.get());
+                            output.accept(ModItems.ACACIA_SHOVEL.get());
+                            output.accept(ModItems.ACACIA_AXE.get());
+                            output.accept(ModItems.ACACIA_HOE.get());
+
+                            output.accept(ModItems.DARK_OAK_SWORD.get());
+                            output.accept(ModItems.DARK_OAK_PICKAXE.get());
+                            output.accept(ModItems.DARK_OAK_SHOVEL.get());
+                            output.accept(ModItems.DARK_OAK_AXE.get());
+                            output.accept(ModItems.DARK_OAK_HOE.get());
+
+                            output.accept(ModItems.MANGROVE_SWORD.get());
+                            output.accept(ModItems.MANGROVE_PICKAXE.get());
+                            output.accept(ModItems.MANGROVE_SHOVEL.get());
+                            output.accept(ModItems.MANGROVE_AXE.get());
+                            output.accept(ModItems.MANGROVE_HOE.get());
+
+                            output.accept(ModItems.CHERRY_SWORD.get());
+                            output.accept(ModItems.CHERRY_PICKAXE.get());
+                            output.accept(ModItems.CHERRY_SHOVEL.get());
+                            output.accept(ModItems.CHERRY_AXE.get());
+                            output.accept(ModItems.CHERRY_HOE.get());
+
+                            output.accept(ModItems.BAMBOO_SWORD.get());
+                            output.accept(ModItems.BAMBOO_PICKAXE.get());
+                            output.accept(ModItems.BAMBOO_SHOVEL.get());
+                            output.accept(ModItems.BAMBOO_AXE.get());
+                            output.accept(ModItems.BAMBOO_HOE.get());
+
+                            output.accept(ModItems.CRIMSON_SWORD.get());
+                            output.accept(ModItems.CRIMSON_PICKAXE.get());
+                            output.accept(ModItems.CRIMSON_SHOVEL.get());
+                            output.accept(ModItems.CRIMSON_AXE.get());
+                            output.accept(ModItems.CRIMSON_HOE.get());
+
+                            output.accept(ModItems.WARPED_SWORD.get());
+                            output.accept(ModItems.WARPED_PICKAXE.get());
+                            output.accept(ModItems.WARPED_SHOVEL.get());
+                            output.accept(ModItems.WARPED_AXE.get());
+                            output.accept(ModItems.WARPED_HOE.get());
+                        }
+
                         // --- Stone Rock Variants ---
                         if (Config.stoneVariantsEnabled) {
                             output.accept(ModItems.ANDESITE_SWORD.get());
@@ -384,7 +481,9 @@ public class ModCreativeModeTabs {
                         // --- Coal ---
                         if (Config.coalEnabled) {
                             output.accept(ModItems.COAL_DUST.get());
+                            output.accept(ModBlocks.COAL_DUST_BLOCK.get());
                             output.accept(ModItems.HARDENED_COAL.get());
+                            output.accept(ModBlocks.HARDENED_COAL_BLOCK.get());
                             output.accept(ModItems.COAL_SWORD.get());
                             output.accept(ModItems.COAL_PICKAXE.get());
                             output.accept(ModItems.COAL_SHOVEL.get());
@@ -394,6 +493,18 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.COAL_CHESTPLATE.get());
                             output.accept(ModItems.COAL_LEGGINGS.get());
                             output.accept(ModItems.COAL_BOOTS.get());
+                        }
+
+                        if (Config.cakeEnabled) {
+                            output.accept(ModItems.CAKE_SWORD.get());
+                            output.accept(ModItems.CAKE_PICKAXE.get());
+                            output.accept(ModItems.CAKE_SHOVEL.get());
+                            output.accept(ModItems.CAKE_AXE.get());
+                            output.accept(ModItems.CAKE_HOE.get());
+                            output.accept(ModItems.CAKE_HELMET.get());
+                            output.accept(ModItems.CAKE_CHESTPLATE.get());
+                            output.accept(ModItems.CAKE_LEGGINGS.get());
+                            output.accept(ModItems.CAKE_BOOTS.get());
                         }
 
                     }).build());

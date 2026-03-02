@@ -3,6 +3,7 @@ package com.stonytark.usefultoolsmod.item;
 import com.stonytark.usefultoolsmod.UsefultoolsMod;
 import com.stonytark.usefultoolsmod.entity.ModEntities;
 import com.stonytark.usefultoolsmod.item.custom.*;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -286,6 +287,71 @@ public class ModItems {
 
     public static final RegistryObject<Item> ECTOPLASM = ITEMS.register("ectoplasm",
             () -> new Item(new Item.Properties().stacksTo(64)));
+
+    // -------------------------------------------------------------------------
+    // Jagged Ectoplasm tools (raw ectoplasm, stone-tier equivalent)
+    // -------------------------------------------------------------------------
+    public static final RegistryObject<Item> JECTO_SWORD = ITEMS.register("jecto_sword",
+            () -> new EctoSwordItem(ModToolTiers.JECTO, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.JECTO, 3, -2.4f))));
+
+    public static final RegistryObject<Item> JECTO_PICKAXE = ITEMS.register("jecto_pickaxe",
+            () -> new EctoPickaxeItem(ModToolTiers.JECTO, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.JECTO, 1, -2.8f))));
+
+    public static final RegistryObject<Item> JECTO_SHOVEL = ITEMS.register("jecto_shovel",
+            () -> new EctoShovelItem(ModToolTiers.JECTO, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.JECTO, 1.5f, -3f))));
+
+    public static final RegistryObject<Item> JECTO_AXE = ITEMS.register("jecto_axe",
+            () -> new EctoAxeItem(ModToolTiers.JECTO, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.JECTO, 6, -3.2f))));
+
+    public static final RegistryObject<Item> JECTO_HOE = ITEMS.register("jecto_hoe",
+            () -> new EctoHoeItem(ModToolTiers.JECTO, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.JECTO, 0, -3f))));
+
+    // -------------------------------------------------------------------------
+    // Refined Ectoplasm + Ectoplasm tools + armor
+    // -------------------------------------------------------------------------
+    public static final RegistryObject<Item> REFINED_ECTOPLASM = ITEMS.register("refined_ectoplasm",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> ECTO_SWORD = ITEMS.register("ecto_sword",
+            () -> new EctoSwordItem(ModToolTiers.ECTOPLASM, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.ECTOPLASM, 3, -2.4f))));
+
+    public static final RegistryObject<Item> ECTO_PICKAXE = ITEMS.register("ecto_pickaxe",
+            () -> new EctoPickaxeItem(ModToolTiers.ECTOPLASM, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ECTOPLASM, 1, -2.8f))));
+
+    public static final RegistryObject<Item> ECTO_SHOVEL = ITEMS.register("ecto_shovel",
+            () -> new EctoShovelItem(ModToolTiers.ECTOPLASM, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.ECTOPLASM, 1.5f, -3f))));
+
+    public static final RegistryObject<Item> ECTO_AXE = ITEMS.register("ecto_axe",
+            () -> new EctoAxeItem(ModToolTiers.ECTOPLASM, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.ECTOPLASM, 6, -3.1f))));
+
+    public static final RegistryObject<Item> ECTO_HOE = ITEMS.register("ecto_hoe",
+            () -> new EctoHoeItem(ModToolTiers.ECTOPLASM, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.ECTOPLASM, 0, -3f))));
+
+    public static final RegistryObject<Item> ECTO_HELMET = ITEMS.register("ecto_helmet",
+            () -> new ArmorItem(ModArmorMaterials.ECTO_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(16))));
+
+    public static final RegistryObject<Item> ECTO_CHESTPLATE = ITEMS.register("ecto_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.ECTO_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(16))));
+
+    public static final RegistryObject<Item> ECTO_LEGGINGS = ITEMS.register("ecto_leggings",
+            () -> new ArmorItem(ModArmorMaterials.ECTO_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(16))));
+
+    public static final RegistryObject<Item> ECTO_BOOTS = ITEMS.register("ecto_boots",
+            () -> new ArmorItem(ModArmorMaterials.ECTO_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(16))));
 
     // -------------------------------------------------------------------------
     // Coal material items
@@ -845,6 +911,193 @@ public class ModItems {
             () -> new AxeItem(ModToolTiers.STONE_TUFF, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.STONE_TUFF, 5, -3.15f))));
     public static final RegistryObject<Item> TUFF_HOE = ITEMS.register("tuff_hoe",
             () -> new HoeItem(ModToolTiers.STONE_TUFF, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.STONE_TUFF, 0, -2.8f))));
+
+    // -------------------------------------------------------------------------
+    // Wood Variant Tools (11 types × 5 tools, each with its own tier)
+    // -------------------------------------------------------------------------
+
+    // Oak — vanilla baseline
+    public static final RegistryObject<Item> OAK_SWORD = ITEMS.register("oak_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_OAK, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_OAK, 3, -2.4f))));
+    public static final RegistryObject<Item> OAK_PICKAXE = ITEMS.register("oak_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_OAK, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_OAK, 1, -2.8f))));
+    public static final RegistryObject<Item> OAK_SHOVEL = ITEMS.register("oak_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_OAK, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_OAK, 1.5f, -3f))));
+    public static final RegistryObject<Item> OAK_AXE = ITEMS.register("oak_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_OAK, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_OAK, 6, -3.2f))));
+    public static final RegistryObject<Item> OAK_HOE = ITEMS.register("oak_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_OAK, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_OAK, 0, -3f))));
+
+    // Spruce — sturdy conifer
+    public static final RegistryObject<Item> SPRUCE_SWORD = ITEMS.register("spruce_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_SPRUCE, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_SPRUCE, 3, -2.4f))));
+    public static final RegistryObject<Item> SPRUCE_PICKAXE = ITEMS.register("spruce_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_SPRUCE, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_SPRUCE, 1, -2.8f))));
+    public static final RegistryObject<Item> SPRUCE_SHOVEL = ITEMS.register("spruce_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_SPRUCE, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_SPRUCE, 1.5f, -3f))));
+    public static final RegistryObject<Item> SPRUCE_AXE = ITEMS.register("spruce_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_SPRUCE, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_SPRUCE, 6, -3.2f))));
+    public static final RegistryObject<Item> SPRUCE_HOE = ITEMS.register("spruce_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_SPRUCE, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_SPRUCE, 0, -3f))));
+
+    // Birch — light, fast, enchantable
+    public static final RegistryObject<Item> BIRCH_SWORD = ITEMS.register("birch_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_BIRCH, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_BIRCH, 3, -2.4f))));
+    public static final RegistryObject<Item> BIRCH_PICKAXE = ITEMS.register("birch_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_BIRCH, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_BIRCH, 1, -2.8f))));
+    public static final RegistryObject<Item> BIRCH_SHOVEL = ITEMS.register("birch_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_BIRCH, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_BIRCH, 1.5f, -3f))));
+    public static final RegistryObject<Item> BIRCH_AXE = ITEMS.register("birch_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_BIRCH, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_BIRCH, 6, -3.2f))));
+    public static final RegistryObject<Item> BIRCH_HOE = ITEMS.register("birch_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_BIRCH, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_BIRCH, 0, -3f))));
+
+    // Jungle — dense tropical
+    public static final RegistryObject<Item> JUNGLE_SWORD = ITEMS.register("jungle_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_JUNGLE, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_JUNGLE, 3, -2.4f))));
+    public static final RegistryObject<Item> JUNGLE_PICKAXE = ITEMS.register("jungle_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_JUNGLE, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_JUNGLE, 1, -2.8f))));
+    public static final RegistryObject<Item> JUNGLE_SHOVEL = ITEMS.register("jungle_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_JUNGLE, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_JUNGLE, 1.5f, -3f))));
+    public static final RegistryObject<Item> JUNGLE_AXE = ITEMS.register("jungle_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_JUNGLE, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_JUNGLE, 6, -3.2f))));
+    public static final RegistryObject<Item> JUNGLE_HOE = ITEMS.register("jungle_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_JUNGLE, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_JUNGLE, 0, -3f))));
+
+    // Acacia — hard African wood
+    public static final RegistryObject<Item> ACACIA_SWORD = ITEMS.register("acacia_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_ACACIA, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_ACACIA, 3, -2.4f))));
+    public static final RegistryObject<Item> ACACIA_PICKAXE = ITEMS.register("acacia_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_ACACIA, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_ACACIA, 1, -2.8f))));
+    public static final RegistryObject<Item> ACACIA_SHOVEL = ITEMS.register("acacia_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_ACACIA, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_ACACIA, 1.5f, -3f))));
+    public static final RegistryObject<Item> ACACIA_AXE = ITEMS.register("acacia_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_ACACIA, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_ACACIA, 6, -3.2f))));
+    public static final RegistryObject<Item> ACACIA_HOE = ITEMS.register("acacia_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_ACACIA, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_ACACIA, 0, -3f))));
+
+    // Dark Oak — dense, durable, slow
+    public static final RegistryObject<Item> DARK_OAK_SWORD = ITEMS.register("dark_oak_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_DARK_OAK, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_DARK_OAK, 3, -2.4f))));
+    public static final RegistryObject<Item> DARK_OAK_PICKAXE = ITEMS.register("dark_oak_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_DARK_OAK, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_DARK_OAK, 1, -2.8f))));
+    public static final RegistryObject<Item> DARK_OAK_SHOVEL = ITEMS.register("dark_oak_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_DARK_OAK, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_DARK_OAK, 1.5f, -3f))));
+    public static final RegistryObject<Item> DARK_OAK_AXE = ITEMS.register("dark_oak_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_DARK_OAK, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_DARK_OAK, 6, -3.2f))));
+    public static final RegistryObject<Item> DARK_OAK_HOE = ITEMS.register("dark_oak_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_DARK_OAK, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_DARK_OAK, 0, -3f))));
+
+    // Mangrove — tough tropical
+    public static final RegistryObject<Item> MANGROVE_SWORD = ITEMS.register("mangrove_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_MANGROVE, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_MANGROVE, 3, -2.4f))));
+    public static final RegistryObject<Item> MANGROVE_PICKAXE = ITEMS.register("mangrove_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_MANGROVE, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_MANGROVE, 1, -2.8f))));
+    public static final RegistryObject<Item> MANGROVE_SHOVEL = ITEMS.register("mangrove_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_MANGROVE, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_MANGROVE, 1.5f, -3f))));
+    public static final RegistryObject<Item> MANGROVE_AXE = ITEMS.register("mangrove_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_MANGROVE, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_MANGROVE, 6, -3.2f))));
+    public static final RegistryObject<Item> MANGROVE_HOE = ITEMS.register("mangrove_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_MANGROVE, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_MANGROVE, 0, -3f))));
+
+    // Cherry — beautiful, very enchantable
+    public static final RegistryObject<Item> CHERRY_SWORD = ITEMS.register("cherry_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_CHERRY, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_CHERRY, 3, -2.4f))));
+    public static final RegistryObject<Item> CHERRY_PICKAXE = ITEMS.register("cherry_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_CHERRY, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_CHERRY, 1, -2.8f))));
+    public static final RegistryObject<Item> CHERRY_SHOVEL = ITEMS.register("cherry_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_CHERRY, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_CHERRY, 1.5f, -3f))));
+    public static final RegistryObject<Item> CHERRY_AXE = ITEMS.register("cherry_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_CHERRY, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_CHERRY, 6, -3.2f))));
+    public static final RegistryObject<Item> CHERRY_HOE = ITEMS.register("cherry_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_CHERRY, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_CHERRY, 0, -3f))));
+
+    // Bamboo — fastest, most fragile
+    public static final RegistryObject<Item> BAMBOO_SWORD = ITEMS.register("bamboo_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_BAMBOO, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_BAMBOO, 3, -2.4f))));
+    public static final RegistryObject<Item> BAMBOO_PICKAXE = ITEMS.register("bamboo_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_BAMBOO, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_BAMBOO, 1, -2.8f))));
+    public static final RegistryObject<Item> BAMBOO_SHOVEL = ITEMS.register("bamboo_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_BAMBOO, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_BAMBOO, 1.5f, -3f))));
+    public static final RegistryObject<Item> BAMBOO_AXE = ITEMS.register("bamboo_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_BAMBOO, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_BAMBOO, 6, -3.2f))));
+    public static final RegistryObject<Item> BAMBOO_HOE = ITEMS.register("bamboo_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_BAMBOO, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_BAMBOO, 0, -3f))));
+
+    // Crimson — tough nether fungus
+    public static final RegistryObject<Item> CRIMSON_SWORD = ITEMS.register("crimson_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_CRIMSON, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_CRIMSON, 3, -2.4f))));
+    public static final RegistryObject<Item> CRIMSON_PICKAXE = ITEMS.register("crimson_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_CRIMSON, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_CRIMSON, 1, -2.8f))));
+    public static final RegistryObject<Item> CRIMSON_SHOVEL = ITEMS.register("crimson_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_CRIMSON, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_CRIMSON, 1.5f, -3f))));
+    public static final RegistryObject<Item> CRIMSON_AXE = ITEMS.register("crimson_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_CRIMSON, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_CRIMSON, 6, -3.2f))));
+    public static final RegistryObject<Item> CRIMSON_HOE = ITEMS.register("crimson_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_CRIMSON, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_CRIMSON, 0, -3f))));
+
+    // Warped — resilient, enchantable
+    public static final RegistryObject<Item> WARPED_SWORD = ITEMS.register("warped_sword",
+            () -> new SwordItem(ModToolTiers.WOOD_WARPED, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.WOOD_WARPED, 3, -2.4f))));
+    public static final RegistryObject<Item> WARPED_PICKAXE = ITEMS.register("warped_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.WOOD_WARPED, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.WOOD_WARPED, 1, -2.8f))));
+    public static final RegistryObject<Item> WARPED_SHOVEL = ITEMS.register("warped_shovel",
+            () -> new ShovelItem(ModToolTiers.WOOD_WARPED, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.WOOD_WARPED, 1.5f, -3f))));
+    public static final RegistryObject<Item> WARPED_AXE = ITEMS.register("warped_axe",
+            () -> new AxeItem(ModToolTiers.WOOD_WARPED, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.WOOD_WARPED, 6, -3.2f))));
+    public static final RegistryObject<Item> WARPED_HOE = ITEMS.register("warped_hoe",
+            () -> new HoeItem(ModToolTiers.WOOD_WARPED, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.WOOD_WARPED, 0, -3f))));
+
+    // -------------------------------------------------------------------------
+    // Cake tools  (below wood tier, edible — it's cake!)
+    // -------------------------------------------------------------------------
+    public static final RegistryObject<Item> CAKE_SWORD = ITEMS.register("cake_sword",
+            () -> new CakeSwordItem(ModToolTiers.CAKE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.CAKE, 3, -2.4f))
+                    .food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_PICKAXE = ITEMS.register("cake_pickaxe",
+            () -> new CakePickaxeItem(ModToolTiers.CAKE, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.CAKE, 1, -2.8f))
+                    .food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_SHOVEL = ITEMS.register("cake_shovel",
+            () -> new CakeShovelItem(ModToolTiers.CAKE, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.CAKE, 1.5f, -3f))
+                    .food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_AXE = ITEMS.register("cake_axe",
+            () -> new CakeAxeItem(ModToolTiers.CAKE, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.CAKE, 6, -3.2f))
+                    .food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_HOE = ITEMS.register("cake_hoe",
+            () -> new CakeHoeItem(ModToolTiers.CAKE, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.CAKE, 0, -3f))
+                    .food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).build())));
+
+    // -------------------------------------------------------------------------
+    // Cake armor  (below leather, edible)
+    // -------------------------------------------------------------------------
+    public static final RegistryObject<Item> CAKE_HELMET = ITEMS.register("cake_helmet",
+            () -> new CakeArmorItem(ModArmorMaterials.CAKE_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(3))
+                            .food(new FoodProperties.Builder().nutrition(10).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_CHESTPLATE = ITEMS.register("cake_chestplate",
+            () -> new CakeArmorItem(ModArmorMaterials.CAKE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(3))
+                            .food(new FoodProperties.Builder().nutrition(14).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_LEGGINGS = ITEMS.register("cake_leggings",
+            () -> new CakeArmorItem(ModArmorMaterials.CAKE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(3))
+                            .food(new FoodProperties.Builder().nutrition(14).saturationModifier(0.1f).build())));
+
+    public static final RegistryObject<Item> CAKE_BOOTS = ITEMS.register("cake_boots",
+            () -> new CakeArmorItem(ModArmorMaterials.CAKE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(3))
+                            .food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.1f).build())));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

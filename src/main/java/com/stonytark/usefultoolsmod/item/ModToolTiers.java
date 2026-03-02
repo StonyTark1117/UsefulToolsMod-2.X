@@ -199,6 +199,65 @@ public class ModToolTiers {
             BlockTags.NEEDS_IRON_TOOL, () -> Ingredient.of(Items.TUFF),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
 
+    // ── Wood variant tiers ───────────────────────────────────────────────────────
+    // All wood-level: INCORRECT_FOR_WOODEN_TOOL for both needs/incorrect tags.
+    // Repair = the respective planks item.  Stats reflect real-world wood properties.
+
+    /** Oak — reliable, versatile Overworld baseline.  Matches vanilla WOOD exactly. */
+    public static final Tier WOOD_OAK = new ForgeTier(59, 2.0f, 0.0f, 15,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.OAK_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Spruce — sturdy boreal conifer.  Slightly more durable than oak. */
+    public static final Tier WOOD_SPRUCE = new ForgeTier(65, 2.0f, 0.0f, 14,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.SPRUCE_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Birch — light, pale hardwood.  Fast and enchantable but fragile. */
+    public static final Tier WOOD_BIRCH = new ForgeTier(48, 2.3f, 0.0f, 18,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.BIRCH_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Jungle — dense tropical timber.  Slightly tougher and sharper than oak. */
+    public static final Tier WOOD_JUNGLE = new ForgeTier(62, 2.1f, 0.5f, 14,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.JUNGLE_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Acacia — hard African savanna wood.  Durable with a keen edge but slow. */
+    public static final Tier WOOD_ACACIA = new ForgeTier(68, 1.9f, 1.0f, 12,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.ACACIA_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Dark Oak — dense, heavy old-growth wood.  Most durable overworld wood, slowest. */
+    public static final Tier WOOD_DARK_OAK = new ForgeTier(75, 1.8f, 1.0f, 12,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.DARK_OAK_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Mangrove — tough, water-resistant tropical wood.  Good durability. */
+    public static final Tier WOOD_MANGROVE = new ForgeTier(70, 1.9f, 0.5f, 13,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.MANGROVE_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Cherry — ornamental flowering wood.  Beautiful but delicate; highly enchantable. */
+    public static final Tier WOOD_CHERRY = new ForgeTier(42, 2.4f, 0.0f, 20,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.CHERRY_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Bamboo — lightweight grass stem.  Fastest swing but shatters quickly. */
+    public static final Tier WOOD_BAMBOO = new ForgeTier(35, 2.5f, 0.0f, 16,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.BAMBOO_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Crimson — tough Nether fungus stem.  The strongest wood; heavy and slow. */
+    public static final Tier WOOD_CRIMSON = new ForgeTier(80, 1.8f, 1.5f, 10,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.CRIMSON_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Warped — resilient Nether fungus stem.  Balanced with high enchantability. */
+    public static final Tier WOOD_WARPED = new ForgeTier(72, 2.1f, 0.5f, 17,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL, () -> Ingredient.of(Items.WARPED_PLANKS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
     // ── Flint / Flint-Iron tiers ─────────────────────────────────────────────────
 
     /**
@@ -256,4 +315,37 @@ public class ModToolTiers {
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(ModItems.POLISHED_PRISMARINE.get()),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    // ── Cake tier ──────────────────────────────────────────────────────────────
+
+    /**
+     * Cake — below wood tier, practically useless.
+     * Made from cake; fragile, slow, no attack bonus. Edible though!
+     */
+    public static final Tier CAKE = new ForgeTier(30, 1.5f, 0.0f, 1,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.CAKE),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    // ── Ectoplasm tiers ─────────────────────────────────────────────────────────
+
+    /**
+     * Jagged Ectoplasm — stone mining level, raw spectral shards.
+     * Crude weapons carved from raw ectoplasm; come pre-infused
+     * and can damage ghosts. Lower stats than refined ectoplasm tools.
+     */
+    public static final Tier JECTO = new ForgeTier(150, 4.5f, 1.5f, 10,
+            ModTags.Blocks.NEEDS_ECTO_TOOL,
+            () -> Ingredient.of(ModItems.ECTOPLASM.get()),
+            ModTags.Blocks.INCORRECT_ECTO_TOOL);
+
+    /**
+     * Ectoplasm — iron mining level, slightly above vanilla iron.
+     * Spectral weapons forged from refined ectoplasm; come pre-infused
+     * and can damage ghosts without using the Spectral Infuser.
+     */
+    public static final Tier ECTOPLASM = new ForgeTier(300, 6.5f, 2.5f, 16,
+            ModTags.Blocks.NEEDS_ECTO_TOOL,
+            () -> Ingredient.of(ModItems.REFINED_ECTOPLASM.get()),
+            ModTags.Blocks.INCORRECT_ECTO_TOOL);
 }

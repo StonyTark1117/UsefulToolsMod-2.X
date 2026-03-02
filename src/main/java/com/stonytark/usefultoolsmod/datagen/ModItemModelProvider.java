@@ -149,6 +149,21 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         withExistingParent(ModItems.GHOST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         basicItem(ModItems.ECTOPLASM.get());
+        basicItem(ModItems.REFINED_ECTOPLASM.get());
+
+        // Jagged Ectoplasm tools
+        handheldItem(ModItems.JECTO_SWORD); handheldItem(ModItems.JECTO_PICKAXE); handheldItem(ModItems.JECTO_SHOVEL); handheldItem(ModItems.JECTO_AXE); handheldItem(ModItems.JECTO_HOE);
+
+        // Ectoplasm tools + armor
+        handheldItem(ModItems.ECTO_SWORD);
+        handheldItem(ModItems.ECTO_PICKAXE);
+        handheldItem(ModItems.ECTO_SHOVEL);
+        handheldItem(ModItems.ECTO_AXE);
+        handheldItem(ModItems.ECTO_HOE);
+        trimmedArmorItem(ModItems.ECTO_HELMET);
+        trimmedArmorItem(ModItems.ECTO_CHESTPLATE);
+        trimmedArmorItem(ModItems.ECTO_LEGGINGS);
+        trimmedArmorItem(ModItems.ECTO_BOOTS);
 
         // Coal material and tools
         basicItem(ModItems.COAL_DUST.get());
@@ -164,6 +179,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.COAL_CHESTPLATE);
         trimmedArmorItem(ModItems.COAL_LEGGINGS);
         trimmedArmorItem(ModItems.COAL_BOOTS);
+
+        handheldItem(ModItems.CAKE_SWORD);
+        handheldItem(ModItems.CAKE_PICKAXE);
+        handheldItem(ModItems.CAKE_SHOVEL);
+        handheldItem(ModItems.CAKE_AXE);
+        handheldItem(ModItems.CAKE_HOE);
+
+        basicItem(ModItems.CAKE_HELMET.get());
+        basicItem(ModItems.CAKE_CHESTPLATE.get());
+        basicItem(ModItems.CAKE_LEGGINGS.get());
+        basicItem(ModItems.CAKE_BOOTS.get());
 
         // Raw metal jagged tools
         handheldItem(ModItems.JRAW_GOLD_SWORD);
@@ -290,6 +316,19 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SMOOTH_BASALT_SWORD); handheldItem(ModItems.SMOOTH_BASALT_PICKAXE); handheldItem(ModItems.SMOOTH_BASALT_SHOVEL); handheldItem(ModItems.SMOOTH_BASALT_AXE); handheldItem(ModItems.SMOOTH_BASALT_HOE);
         handheldItem(ModItems.TERRACOTTA_SWORD); handheldItem(ModItems.TERRACOTTA_PICKAXE); handheldItem(ModItems.TERRACOTTA_SHOVEL); handheldItem(ModItems.TERRACOTTA_AXE); handheldItem(ModItems.TERRACOTTA_HOE);
         handheldItem(ModItems.TUFF_SWORD); handheldItem(ModItems.TUFF_PICKAXE); handheldItem(ModItems.TUFF_SHOVEL); handheldItem(ModItems.TUFF_AXE); handheldItem(ModItems.TUFF_HOE);
+
+        // Wood Variants
+        handheldItem(ModItems.OAK_SWORD); handheldItem(ModItems.OAK_PICKAXE); handheldItem(ModItems.OAK_SHOVEL); handheldItem(ModItems.OAK_AXE); handheldItem(ModItems.OAK_HOE);
+        handheldItem(ModItems.SPRUCE_SWORD); handheldItem(ModItems.SPRUCE_PICKAXE); handheldItem(ModItems.SPRUCE_SHOVEL); handheldItem(ModItems.SPRUCE_AXE); handheldItem(ModItems.SPRUCE_HOE);
+        handheldItem(ModItems.BIRCH_SWORD); handheldItem(ModItems.BIRCH_PICKAXE); handheldItem(ModItems.BIRCH_SHOVEL); handheldItem(ModItems.BIRCH_AXE); handheldItem(ModItems.BIRCH_HOE);
+        handheldItem(ModItems.JUNGLE_SWORD); handheldItem(ModItems.JUNGLE_PICKAXE); handheldItem(ModItems.JUNGLE_SHOVEL); handheldItem(ModItems.JUNGLE_AXE); handheldItem(ModItems.JUNGLE_HOE);
+        handheldItem(ModItems.ACACIA_SWORD); handheldItem(ModItems.ACACIA_PICKAXE); handheldItem(ModItems.ACACIA_SHOVEL); handheldItem(ModItems.ACACIA_AXE); handheldItem(ModItems.ACACIA_HOE);
+        handheldItem(ModItems.DARK_OAK_SWORD); handheldItem(ModItems.DARK_OAK_PICKAXE); handheldItem(ModItems.DARK_OAK_SHOVEL); handheldItem(ModItems.DARK_OAK_AXE); handheldItem(ModItems.DARK_OAK_HOE);
+        handheldItem(ModItems.MANGROVE_SWORD); handheldItem(ModItems.MANGROVE_PICKAXE); handheldItem(ModItems.MANGROVE_SHOVEL); handheldItem(ModItems.MANGROVE_AXE); handheldItem(ModItems.MANGROVE_HOE);
+        handheldItem(ModItems.CHERRY_SWORD); handheldItem(ModItems.CHERRY_PICKAXE); handheldItem(ModItems.CHERRY_SHOVEL); handheldItem(ModItems.CHERRY_AXE); handheldItem(ModItems.CHERRY_HOE);
+        handheldItem(ModItems.BAMBOO_SWORD); handheldItem(ModItems.BAMBOO_PICKAXE); handheldItem(ModItems.BAMBOO_SHOVEL); handheldItem(ModItems.BAMBOO_AXE); handheldItem(ModItems.BAMBOO_HOE);
+        handheldItem(ModItems.CRIMSON_SWORD); handheldItem(ModItems.CRIMSON_PICKAXE); handheldItem(ModItems.CRIMSON_SHOVEL); handheldItem(ModItems.CRIMSON_AXE); handheldItem(ModItems.CRIMSON_HOE);
+        handheldItem(ModItems.WARPED_SWORD); handheldItem(ModItems.WARPED_PICKAXE); handheldItem(ModItems.WARPED_SHOVEL); handheldItem(ModItems.WARPED_AXE); handheldItem(ModItems.WARPED_HOE);
     }
 
     // Shoutout to El_Redstoniano for making this

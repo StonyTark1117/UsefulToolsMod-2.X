@@ -1,0 +1,33 @@
+{
+  "parent": "usefultoolsmod:ectoplasm",
+  "criteria": {
+    "has_jecto_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "usefultoolsmod:jecto_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.usefultoolsmod.jecto.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "usefultoolsmod:jecto_sword"
+    },
+    "title": {
+      "translate": "advancements.usefultoolsmod.jecto.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jecto_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -23,7 +24,9 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -227,6 +230,37 @@ public class GhostEntity extends Animal {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        // Non-weapon infused tools deal practically no damage (half a heart)
+        Entity attacker = source.getEntity();
+        if (attacker instanceof LivingEntity living) {
+            ItemStack weapon = living.getMainHandItem();
+            if (EctoplasmInfusionHelper.isInfused(weapon)
+                    && !(weapon.getItem() instanceof SwordItem)
+                    && !(weapon.getItem() instanceof AxeItem)) {
+                amount = 1.0f; // half a heart
+            }
+        }
+        return super.hurt(source, amount);
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean recentlyHit) {
+        super.dropCustomDeathLoot(level, source, recentlyHit);
+        int count;
+        if (isBaby()) {
+            // Babies drop 0-1 ectoplasm
+            count = this.random.nextInt(2);
+        } else {
+            // Adults drop 1-3 ectoplasm
+            count = 1 + this.random.nextInt(3);
+        }
+        if (count > 0) {
+            this.spawnAtLocation(new ItemStack(ModItems.ECTOPLASM.get(), count));
+        }
     }
 
     @Nullable

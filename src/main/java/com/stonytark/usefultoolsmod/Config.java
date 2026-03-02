@@ -46,6 +46,12 @@ public class Config {
 
     // --- Spectral Infuser ---
     private static final ForgeConfigSpec.BooleanValue SPECTRAL_INFUSER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue INFUSED_TOOL_EFFECTS;
+
+    // --- Ectoplasm Set (tools + armor) ---
+    private static final ForgeConfigSpec.BooleanValue ECTOPLASM_SET_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue ECTOPLASM_GHOST_AVOIDANCE;
+    private static final ForgeConfigSpec.BooleanValue ECTOPLASM_WALL_PHASING;
 
     // --- Raw Metal Jagged (raw gold/copper/iron/rgold/scrap tools) ---
     private static final ForgeConfigSpec.BooleanValue RAW_METAL_JAGGED_ENABLED;
@@ -75,12 +81,20 @@ public class Config {
     private static final ForgeConfigSpec.BooleanValue FNI_ENABLED;
     private static final ForgeConfigSpec.BooleanValue FNI_FIRE_EFFECTS;
 
+    // --- Wood Variants (11 wood-type tool sets) ---
+    private static final ForgeConfigSpec.BooleanValue WOOD_VARIANTS_ENABLED;
+
     // --- Stone Variants (13 stone-type tool sets) ---
     private static final ForgeConfigSpec.BooleanValue STONE_VARIANTS_ENABLED;
 
     // --- Coal (tools + armor) ---
     private static final ForgeConfigSpec.BooleanValue COAL_ENABLED;
     private static final ForgeConfigSpec.BooleanValue COAL_FIRE_EFFECTS;
+
+    // --- Cake (tools + armor) ---
+    private static final ForgeConfigSpec.BooleanValue CAKE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue CAKE_HUNGER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue CAKE_ARMOR_EFFECTS;
 
     // =====================================================================
     //  Build the spec using push/pop for clean TOML sections
@@ -155,8 +169,26 @@ public class Config {
 
         BUILDER.push("spectralInfuser");
         SPECTRAL_INFUSER_ENABLED = BUILDER
-                .comment("Enable the Spectral Infuser block (ectoplasm weapon infusion station).")
+                .comment("Enable the Spectral Infuser block (ectoplasm infusion station).")
                 .define("enabled", true);
+        INFUSED_TOOL_EFFECTS = BUILDER
+                .comment("If false, ectoplasm-infused non-weapon tools will not grant",
+                         "status effects while held (Night Vision, Haste, Luck).")
+                .define("infusedToolEffectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("ectoplasmSet");
+        ECTOPLASM_SET_ENABLED = BUILDER
+                .comment("Enable the Ectoplasm set (Refined Ectoplasm, tools + armor).")
+                .define("enabled", true);
+        ECTOPLASM_GHOST_AVOIDANCE = BUILDER
+                .comment("If false, wearing ectoplasm armor or ectoplasm-infused armor",
+                         "will not make ghosts ignore the player.")
+                .define("ghostAvoidanceEnabled", true);
+        ECTOPLASM_WALL_PHASING = BUILDER
+                .comment("If true, wearing a full set of ectoplasm armor allows the player",
+                         "to phase through walls that are 3 blocks thick or less.")
+                .define("wallPhasingEnabled", true);
         BUILDER.pop();
 
         BUILDER.push("rawMetalJagged");
@@ -226,6 +258,14 @@ public class Config {
                 .define("fireEffectsEnabled", true);
         BUILDER.pop();
 
+        BUILDER.push("woodVariants");
+        WOOD_VARIANTS_ENABLED = BUILDER
+                .comment("Enable all 11 Wood Variant tool sets",
+                         "(Oak, Spruce, Birch, Jungle, Acacia, Dark Oak, Mangrove,",
+                         " Cherry, Bamboo, Crimson, Warped).")
+                .define("enabled", true);
+        BUILDER.pop();
+
         BUILDER.push("stoneVariants");
         STONE_VARIANTS_ENABLED = BUILDER
                 .comment("Enable all 13 Stone Rock Variant tool sets",
@@ -244,6 +284,20 @@ public class Config {
                          "(extended fire, durability loss, damage to holder). They can still be used",
                          "as furnace fuel.")
                 .define("fireEffectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("cake");
+        CAKE_ENABLED = BUILDER
+                .comment("Enable the Cake set (tools + armor). It's cake.")
+                .define("enabled", true);
+        CAKE_HUNGER_EFFECTS = BUILDER
+                .comment("If false, cake tools and armor will not drain durability to restore hunger",
+                         "when the player is starving.")
+                .define("hungerEffectsEnabled", true);
+        CAKE_ARMOR_EFFECTS = BUILDER
+                .comment("If false, cake armor will not grant per-piece status effects",
+                         "(Speed, Jump Boost, Regeneration, Saturation) or the full set Absorption bonus.")
+                .define("armorEffectsEnabled", true);
         BUILDER.pop();
     }
 
@@ -264,6 +318,7 @@ public class Config {
     public static boolean overpowerEnabled = true;
     public static boolean ghostEnabled = true;
     public static boolean spectralInfuserEnabled = true;
+    public static boolean infusedToolEffects = true;
     public static boolean rawMetalJaggedEnabled = true;
     public static boolean jaggedCrystalEnabled = true;
     public static boolean snowEnabled = true;
@@ -272,8 +327,11 @@ public class Config {
     public static boolean sprismEnabled = true;
     public static boolean flintEnabled = true;
     public static boolean fniEnabled = true;
+    public static boolean woodVariantsEnabled = true;
     public static boolean stoneVariantsEnabled = true;
     public static boolean coalEnabled = true;
+    public static boolean cakeEnabled = true;
+    public static boolean ectoplasmSetEnabled = true;
 
     // Effect flags
     public static boolean opToolEffectsEnabled = true;
@@ -284,6 +342,10 @@ public class Config {
     public static boolean sprismWaterEffects = true;
     public static boolean fniFireEffects = true;
     public static boolean coalFireEffects = true;
+    public static boolean cakeHungerEffects = true;
+    public static boolean cakeArmorEffects = true;
+    public static boolean ectoplasmGhostAvoidance = true;
+    public static boolean ectoplasmWallPhasing = true;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -298,6 +360,7 @@ public class Config {
         overpowerEnabled         = OVERPOWER_ENABLED.get();
         ghostEnabled             = GHOST_ENABLED.get();
         spectralInfuserEnabled   = SPECTRAL_INFUSER_ENABLED.get();
+        infusedToolEffects       = INFUSED_TOOL_EFFECTS.get();
         rawMetalJaggedEnabled    = RAW_METAL_JAGGED_ENABLED.get();
         jaggedCrystalEnabled     = JAGGED_CRYSTAL_ENABLED.get();
         snowEnabled              = SNOW_ENABLED.get();
@@ -306,8 +369,11 @@ public class Config {
         sprismEnabled            = SPRISM_ENABLED.get();
         flintEnabled             = FLINT_ENABLED.get();
         fniEnabled               = FNI_ENABLED.get();
+        woodVariantsEnabled      = WOOD_VARIANTS_ENABLED.get();
         stoneVariantsEnabled     = STONE_VARIANTS_ENABLED.get();
         coalEnabled              = COAL_ENABLED.get();
+        cakeEnabled              = CAKE_ENABLED.get();
+        ectoplasmSetEnabled      = ECTOPLASM_SET_ENABLED.get();
 
         // Effects
         opToolEffectsEnabled     = OVERPOWER_TOOL_EFFECTS.get();
@@ -318,5 +384,9 @@ public class Config {
         sprismWaterEffects       = SPRISM_WATER_EFFECTS.get();
         fniFireEffects           = FNI_FIRE_EFFECTS.get();
         coalFireEffects          = COAL_FIRE_EFFECTS.get();
+        cakeHungerEffects        = CAKE_HUNGER_EFFECTS.get();
+        cakeArmorEffects         = CAKE_ARMOR_EFFECTS.get();
+        ectoplasmGhostAvoidance  = ECTOPLASM_GHOST_AVOIDANCE.get();
+        ectoplasmWallPhasing     = ECTOPLASM_WALL_PHASING.get();
     }
 }

@@ -60,7 +60,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.FNI_HELMET.get())
                 .add(ModItems.FNI_CHESTPLATE.get())
                 .add(ModItems.FNI_LEGGINGS.get())
-                .add(ModItems.FNI_BOOTS.get());
+                .add(ModItems.FNI_BOOTS.get())
+                .add(ModItems.ECTO_HELMET.get())
+                .add(ModItems.ECTO_CHESTPLATE.get())
+                .add(ModItems.ECTO_LEGGINGS.get())
+                .add(ModItems.ECTO_BOOTS.get());
 
     }
 }

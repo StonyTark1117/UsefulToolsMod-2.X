@@ -159,6 +159,32 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.BODY, 7);
             }), 12, 0.0f, 0.0f, () -> ModItems.POLISHED_PRISMARINE.get());
 
+    /**
+     * Cake — practically useless armor. It's cake. You can eat it.
+     * Below leather protection; very low durability.
+     */
+    public static final Holder<ArmorMaterial> CAKE_ARMOR_MATERIAL = register("cake", Util.make(new EnumMap<>(ArmorItem.Type.class),
+            attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 0);
+                attribute.put(ArmorItem.Type.LEGGINGS, 1);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 1);
+                attribute.put(ArmorItem.Type.HELMET, 0);
+                attribute.put(ArmorItem.Type.BODY, 1);
+            }), 1, 0f, 0f, () -> Items.CAKE);
+
+    /**
+     * Ectoplasm — iron-equivalent protection with slight toughness bonus.
+     * Spectral armor grants ghost avoidance when worn as a full set.
+     */
+    public static final Holder<ArmorMaterial> ECTO_ARMOR_MATERIAL = register("ecto", Util.make(new EnumMap<>(ArmorItem.Type.class),
+            attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 2);
+                attribute.put(ArmorItem.Type.LEGGINGS, 5);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 6);
+                attribute.put(ArmorItem.Type.HELMET, 2);
+                attribute.put(ArmorItem.Type.BODY, 7);
+            }), 16, 0.5f, 0.0f, () -> ModItems.REFINED_ECTOPLASM.get());
+
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,
                                                   Supplier<Item> ingredientItem) {
