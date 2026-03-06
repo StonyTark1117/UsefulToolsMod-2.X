@@ -11,6 +11,7 @@ import com.stonytark.usefultoolsmod.item.custom.EctoplasmInfusionHelper;
 import com.stonytark.usefultoolsmod.trigger.ModTriggers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,15 +21,23 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
@@ -36,9 +45,12 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -101,8 +113,8 @@ public class ModEvents {
                 handleIceMelt(player);
                 handleIceFireProtection(player);
             }
-            if (Config.sprismEnabled && Config.sprismWaterEffects) {
-                handleSprismWaterEffects(player);
+            if (Config.pprismEnabled && Config.pprismWaterEffects) {
+                handlePprismWaterEffects(player);
             }
             if (Config.fniEnabled && Config.fniFireEffects) {
                 handleFniBootsFire(player);
@@ -114,12 +126,24 @@ public class ModEvents {
             if (Config.spectralInfuserEnabled && Config.infusedToolEffects) {
                 handleInfusedToolEffects(player);
             }
-            if (Config.cakeEnabled && Config.cakeHungerEffects) {
-                handleCakeHungerDrain(player);
+            if (Config.foodHungerDrain) {
+                handleFoodHungerDrain(player);
             }
             if (Config.cakeEnabled && Config.cakeArmorEffects) {
                 handleCakeArmorEffects(player);
             }
+            // Food set armor effects
+            if (Config.breadEnabled && Config.breadArmorEffects) handleBreadArmorEffects(player);
+            if (Config.driedKelpEnabled && Config.driedKelpArmorEffects) handleDriedKelpArmorEffects(player);
+            if (Config.rottenFleshEnabled && Config.rottenFleshArmorEffects) handleRottenFleshArmorEffects(player);
+            if (Config.melonEnabled && Config.melonArmorEffects) handleMelonArmorEffects(player);
+            if (Config.sweetBerryEnabled && Config.sweetBerryArmorEffects) handleSweetBerryArmorEffects(player);
+            if (Config.pumpkinPieEnabled && Config.pumpkinPieArmorEffects) handlePumpkinPieArmorEffects(player);
+            if (Config.mushroomEnabled && Config.mushroomArmorEffects) handleMushroomArmorEffects(player);
+            if (Config.pufferfishEnabled && Config.pufferfishArmorEffects) handlePufferfishArmorEffects(player);
+            if (Config.honeyEnabled && Config.honeyArmorEffects) handleHoneyArmorEffects(player);
+            if (Config.chorusFruitEnabled && Config.chorusFruitArmorEffects) handleChorusFruitArmorEffects(player);
+            if (Config.goldenAppleEnabled && Config.goldenAppleArmorEffects) handleGoldenAppleArmorEffects(player);
         }
     }
 
@@ -578,40 +602,40 @@ public class ModEvents {
     }
 
     // -----------------------------------------------------------------------
-    // Smooth Prismarine water benefits
+    // Polished Prismarine water benefits
     // -----------------------------------------------------------------------
 
-    private static void handleSprismWaterEffects(Player player) {
+    private static void handlePprismWaterEffects(Player player) {
         if (!player.isInWater()) return;
 
-        // Sprism tool in hand → Haste I (cancels underwater mining penalty)
-        if (isSprismTool(player.getMainHandItem()) || isSprismTool(player.getOffhandItem())) {
+        // Pprism tool in hand → Haste I (cancels underwater mining penalty)
+        if (isPprismTool(player.getMainHandItem()) || isPprismTool(player.getOffhandItem())) {
             player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, false));
         }
 
         // Per-slot armor benefits while in water
         // Helmet → Water Breathing
-        if (isSprismArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
+        if (isPprismArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false, false));
         }
         // Chestplate → Resistance I (ocean's protective pressure)
-        if (isSprismArmor(player.getItemBySlot(EquipmentSlot.CHEST))) {
+        if (isPprismArmor(player.getItemBySlot(EquipmentSlot.CHEST))) {
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, false));
         }
         // Leggings → Haste I (removes underwater mining penalty)
-        if (isSprismArmor(player.getItemBySlot(EquipmentSlot.LEGS))) {
+        if (isPprismArmor(player.getItemBySlot(EquipmentSlot.LEGS))) {
             player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, false));
         }
         // Boots → Slow Falling (buoyancy — rise through water effortlessly)
-        if (isSprismArmor(player.getItemBySlot(EquipmentSlot.FEET))) {
+        if (isPprismArmor(player.getItemBySlot(EquipmentSlot.FEET))) {
             player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, false));
         }
 
         // Full 4-piece → Dolphins Grace
-        boolean fullSet = isSprismArmor(player.getItemBySlot(EquipmentSlot.HEAD))
-                && isSprismArmor(player.getItemBySlot(EquipmentSlot.CHEST))
-                && isSprismArmor(player.getItemBySlot(EquipmentSlot.LEGS))
-                && isSprismArmor(player.getItemBySlot(EquipmentSlot.FEET));
+        boolean fullSet = isPprismArmor(player.getItemBySlot(EquipmentSlot.HEAD))
+                && isPprismArmor(player.getItemBySlot(EquipmentSlot.CHEST))
+                && isPprismArmor(player.getItemBySlot(EquipmentSlot.LEGS))
+                && isPprismArmor(player.getItemBySlot(EquipmentSlot.FEET));
         if (fullSet) {
             player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 60, 0, false, false, false));
         }
@@ -644,18 +668,18 @@ public class ModEvents {
         return ModArmorMaterials.ICE_ARMOR_MATERIAL.is(armor.getMaterial());
     }
 
-    private static boolean isSprismTool(ItemStack stack) {
+    private static boolean isPprismTool(ItemStack stack) {
         if (stack.isEmpty()) return false;
-        return stack.is(ModItems.SPRISM_SWORD.get())
-            || stack.is(ModItems.SPRISM_PICKAXE.get())
-            || stack.is(ModItems.SPRISM_SHOVEL.get())
-            || stack.is(ModItems.SPRISM_AXE.get())
-            || stack.is(ModItems.SPRISM_HOE.get());
+        return stack.is(ModItems.PPRISM_SWORD.get())
+            || stack.is(ModItems.PPRISM_PICKAXE.get())
+            || stack.is(ModItems.PPRISM_SHOVEL.get())
+            || stack.is(ModItems.PPRISM_AXE.get())
+            || stack.is(ModItems.PPRISM_HOE.get());
     }
 
-    private static boolean isSprismArmor(ItemStack stack) {
+    private static boolean isPprismArmor(ItemStack stack) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
-        return ModArmorMaterials.SPRISM_ARMOR_MATERIAL.is(armor.getMaterial());
+        return ModArmorMaterials.PPRISM_ARMOR_MATERIAL.is(armor.getMaterial());
     }
 
     private static boolean isCoalTool(ItemStack stack) {
@@ -991,37 +1015,95 @@ public class ModEvents {
     }
 
     // -----------------------------------------------------------------------
-    // Cake hunger drain + armor effects
+    // Generalized food hunger drain (all food sets including cake)
     // -----------------------------------------------------------------------
 
-    private static void handleCakeHungerDrain(Player player) {
+    /** All food armor materials for hunger drain scanning (lazy to avoid premature registry access). */
+    private static List<Holder<ArmorMaterial>> FOOD_ARMOR_MATERIALS;
+    private static List<Holder<ArmorMaterial>> getFoodArmorMaterials() {
+        if (FOOD_ARMOR_MATERIALS == null) {
+            FOOD_ARMOR_MATERIALS = List.of(
+                    ModArmorMaterials.CAKE_ARMOR_MATERIAL,
+                    ModArmorMaterials.BREAD_ARMOR_MATERIAL,
+                    ModArmorMaterials.DRIED_KELP_ARMOR_MATERIAL,
+                    ModArmorMaterials.ROTTEN_FLESH_ARMOR_MATERIAL,
+                    ModArmorMaterials.MELON_ARMOR_MATERIAL,
+                    ModArmorMaterials.SWEET_BERRY_ARMOR_MATERIAL,
+                    ModArmorMaterials.PUMPKIN_PIE_ARMOR_MATERIAL,
+                    ModArmorMaterials.MUSHROOM_ARMOR_MATERIAL,
+                    ModArmorMaterials.PUFFERFISH_ARMOR_MATERIAL,
+                    ModArmorMaterials.HONEY_ARMOR_MATERIAL,
+                    ModArmorMaterials.CHORUS_FRUIT_ARMOR_MATERIAL,
+                    ModArmorMaterials.GOLDEN_APPLE_ARMOR_MATERIAL
+            );
+        }
+        return FOOD_ARMOR_MATERIALS;
+    }
+
+    private static boolean isFoodTool(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        return isCakeTool(stack) || isBreadTool(stack) || isDriedKelpTool(stack)
+            || isRottenFleshTool(stack) || isMelonTool(stack) || isSweetBerryTool(stack)
+            || isPumpkinPieTool(stack) || isMushroomTool(stack) || isPufferfishTool(stack)
+            || isHoneyTool(stack) || isChorusFruitTool(stack) || isGoldenAppleTool(stack);
+    }
+
+    private static boolean isFoodArmor(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
+        for (Holder<ArmorMaterial> mat : getFoodArmorMaterials()) {
+            if (mat.is(armor.getMaterial())) return true;
+        }
+        return false;
+    }
+
+    private static boolean isFoodSetEnabled(ItemStack stack) {
+        if (isCakeTool(stack) || isCakeArmor(stack)) return Config.cakeEnabled;
+        if (isBreadTool(stack) || isBreadArmor(stack)) return Config.breadEnabled;
+        if (isDriedKelpTool(stack) || isDriedKelpArmor(stack)) return Config.driedKelpEnabled;
+        if (isRottenFleshTool(stack) || isRottenFleshArmor(stack)) return Config.rottenFleshEnabled;
+        if (isMelonTool(stack) || isMelonArmor(stack)) return Config.melonEnabled;
+        if (isSweetBerryTool(stack) || isSweetBerryArmor(stack)) return Config.sweetBerryEnabled;
+        if (isPumpkinPieTool(stack) || isPumpkinPieArmor(stack)) return Config.pumpkinPieEnabled;
+        if (isMushroomTool(stack) || isMushroomArmor(stack)) return Config.mushroomEnabled;
+        if (isPufferfishTool(stack) || isPufferfishArmor(stack)) return Config.pufferfishEnabled;
+        if (isHoneyTool(stack) || isHoneyArmor(stack)) return Config.honeyEnabled;
+        if (isChorusFruitTool(stack) || isChorusFruitArmor(stack)) return Config.chorusFruitEnabled;
+        if (isGoldenAppleTool(stack) || isGoldenAppleArmor(stack)) return Config.goldenAppleEnabled;
+        return false;
+    }
+
+    private static void handleFoodHungerDrain(Player player) {
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
-        if (player.getFoodData().getFoodLevel() > 6) return; // only when starving (≤3 bars)
+        if (player.getFoodData().getFoodLevel() > 6) return;
         if (player.tickCount % 40 != 0) return;
 
-        // Scan held cake tools
         ItemStack main = player.getMainHandItem();
         ItemStack off  = player.getOffhandItem();
-        if (isCakeTool(main) && main.isDamageableItem()) {
+        if (isFoodTool(main) && main.isDamageableItem() && isFoodSetEnabled(main)) {
             main.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
             player.getFoodData().eat(1, 0.1f);
-            spawnCakeParticles(player, serverLevel);
+            spawnFoodParticles(player, serverLevel);
         }
-        if (isCakeTool(off) && off.isDamageableItem()) {
+        if (isFoodTool(off) && off.isDamageableItem() && isFoodSetEnabled(off)) {
             off.hurtAndBreak(1, player, EquipmentSlot.OFFHAND);
             player.getFoodData().eat(1, 0.1f);
-            spawnCakeParticles(player, serverLevel);
+            spawnFoodParticles(player, serverLevel);
         }
 
-        // Scan equipped cake armor
         for (EquipmentSlot slot : ARMOR_SLOTS) {
             ItemStack piece = player.getItemBySlot(slot);
-            if (isCakeArmor(piece) && piece.isDamageableItem()) {
+            if (isFoodArmor(piece) && piece.isDamageableItem() && isFoodSetEnabled(piece)) {
                 piece.hurtAndBreak(1, player, slot);
                 player.getFoodData().eat(1, 0.1f);
-                spawnCakeParticles(player, serverLevel);
+                spawnFoodParticles(player, serverLevel);
             }
         }
+    }
+
+    private static void spawnFoodParticles(Player player, ServerLevel level) {
+        level.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                player.getX(), player.getY() + 1.0, player.getZ(),
+                5, 0.3, 0.3, 0.3, 0.01);
     }
 
     private static void handleCakeArmorEffects(Player player) {
@@ -1050,12 +1132,6 @@ public class ModEvents {
         if (fullSet) {
             player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 0, false, false, true));
         }
-    }
-
-    private static void spawnCakeParticles(Player player, ServerLevel level) {
-        level.sendParticles(ParticleTypes.HAPPY_VILLAGER,
-                player.getX(), player.getY() + 1.0, player.getZ(),
-                5, 0.3, 0.3, 0.3, 0.01);
     }
 
     private static boolean isCakeTool(ItemStack stack) {
@@ -1118,6 +1194,374 @@ public class ModEvents {
             if (feetClear && headClear) {
                 player.teleportTo(check.getX() + 0.5, check.getY(), check.getZ() + 0.5);
                 return;
+            }
+        }
+    }
+
+    // =======================================================================
+    // Food set helpers
+    // =======================================================================
+
+    private static boolean isBreadTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.BREAD_SWORD.get()) || s.is(ModItems.BREAD_PICKAXE.get())
+            || s.is(ModItems.BREAD_SHOVEL.get()) || s.is(ModItems.BREAD_AXE.get()) || s.is(ModItems.BREAD_HOE.get()));
+    }
+    private static boolean isBreadArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.BREAD_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isDriedKelpTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.DRIED_KELP_SWORD.get()) || s.is(ModItems.DRIED_KELP_PICKAXE.get())
+            || s.is(ModItems.DRIED_KELP_SHOVEL.get()) || s.is(ModItems.DRIED_KELP_AXE.get()) || s.is(ModItems.DRIED_KELP_HOE.get()));
+    }
+    private static boolean isDriedKelpArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.DRIED_KELP_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isRottenFleshTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.ROTTEN_FLESH_SWORD.get()) || s.is(ModItems.ROTTEN_FLESH_PICKAXE.get())
+            || s.is(ModItems.ROTTEN_FLESH_SHOVEL.get()) || s.is(ModItems.ROTTEN_FLESH_AXE.get()) || s.is(ModItems.ROTTEN_FLESH_HOE.get()));
+    }
+    private static boolean isRottenFleshArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.ROTTEN_FLESH_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isMelonTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.MELON_SWORD.get()) || s.is(ModItems.MELON_PICKAXE.get())
+            || s.is(ModItems.MELON_SHOVEL.get()) || s.is(ModItems.MELON_AXE.get()) || s.is(ModItems.MELON_HOE.get()));
+    }
+    private static boolean isMelonArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.MELON_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isSweetBerryTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.SWEET_BERRY_SWORD.get()) || s.is(ModItems.SWEET_BERRY_PICKAXE.get())
+            || s.is(ModItems.SWEET_BERRY_SHOVEL.get()) || s.is(ModItems.SWEET_BERRY_AXE.get()) || s.is(ModItems.SWEET_BERRY_HOE.get()));
+    }
+    private static boolean isSweetBerryArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.SWEET_BERRY_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isPumpkinPieTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.PUMPKIN_PIE_SWORD.get()) || s.is(ModItems.PUMPKIN_PIE_PICKAXE.get())
+            || s.is(ModItems.PUMPKIN_PIE_SHOVEL.get()) || s.is(ModItems.PUMPKIN_PIE_AXE.get()) || s.is(ModItems.PUMPKIN_PIE_HOE.get()));
+    }
+    private static boolean isPumpkinPieArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.PUMPKIN_PIE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isMushroomTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.MUSHROOM_SWORD.get()) || s.is(ModItems.MUSHROOM_PICKAXE.get())
+            || s.is(ModItems.MUSHROOM_SHOVEL.get()) || s.is(ModItems.MUSHROOM_AXE.get()) || s.is(ModItems.MUSHROOM_HOE.get()));
+    }
+    private static boolean isMushroomArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.MUSHROOM_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isPufferfishTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.PUFFERFISH_SWORD.get()) || s.is(ModItems.PUFFERFISH_PICKAXE.get())
+            || s.is(ModItems.PUFFERFISH_SHOVEL.get()) || s.is(ModItems.PUFFERFISH_AXE.get()) || s.is(ModItems.PUFFERFISH_HOE.get()));
+    }
+    private static boolean isPufferfishArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.PUFFERFISH_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isHoneyTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.HONEY_SWORD.get()) || s.is(ModItems.HONEY_PICKAXE.get())
+            || s.is(ModItems.HONEY_SHOVEL.get()) || s.is(ModItems.HONEY_AXE.get()) || s.is(ModItems.HONEY_HOE.get()));
+    }
+    private static boolean isHoneyArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.HONEY_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isChorusFruitTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.CHORUS_FRUIT_SWORD.get()) || s.is(ModItems.CHORUS_FRUIT_PICKAXE.get())
+            || s.is(ModItems.CHORUS_FRUIT_SHOVEL.get()) || s.is(ModItems.CHORUS_FRUIT_AXE.get()) || s.is(ModItems.CHORUS_FRUIT_HOE.get()));
+    }
+    private static boolean isChorusFruitArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.CHORUS_FRUIT_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isGoldenAppleTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.GOLDEN_APPLE_SWORD.get()) || s.is(ModItems.GOLDEN_APPLE_PICKAXE.get())
+            || s.is(ModItems.GOLDEN_APPLE_SHOVEL.get()) || s.is(ModItems.GOLDEN_APPLE_AXE.get()) || s.is(ModItems.GOLDEN_APPLE_HOE.get()));
+    }
+    private static boolean isGoldenAppleArmor(ItemStack s) {
+        return !s.isEmpty() && s.getItem() instanceof ArmorItem a && ModArmorMaterials.GOLDEN_APPLE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+
+    private static boolean isWearingFullSet(Player player, java.util.function.Predicate<ItemStack> check) {
+        return check.test(player.getItemBySlot(EquipmentSlot.HEAD))
+            && check.test(player.getItemBySlot(EquipmentSlot.CHEST))
+            && check.test(player.getItemBySlot(EquipmentSlot.LEGS))
+            && check.test(player.getItemBySlot(EquipmentSlot.FEET));
+    }
+
+    // =======================================================================
+    // Food set armor effects
+    // =======================================================================
+
+    // --- Bread: Boots=Speed, Legs=Jump, Chest=Saturation, Helm=Luck, Full=Hunger immunity ---
+    private static void handleBreadArmorEffects(Player player) {
+        if (isBreadArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isBreadArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isBreadArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 60, 0, false, false, true));
+        if (isBreadArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.LUCK, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isBreadArmor)) {
+            player.removeEffect(MobEffects.HUNGER);
+        }
+    }
+
+    // --- Dried Kelp: Boots=Dolphins Grace, Legs=Haste, Chest=Water Breathing, Helm=Night Vision, Full=Conduit Power ---
+    private static void handleDriedKelpArmorEffects(Player player) {
+        if (isDriedKelpArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 60, 0, false, false, true));
+        if (isDriedKelpArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, true));
+        if (isDriedKelpArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false, true));
+        if (isDriedKelpArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isDriedKelpArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 0, false, false, true));
+    }
+
+    // --- Rotten Flesh: Boots=Slow Falling, Legs=Fire Resist, Chest=Resistance, Helm=Hunger, Full=Undead neutral (event) ---
+    private static void handleRottenFleshArmorEffects(Player player) {
+        if (isRottenFleshArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isRottenFleshArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        if (isRottenFleshArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isRottenFleshArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 60, 0, false, false, true));
+    }
+
+    // --- Melon: Boots=Speed, Legs=Jump, Chest=Regen, Helm=Water Breathing, Full=Passive hunger restore ---
+    private static void handleMelonArmorEffects(Player player) {
+        if (isMelonArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isMelonArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isMelonArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        if (isMelonArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isMelonArmor) && player.tickCount % 60 == 0) {
+            player.getFoodData().eat(1, 0.1f);
+        }
+    }
+
+    // --- Sweet Berries: Boots=Speed, Legs=Jump Boost, Chest=Regen, Helm=Saturation, Full=Thorns (event) ---
+    private static void handleSweetBerryArmorEffects(Player player) {
+        if (isSweetBerryArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isSweetBerryArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isSweetBerryArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        if (isSweetBerryArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 60, 0, false, false, true));
+    }
+
+    // --- Pumpkin Pie: Boots=Speed, Legs=Jump, Chest=Absorption, Helm=Enderman avoid (event), Full=Luck ---
+    private static void handlePumpkinPieArmorEffects(Player player) {
+        if (isPumpkinPieArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isPumpkinPieArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isPumpkinPieArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isPumpkinPieArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.LUCK, 60, 0, false, false, true));
+    }
+
+    // --- Mushroom: Boots=Haste, Legs=Jump, Chest=Resistance, Helm=Night Vision, Full=Nausea aura ---
+    private static void handleMushroomArmorEffects(Player player) {
+        if (isMushroomArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, true));
+        if (isMushroomArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isMushroomArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isMushroomArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false, true));
+        if (Config.mushroomSporeCloud && isWearingFullSet(player, ModEvents::isMushroomArmor)
+                && player.tickCount % 40 == 0 && player.level() instanceof ServerLevel serverLevel) {
+            AABB area = player.getBoundingBox().inflate(4.0);
+            for (Mob mob : serverLevel.getEntitiesOfClass(Mob.class, area, m -> m.getTarget() != null)) {
+                mob.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 0, false, false, false));
+            }
+        }
+    }
+
+    // --- Pufferfish: Boots=Water Breathing, Legs=Resistance, Chest=Poison immunity, Helm=Conduit Power, Full=Poison aura ---
+    private static void handlePufferfishArmorEffects(Player player) {
+        if (isPufferfishArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false, true));
+        if (isPufferfishArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isPufferfishArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.removeEffect(MobEffects.POISON);
+        if (isPufferfishArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 0, false, false, true));
+        if (Config.pufferfishPoisonAura && isWearingFullSet(player, ModEvents::isPufferfishArmor)
+                && player.tickCount % 40 == 0 && player.level() instanceof ServerLevel serverLevel) {
+            AABB area = player.getBoundingBox().inflate(3.0);
+            for (Mob mob : serverLevel.getEntitiesOfClass(Mob.class, area, m -> m.getTarget() != null)) {
+                mob.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0, false, false, false));
+            }
+        }
+    }
+
+    // --- Honey: Boots=Slow Falling, Legs=Resistance, Chest=Fire Resist, Helm=Poison immunity, Full=Sticky (event) ---
+    private static void handleHoneyArmorEffects(Player player) {
+        if (isHoneyArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isHoneyArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isHoneyArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        if (isHoneyArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
+            player.removeEffect(MobEffects.POISON);
+        }
+    }
+
+    // --- Chorus Fruit: Boots=Slow Falling, Legs=Speed, Chest=Resistance, Helm=Night Vision, Full=Teleport dodge (event) ---
+    private static void handleChorusFruitArmorEffects(Player player) {
+        if (isChorusFruitArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isChorusFruitArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isChorusFruitArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isChorusFruitArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false, true));
+    }
+
+    // --- Golden Apple: Boots=Speed, Legs=Resistance, Chest=Regen, Helm=Fire Resist, Full=Absorption II ---
+    private static void handleGoldenAppleArmorEffects(Player player) {
+        if (isGoldenAppleArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isGoldenAppleArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isGoldenAppleArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        if (isGoldenAppleArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isGoldenAppleArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 1, false, false, true));
+    }
+
+    // =======================================================================
+    // Food tool-hit effects + armor reactive events (LivingHurtEvent)
+    // =======================================================================
+
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event) {
+        DamageSource source = event.getSource();
+
+        // --- Tool-hit effects (attacker holding food tool) ---
+        if (source.getEntity() instanceof Player attacker) {
+            ItemStack held = attacker.getMainHandItem();
+            if (Config.honeyEnabled && isHoneyTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0));
+            }
+            if (Config.pufferfishEnabled && isPufferfishTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0));
+            }
+            if (Config.sweetBerryEnabled && isSweetBerryTool(held)) {
+                event.setAmount(event.getAmount() + 1.0f);
+            }
+            if (Config.rottenFleshEnabled && isRottenFleshTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.HUNGER, 100, 0));
+            }
+            if (Config.mushroomEnabled && isMushroomTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.CONFUSION, 60, 0));
+            }
+            if (Config.chorusFruitEnabled && Config.chorusFruitTeleport && isChorusFruitTool(held)) {
+                if (attacker.level().random.nextFloat() < 0.1f) {
+                    teleportRandomly(event.getEntity(), 3, 8);
+                }
+            }
+        }
+
+        // --- Armor reactive effects (player is the target) ---
+        if (event.getEntity() instanceof Player victim && source.getEntity() instanceof LivingEntity attacker) {
+            // Sweet Berry thorns
+            if (Config.sweetBerryEnabled && Config.sweetBerryThorns
+                    && isWearingFullSet(victim, ModEvents::isSweetBerryArmor)) {
+                attacker.hurt(victim.damageSources().thorns(victim), 1.0f);
+            }
+            // Honey sticky — attacker gets Slowness II
+            if (Config.honeyEnabled && Config.honeySticky
+                    && isWearingFullSet(victim, ModEvents::isHoneyArmor)) {
+                attacker.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
+            }
+            // Chorus Fruit teleport dodge — 15% chance
+            if (Config.chorusFruitEnabled && Config.chorusFruitTeleport
+                    && isWearingFullSet(victim, ModEvents::isChorusFruitArmor)) {
+                if (victim.level().random.nextFloat() < 0.15f) {
+                    teleportRandomly(victim, 3, 8);
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+    // =======================================================================
+    // Targeting events (LivingChangeTargetEvent)
+    // =======================================================================
+
+    @SubscribeEvent
+    public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
+        if (!(event.getNewTarget() instanceof Player player)) return;
+
+        // Rotten Flesh full set — undead mobs ignore player
+        if (Config.rottenFleshEnabled && Config.rottenFleshUndeadNeutral
+                && isWearingFullSet(player, ModEvents::isRottenFleshArmor)) {
+            if (event.getEntity() instanceof Zombie || event.getEntity() instanceof AbstractSkeleton
+                    || event.getEntity() instanceof Phantom) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Pumpkin Pie helmet — endermen ignore player
+        if (Config.pumpkinPieEnabled && Config.pumpkinPieEndermanAvoidance
+                && isPumpkinPieArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
+            if (event.getEntity() instanceof EnderMan) {
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    // =======================================================================
+    // Utility — random teleport
+    // =======================================================================
+
+    private static void teleportRandomly(LivingEntity entity, int minDist, int maxDist) {
+        Level level = entity.level();
+        if (level.isClientSide()) return;
+
+        for (int attempt = 0; attempt < 16; attempt++) {
+            double angle = level.random.nextDouble() * Math.PI * 2;
+            double dist = minDist + level.random.nextDouble() * (maxDist - minDist);
+            double tx = entity.getX() + Math.cos(angle) * dist;
+            double tz = entity.getZ() + Math.sin(angle) * dist;
+            double ty = entity.getY();
+
+            BlockPos target = BlockPos.containing(tx, ty, tz);
+            // Try to find a safe y
+            for (int dy = -2; dy <= 2; dy++) {
+                BlockPos check = target.above(dy);
+                BlockPos checkHead = check.above();
+                if (level.getBlockState(check).getCollisionShape(level, check).isEmpty()
+                        && level.getBlockState(checkHead).getCollisionShape(level, checkHead).isEmpty()
+                        && !level.getBlockState(check.below()).getCollisionShape(level, check.below()).isEmpty()) {
+                    entity.teleportTo(check.getX() + 0.5, check.getY(), check.getZ() + 0.5);
+                    if (level instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(ParticleTypes.PORTAL,
+                                entity.getX(), entity.getY() + 1.0, entity.getZ(),
+                                32, 0.5, 0.5, 0.5, 0.5);
+                    }
+                    return;
+                }
             }
         }
     }

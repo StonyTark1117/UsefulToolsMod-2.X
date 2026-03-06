@@ -1,5 +1,5 @@
 {
-  "parent": "usefultoolsmod:jflint",
+  "parent": "usefultoolsmod:rflint",
   "criteria": {
     "has_fni_sword": {
       "conditions": {

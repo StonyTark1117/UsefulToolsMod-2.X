@@ -4,8 +4,8 @@ Texture generator for UsefulToolsMod.
 Extracts vanilla MC textures and mod base textures, then applies HSV color
 remapping to produce vibrant, distinctive tool/armor/material textures.
 
-Jagged/rough tools use jobsidian PNGs as the shape framework.
-Smooth/higher-tier tools use vanilla tool shapes.
+Rough/rough tools use robsidian PNGs as the shape framework.
+Polished/higher-tier tools use vanilla tool shapes.
 Armor uses vanilla armor shapes.
 Overpower and stone rock variants are NOT touched.
 """
@@ -125,6 +125,40 @@ def blend_tint(img: Image.Image, tint_rgb: tuple[int, int, int],
     return out
 
 
+def composite_with_overlay(base: Image.Image, overlay: Image.Image) -> Image.Image:
+    """Composite a base texture with its overlay to produce a fully opaque result.
+    Used for leather armor which splits into tintable base + detail overlay."""
+    result = base.copy()
+    result.paste(overlay, (0, 0), overlay)
+    return result
+
+
+def pattern_overlay(armor_img: Image.Image, pattern_img: Image.Image,
+                    strength: float = 0.15) -> Image.Image:
+    """Tile a pattern texture across an armor texture and blend at given strength.
+    Only affects pixels that are already opaque in the armor image."""
+    out = armor_img.copy()
+    px = out.load()
+    aw, ah = armor_img.size
+    pw, ph = pattern_img.size
+    pat_px = pattern_img.load()
+
+    for y in range(ah):
+        for x in range(aw):
+            r, g, b, a = px[x, y]
+            if a == 0:
+                continue
+            pr, pg, pb, pa = pat_px[x % pw, y % ph]
+            if pa == 0:
+                continue
+            nr = int(r * (1 - strength) + pr * strength)
+            ng = int(g * (1 - strength) + pg * strength)
+            nb = int(b * (1 - strength) + pb * strength)
+            px[x, y] = (min(255, nr), min(255, ng), min(255, nb), a)
+
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Helper: generate a full tool set from a base
 # ---------------------------------------------------------------------------
@@ -235,48 +269,62 @@ def remap_emerald_armor(img, **_):
 
 
 # ---------------------------------------------------------------------------
-# Jagged tool color configs (applied to jobsidian base shapes)
+# Rough tool color configs (applied to robsidian base shapes)
 # ---------------------------------------------------------------------------
 
-JAGGED_TOOL_CONFIGS = {
+ROUGH_TOOL_CONFIGS = {
     # name: remap_kwargs or callable
-    "jemerald": {"target_hue": 140, "sat_set": 0.85, "val_mult": 0.9},
-    "jamethyst": {"target_hue": 280, "sat_set": 0.7, "val_mult": 0.8},
-    "jquartz": {"target_hue": 35, "sat_set": 0.12, "val_mult": 1.2, "val_add": 0.08},
-    "jprism": {"target_hue": 170, "sat_set": 0.7, "val_mult": 0.75},
-    "jflint": {"target_hue": 30, "sat_set": 0.15, "val_mult": 0.5},
+    "remerald": {"target_hue": 140, "sat_set": 0.85, "val_mult": 0.9},
+    "ramethyst": {"target_hue": 280, "sat_set": 0.7, "val_mult": 0.8},
+    "rquartz": {"target_hue": 35, "sat_set": 0.12, "val_mult": 1.2, "val_add": 0.08},
+    "rprism": {"target_hue": 170, "sat_set": 0.7, "val_mult": 0.75},
+    "rflint": {"target_hue": 30, "sat_set": 0.15, "val_mult": 0.5},
     "snow": {"target_hue": 200, "sat_set": 0.15, "val_mult": 1.3, "val_add": 0.15},
-    "jraw_gold": {"target_hue": 45, "sat_set": 0.8, "val_mult": 0.9},
-    "jraw_copper": {"target_hue": 25, "sat_set": 0.75, "val_mult": 0.8},
-    "jraw_iron": {"target_hue": 25, "sat_set": 0.12, "val_mult": 0.7},
-    "jraw_rgold": {"target_hue": 42, "sat_set": 0.6, "val_mult": 0.8},
-    "jscrap": {"target_hue": 30, "sat_set": 0.25, "val_mult": 0.4},
-    "jecto": {"target_hue": 175, "sat_set": 0.4, "val_mult": 0.85},
+    "rraw_gold": {"target_hue": 45, "sat_set": 0.8, "val_mult": 0.9},
+    "rraw_copper": {"target_hue": 25, "sat_set": 0.75, "val_mult": 0.8},
+    "rraw_iron": {"target_hue": 25, "sat_set": 0.12, "val_mult": 0.7},
+    "rraw_rgold": {"target_hue": 42, "sat_set": 0.6, "val_mult": 0.8},
+    "rscrap": {"target_hue": 30, "sat_set": 0.25, "val_mult": 0.4},
+    "recto": {"target_hue": 175, "sat_set": 0.4, "val_mult": 0.85},
 }
 
 
 # ---------------------------------------------------------------------------
-# Smooth tool color configs (applied to vanilla tool shapes)
+# Polished tool color configs (applied to vanilla tool shapes)
 # ---------------------------------------------------------------------------
 
-SMOOTH_TOOL_CONFIGS = {
+POLISHED_TOOL_CONFIGS = {
     # name: (vanilla_base_prefix, remap_kwargs_or_callable)
-    # Diamond-based smooth tools
-    "semerald": ("diamond", {"target_hue": 140, "sat_set": 0.8, "val_mult": 0.9}),
+    # Diamond-based polished tools
+    "pemerald": ("diamond", {"target_hue": 140, "sat_set": 0.8, "val_mult": 0.9}),
     "rlapis": ("diamond", {"target_hue": 230, "sat_set": 0.8, "val_mult": 0.75}),
     "camethyst": ("diamond", {"target_hue": 280, "sat_set": 0.65, "val_mult": 0.85}),
-    "squartz": ("diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
-    "sprism": ("diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
+    "pquartz": ("diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
+    "pprism": ("diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
     "ecto": ("diamond", {"target_hue": 175, "sat_set": 0.5, "val_mult": 0.8}),
     "ice": ("diamond", {"target_hue": 195, "sat_set": 0.65, "val_mult": 0.95}),
-    # Iron-based smooth tools
+    # Iron-based polished tools
     "hredstone": ("iron", "remap_hred_tool"),
     "hglowstone": ("iron", {"target_hue": 41, "sat_set": 0.75, "val_mult": 1.1}),
     "coal": ("iron", "remap_coal_tool"),
     "fni": ("iron", "remap_fni_tool"),
     "rgold": ("iron", "remap_rgold_tool"),
     # Wooden-based tools
+    "leather": ("wooden", {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.60}),
     "cake": ("wooden", {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.75}),
+    "bread": ("wooden", {"target_hue": 42, "sat_set": 0.50, "val_mult": 0.85}),
+    "dried_kelp": ("wooden", {"target_hue": 110, "sat_set": 0.35, "val_mult": 0.35}),
+    "rotten_flesh": ("wooden", {"target_hue": 85, "sat_set": 0.45, "val_mult": 0.40}),
+    "sweet_berry": ("wooden", {"target_hue": 350, "sat_set": 0.70, "val_mult": 0.55}),
+    "pumpkin_pie": ("wooden", {"target_hue": 25, "sat_set": 0.70, "val_mult": 0.75}),
+    "mushroom": ("wooden", {"target_hue": 0, "sat_set": 0.70, "val_mult": 0.60}),
+    # Iron-based food tools
+    "melon": ("iron", {"target_hue": 5, "sat_set": 0.70, "val_mult": 0.70}),
+    "pufferfish": ("iron", {"target_hue": 55, "sat_set": 0.75, "val_mult": 0.85}),
+    "honey": ("iron", {"target_hue": 40, "sat_set": 0.80, "val_mult": 0.90}),
+    # Diamond-based food tools
+    "chorus_fruit": ("diamond", {"target_hue": 290, "sat_set": 0.55, "val_mult": 0.70}),
+    "golden_apple": ("diamond", {"target_hue": 50, "sat_set": 0.85, "val_mult": 0.90}),
 }
 
 
@@ -289,9 +337,9 @@ ARMOR_CONFIGS = {
     # Diamond-based armor
     "rlapis": ("diamond", "diamond", {"target_hue": 230, "sat_set": 0.8, "val_mult": 0.75}),
     "camethyst": ("diamond", "diamond", {"target_hue": 280, "sat_set": 0.6, "val_mult": 0.85}),
-    "squartz": ("diamond", "diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
+    "pquartz": ("diamond", "diamond", {"target_hue": 35, "sat_set": 0.1, "val_mult": 1.2, "val_add": 0.08}),
     "ice": ("diamond", "diamond", {"target_hue": 195, "sat_set": 0.65, "val_mult": 1.05}),
-    "sprism": ("diamond", "diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
+    "pprism": ("diamond", "diamond", {"target_hue": 170, "sat_set": 0.65, "val_mult": 0.8}),
     "ecto": ("diamond", "diamond", {"target_hue": 175, "sat_set": 0.5, "val_mult": 0.8}),
     "obsidian": ("netherite", "netherite", "remap_obsidian_armor"),
     "emerald": ("diamond", "diamond", "remap_emerald_armor"),
@@ -304,6 +352,33 @@ ARMOR_CONFIGS = {
     "rgold": ("golden", "iron", "remap_rgold"),
     # Leather-based armor
     "cake": ("leather", "leather", {"target_hue": 30, "sat_set": 0.45, "val_mult": 0.75}),
+    "bread": ("leather", "leather", {"target_hue": 42, "sat_set": 0.50, "val_mult": 0.85}),
+    "dried_kelp": ("leather", "leather", {"target_hue": 110, "sat_set": 0.35, "val_mult": 0.35}),
+    "rotten_flesh": ("leather", "leather", {"target_hue": 85, "sat_set": 0.45, "val_mult": 0.40}),
+    "sweet_berry": ("leather", "leather", {"target_hue": 350, "sat_set": 0.70, "val_mult": 0.55}),
+    "pumpkin_pie": ("leather", "leather", {"target_hue": 25, "sat_set": 0.70, "val_mult": 0.75}),
+    "mushroom": ("iron", "iron", {"target_hue": 0, "sat_set": 0.70, "val_mult": 0.60}),
+    "melon": ("iron", "iron", {"target_hue": 5, "sat_set": 0.70, "val_mult": 0.70}),
+    "pufferfish": ("iron", "iron", {"target_hue": 55, "sat_set": 0.75, "val_mult": 0.85}),
+    "honey": ("iron", "iron", {"target_hue": 40, "sat_set": 0.80, "val_mult": 0.90}),
+    "chorus_fruit": ("diamond", "diamond", {"target_hue": 290, "sat_set": 0.55, "val_mult": 0.70}),
+    "golden_apple": ("diamond", "diamond", {"target_hue": 50, "sat_set": 0.85, "val_mult": 0.90}),
+}
+
+# Food armor names mapped to their vanilla food item texture filename
+FOOD_PATTERNS = {
+    "cake": "cake.png",
+    "bread": "bread.png",
+    "dried_kelp": "dried_kelp.png",
+    "rotten_flesh": "rotten_flesh.png",
+    "sweet_berry": "sweet_berries.png",
+    "pumpkin_pie": "pumpkin_pie.png",
+    "mushroom": "mushroom_stew.png",
+    "melon": "melon_slice.png",
+    "pufferfish": "pufferfish.png",
+    "honey": "honey_bottle.png",
+    "chorus_fruit": "chorus_fruit.png",
+    "golden_apple": "golden_apple.png",
 }
 
 
@@ -361,26 +436,26 @@ def resolve_remap(spec):
 # Generation functions
 # ---------------------------------------------------------------------------
 
-def generate_jagged_tools():
-    """Generate all jagged/rough tool textures using jobsidian as base shape."""
-    print("=== Jagged Tools (jobsidian base) ===")
+def generate_rough_tools():
+    """Generate all rough/rough tool textures using robsidian as base shape."""
+    print("=== Rough Tools (robsidian base) ===")
 
-    # Load jobsidian base shapes
-    jobsidian = {}
+    # Load robsidian base shapes
+    robsidian = {}
     for tool in TOOL_TYPES:
-        jobsidian[tool] = load_local_png(ITEM_DIR / f"jobsidian_{tool}.png")
+        robsidian[tool] = load_local_png(ITEM_DIR / f"robsidian_{tool}.png")
 
     total = 0
-    for name, spec in JAGGED_TOOL_CONFIGS.items():
+    for name, spec in ROUGH_TOOL_CONFIGS.items():
         fn, kwargs = resolve_remap(spec)
-        total += gen_tools(jobsidian, name, remap_fn=fn, **kwargs)
+        total += gen_tools(robsidian, name, remap_fn=fn, **kwargs)
 
     return total
 
 
-def generate_smooth_tools():
-    """Generate all smooth/higher-tier tool textures using vanilla tool shapes."""
-    print("\n=== Smooth Tools (vanilla base) ===")
+def generate_polished_tools():
+    """Generate all polished/higher-tier tool textures using vanilla tool shapes."""
+    print("\n=== Polished Tools (vanilla base) ===")
 
     # Cache vanilla tool bases
     vanilla_tools = {}
@@ -392,7 +467,7 @@ def generate_smooth_tools():
             )
 
     total = 0
-    for name, (base_prefix, spec) in SMOOTH_TOOL_CONFIGS.items():
+    for name, (base_prefix, spec) in POLISHED_TOOL_CONFIGS.items():
         fn, kwargs = resolve_remap(spec)
         total += gen_tools(vanilla_tools[base_prefix], name, remap_fn=fn, **kwargs)
 
@@ -408,14 +483,33 @@ def generate_armor_items_all():
     for base_prefix in ("diamond", "iron", "golden", "netherite", "chainmail", "leather"):
         vanilla_armor[base_prefix] = {}
         for piece in ARMOR_PIECES:
-            vanilla_armor[base_prefix][piece] = extract_png(
-                CLIENT_JAR, f"{V_ITEM}/{base_prefix}_{piece}.png"
-            )
+            base = extract_png(CLIENT_JAR, f"{V_ITEM}/{base_prefix}_{piece}.png")
+            # Composite leather overlays to eliminate transparency
+            if base_prefix == "leather":
+                overlay = extract_png(
+                    CLIENT_JAR, f"{V_ITEM}/{base_prefix}_{piece}_overlay.png"
+                )
+                base = composite_with_overlay(base, overlay)
+            vanilla_armor[base_prefix][piece] = base
+
+    # Load food pattern textures
+    food_pats = {}
+    for name, food_tex in FOOD_PATTERNS.items():
+        food_pats[name] = extract_png(CLIENT_JAR, f"{V_ITEM}/{food_tex}")
 
     total = 0
     for name, (item_base, _, spec) in ARMOR_CONFIGS.items():
         fn, kwargs = resolve_remap(spec)
         total += gen_armor_items(vanilla_armor[item_base], name, remap_fn=fn, **kwargs)
+
+        # Apply food pattern overlay (recolored to match armor palette)
+        if name in food_pats:
+            recolored_pat = fn(food_pats[name], **kwargs)
+            for piece in ARMOR_PIECES:
+                path = ITEM_DIR / f"{name}_{piece}.png"
+                armor = load_local_png(path)
+                result = pattern_overlay(armor, recolored_pat, strength=0.2)
+                result.save(path)
 
     return total
 
@@ -432,6 +526,19 @@ def generate_armor_layers_all():
             extract_png(CLIENT_JAR, f"{V_ARMOR}/{base_prefix}_layer_2.png"),
         )
 
+    # Composite leather layer overlays to eliminate transparency
+    leather_l1_overlay = extract_png(CLIENT_JAR, f"{V_ARMOR}/leather_layer_1_overlay.png")
+    leather_l2_overlay = extract_png(CLIENT_JAR, f"{V_ARMOR}/leather_layer_2_overlay.png")
+    vanilla_layers["leather"] = (
+        composite_with_overlay(vanilla_layers["leather"][0], leather_l1_overlay),
+        composite_with_overlay(vanilla_layers["leather"][1], leather_l2_overlay),
+    )
+
+    # Load food pattern textures
+    food_pats = {}
+    for name, food_tex in FOOD_PATTERNS.items():
+        food_pats[name] = extract_png(CLIENT_JAR, f"{V_ITEM}/{food_tex}")
+
     total = 0
     for name, (_, layer_base, spec) in ARMOR_CONFIGS.items():
         # Special handling for rgold layers (different transform than item icons)
@@ -442,6 +549,15 @@ def generate_armor_layers_all():
 
         bl1, bl2 = vanilla_layers[layer_base]
         total += gen_armor_layers(bl1, bl2, name, remap_fn=fn, **kwargs)
+
+        # Apply food pattern overlay (recolored to match armor palette)
+        if name in food_pats:
+            recolored_pat = fn(food_pats[name], **kwargs)
+            for layer_n in ("1", "2"):
+                path = ARMOR_DIR / f"{name}_layer_{layer_n}.png"
+                armor = load_local_png(path)
+                result = pattern_overlay(armor, recolored_pat, strength=0.12)
+                result.save(path)
 
     return total
 
@@ -547,23 +663,21 @@ def generate_material_items():
     print("  obshard.png")
     total += 1
 
-    # Obsidian Ingot: netherite ingot shifted to smooth obsidian purple
+    # Obsidian Ingot: netherite ingot shifted to polished obsidian purple
     netherite_ingot = extract_png(CLIENT_JAR, f"{V_ITEM}/netherite_ingot.png")
     obi = remap_hsv(netherite_ingot, target_hue=275, sat_set=0.5, val_mult=0.5)
     obi.save(ITEM_DIR / "obingot.png")
     print("  obingot.png")
     total += 1
 
-    # Smooth Emerald Material: emerald with vivid green
-    emerald = extract_png(CLIENT_JAR, f"{V_ITEM}/emerald.png")
-    se = remap_hsv(emerald, target_hue=140, sat_set=0.75, val_mult=0.9)
+    # Polished Emerald Material: ingot shape with vivid green
+    se = remap_hsv(iron_ingot, target_hue=140, sat_set=0.75, val_mult=0.9)
     se.save(ITEM_DIR / "sem.png")
     print("  sem.png")
     total += 1
 
-    # Reinforced Lapis: lapis lazuli with vivid blue
-    lapis = extract_png(CLIENT_JAR, f"{V_ITEM}/lapis_lazuli.png")
-    rl = remap_hsv(lapis, target_hue=230, sat_set=0.8, val_mult=0.8)
+    # Reinforced Lapis: ingot shape with vivid blue
+    rl = remap_hsv(iron_ingot, target_hue=230, sat_set=0.8, val_mult=0.8)
     rl.save(ITEM_DIR / "rlapis.png")
     print("  rlapis.png")
     total += 1
@@ -643,11 +757,11 @@ def generate_ecto_emissives():
     em.save(ITEM_DIR / "ectoplasm_e.png")
     total += 1
 
-    # Jagged ecto tools
+    # Rough ecto tools
     for tool in TOOL_TYPES:
-        src = load_local_png(ITEM_DIR / f"jecto_{tool}.png")
+        src = load_local_png(ITEM_DIR / f"recto_{tool}.png")
         em = remap_hsv(src, **soft)
-        em.save(ITEM_DIR / f"jecto_{tool}_e.png")
+        em.save(ITEM_DIR / f"recto_{tool}_e.png")
         total += 1
 
     # Ectoplasm block
@@ -734,13 +848,13 @@ def generate_block_textures():
     print("  hrblock.png (updated)")
     total += 1
 
-    # Smooth Emerald Block: emerald block vivid green
+    # Polished Emerald Block: emerald block vivid green
     seb = remap_hsv(emerald_block, target_hue=140, sat_set=0.75, val_mult=0.9)
     seb.save(BLOCK_DIR / "semblock.png")
     print("  semblock.png (updated)")
     total += 1
 
-    # Smooth Obsidian Block: diamond block shifted dark obsidian purple
+    # Polished Obsidian Block: diamond block shifted dark obsidian purple
     sob = remap_hsv(diamond_block, target_hue=275, sat_set=0.5, val_mult=0.45)
     sob.save(BLOCK_DIR / "soblock.png")
     print("  soblock.png (updated)")
@@ -839,8 +953,8 @@ if __name__ == "__main__":
     os.makedirs(ARMOR_DIR, exist_ok=True)
 
     total = 0
-    total += generate_jagged_tools()        # 12 sets × 5 = 60 tools
-    total += generate_smooth_tools()        # 11 sets × 5 = 55 tools
+    total += generate_rough_tools()        # 12 sets × 5 = 60 tools
+    total += generate_polished_tools()        # 11 sets × 5 = 55 tools
     total += generate_armor_items_all()     # 13 sets × 4 = 52 armor items
     total += generate_armor_layers_all()    # 13 sets × 2 = 26 armor layers
     total += generate_material_items()      # 16 material items

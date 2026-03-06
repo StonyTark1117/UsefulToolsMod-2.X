@@ -59,29 +59,29 @@ public class ModItemModelProvider extends ItemModelProvider {
         //simpleBlockItem(ModBlocks.SEMBLOCK);
         //simpleBlockItem(ModBlocks.SOBLOCK);
 
-        handheldItem(ModItems.JEMERALD_SWORD);
-        handheldItem(ModItems.JEMERALD_PICKAXE);
-        handheldItem(ModItems.JEMERALD_SHOVEL);
-        handheldItem(ModItems.JEMERALD_AXE);
-        handheldItem(ModItems.JEMERALD_HOE);
+        handheldItem(ModItems.REMERALD_SWORD);
+        handheldItem(ModItems.REMERALD_PICKAXE);
+        handheldItem(ModItems.REMERALD_SHOVEL);
+        handheldItem(ModItems.REMERALD_AXE);
+        handheldItem(ModItems.REMERALD_HOE);
 
-        handheldItem(ModItems.SEMERALD_SWORD);
-        handheldItem(ModItems.SEMERALD_PICKAXE);
-        handheldItem(ModItems.SEMERALD_SHOVEL);
-        handheldItem(ModItems.SEMERALD_AXE);
-        handheldItem(ModItems.SEMERALD_HOE);
+        handheldItem(ModItems.PEMERALD_SWORD);
+        handheldItem(ModItems.PEMERALD_PICKAXE);
+        handheldItem(ModItems.PEMERALD_SHOVEL);
+        handheldItem(ModItems.PEMERALD_AXE);
+        handheldItem(ModItems.PEMERALD_HOE);
 
-        handheldItem(ModItems.JOBSIDIAN_SWORD);
-        handheldItem(ModItems.JOBSIDIAN_PICKAXE);
-        handheldItem(ModItems.JOBSIDIAN_SHOVEL);
-        handheldItem(ModItems.JOBSIDIAN_AXE);
-        handheldItem(ModItems.JOBSIDIAN_HOE);
+        handheldItem(ModItems.ROBSIDIAN_SWORD);
+        handheldItem(ModItems.ROBSIDIAN_PICKAXE);
+        handheldItem(ModItems.ROBSIDIAN_SHOVEL);
+        handheldItem(ModItems.ROBSIDIAN_AXE);
+        handheldItem(ModItems.ROBSIDIAN_HOE);
 
-        handheldItem(ModItems.SOBSIDIAN_SWORD);
-        handheldItem(ModItems.SOBSIDIAN_PICKAXE);
-        handheldItem(ModItems.SOBSIDIAN_SHOVEL);
-        handheldItem(ModItems.SOBSIDIAN_AXE);
-        handheldItem(ModItems.SOBSIDIAN_HOE);
+        handheldItem(ModItems.POBSIDIAN_SWORD);
+        handheldItem(ModItems.POBSIDIAN_PICKAXE);
+        handheldItem(ModItems.POBSIDIAN_SHOVEL);
+        handheldItem(ModItems.POBSIDIAN_AXE);
+        handheldItem(ModItems.POBSIDIAN_HOE);
 
         handheldItem(ModItems.OVERPOWER_SWORD);
         handheldItem(ModItems.OVERPOWER_PICKAXE);
@@ -151,8 +151,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ECTOPLASM.get());
         basicItem(ModItems.REFINED_ECTOPLASM.get());
 
-        // Jagged Ectoplasm tools
-        handheldItem(ModItems.JECTO_SWORD); handheldItem(ModItems.JECTO_PICKAXE); handheldItem(ModItems.JECTO_SHOVEL); handheldItem(ModItems.JECTO_AXE); handheldItem(ModItems.JECTO_HOE);
+        // Rough Ectoplasm tools
+        handheldItem(ModItems.RECTO_SWORD); handheldItem(ModItems.RECTO_PICKAXE); handheldItem(ModItems.RECTO_SHOVEL); handheldItem(ModItems.RECTO_AXE); handheldItem(ModItems.RECTO_HOE);
 
         // Ectoplasm tools + armor
         handheldItem(ModItems.ECTO_SWORD);
@@ -180,6 +180,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.COAL_LEGGINGS);
         trimmedArmorItem(ModItems.COAL_BOOTS);
 
+        handheldItem(ModItems.LEATHER_SWORD);
+        handheldItem(ModItems.LEATHER_PICKAXE);
+        handheldItem(ModItems.LEATHER_SHOVEL);
+        handheldItem(ModItems.LEATHER_AXE);
+        handheldItem(ModItems.LEATHER_HOE);
+
         handheldItem(ModItems.CAKE_SWORD);
         handheldItem(ModItems.CAKE_PICKAXE);
         handheldItem(ModItems.CAKE_SHOVEL);
@@ -191,36 +197,92 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CAKE_LEGGINGS.get());
         basicItem(ModItems.CAKE_BOOTS.get());
 
-        // Raw metal jagged tools
-        handheldItem(ModItems.JRAW_GOLD_SWORD);
-        handheldItem(ModItems.JRAW_GOLD_PICKAXE);
-        handheldItem(ModItems.JRAW_GOLD_SHOVEL);
-        handheldItem(ModItems.JRAW_GOLD_AXE);
-        handheldItem(ModItems.JRAW_GOLD_HOE);
+        // Food set tools + armor (11 sets)
+        handheldItem(ModItems.BREAD_SWORD); handheldItem(ModItems.BREAD_PICKAXE);
+        handheldItem(ModItems.BREAD_SHOVEL); handheldItem(ModItems.BREAD_AXE); handheldItem(ModItems.BREAD_HOE);
+        basicItem(ModItems.BREAD_HELMET.get()); basicItem(ModItems.BREAD_CHESTPLATE.get());
+        basicItem(ModItems.BREAD_LEGGINGS.get()); basicItem(ModItems.BREAD_BOOTS.get());
 
-        handheldItem(ModItems.JRAW_COPPER_SWORD);
-        handheldItem(ModItems.JRAW_COPPER_PICKAXE);
-        handheldItem(ModItems.JRAW_COPPER_SHOVEL);
-        handheldItem(ModItems.JRAW_COPPER_AXE);
-        handheldItem(ModItems.JRAW_COPPER_HOE);
+        handheldItem(ModItems.DRIED_KELP_SWORD); handheldItem(ModItems.DRIED_KELP_PICKAXE);
+        handheldItem(ModItems.DRIED_KELP_SHOVEL); handheldItem(ModItems.DRIED_KELP_AXE); handheldItem(ModItems.DRIED_KELP_HOE);
+        basicItem(ModItems.DRIED_KELP_HELMET.get()); basicItem(ModItems.DRIED_KELP_CHESTPLATE.get());
+        basicItem(ModItems.DRIED_KELP_LEGGINGS.get()); basicItem(ModItems.DRIED_KELP_BOOTS.get());
 
-        handheldItem(ModItems.JRAW_IRON_SWORD);
-        handheldItem(ModItems.JRAW_IRON_PICKAXE);
-        handheldItem(ModItems.JRAW_IRON_SHOVEL);
-        handheldItem(ModItems.JRAW_IRON_AXE);
-        handheldItem(ModItems.JRAW_IRON_HOE);
+        handheldItem(ModItems.ROTTEN_FLESH_SWORD); handheldItem(ModItems.ROTTEN_FLESH_PICKAXE);
+        handheldItem(ModItems.ROTTEN_FLESH_SHOVEL); handheldItem(ModItems.ROTTEN_FLESH_AXE); handheldItem(ModItems.ROTTEN_FLESH_HOE);
+        basicItem(ModItems.ROTTEN_FLESH_HELMET.get()); basicItem(ModItems.ROTTEN_FLESH_CHESTPLATE.get());
+        basicItem(ModItems.ROTTEN_FLESH_LEGGINGS.get()); basicItem(ModItems.ROTTEN_FLESH_BOOTS.get());
 
-        handheldItem(ModItems.JRAW_RGOLD_SWORD);
-        handheldItem(ModItems.JRAW_RGOLD_PICKAXE);
-        handheldItem(ModItems.JRAW_RGOLD_SHOVEL);
-        handheldItem(ModItems.JRAW_RGOLD_AXE);
-        handheldItem(ModItems.JRAW_RGOLD_HOE);
+        handheldItem(ModItems.MELON_SWORD); handheldItem(ModItems.MELON_PICKAXE);
+        handheldItem(ModItems.MELON_SHOVEL); handheldItem(ModItems.MELON_AXE); handheldItem(ModItems.MELON_HOE);
+        basicItem(ModItems.MELON_HELMET.get()); basicItem(ModItems.MELON_CHESTPLATE.get());
+        basicItem(ModItems.MELON_LEGGINGS.get()); basicItem(ModItems.MELON_BOOTS.get());
 
-        handheldItem(ModItems.JSCRAP_SWORD);
-        handheldItem(ModItems.JSCRAP_PICKAXE);
-        handheldItem(ModItems.JSCRAP_SHOVEL);
-        handheldItem(ModItems.JSCRAP_AXE);
-        handheldItem(ModItems.JSCRAP_HOE);
+        handheldItem(ModItems.SWEET_BERRY_SWORD); handheldItem(ModItems.SWEET_BERRY_PICKAXE);
+        handheldItem(ModItems.SWEET_BERRY_SHOVEL); handheldItem(ModItems.SWEET_BERRY_AXE); handheldItem(ModItems.SWEET_BERRY_HOE);
+        basicItem(ModItems.SWEET_BERRY_HELMET.get()); basicItem(ModItems.SWEET_BERRY_CHESTPLATE.get());
+        basicItem(ModItems.SWEET_BERRY_LEGGINGS.get()); basicItem(ModItems.SWEET_BERRY_BOOTS.get());
+
+        handheldItem(ModItems.PUMPKIN_PIE_SWORD); handheldItem(ModItems.PUMPKIN_PIE_PICKAXE);
+        handheldItem(ModItems.PUMPKIN_PIE_SHOVEL); handheldItem(ModItems.PUMPKIN_PIE_AXE); handheldItem(ModItems.PUMPKIN_PIE_HOE);
+        basicItem(ModItems.PUMPKIN_PIE_HELMET.get()); basicItem(ModItems.PUMPKIN_PIE_CHESTPLATE.get());
+        basicItem(ModItems.PUMPKIN_PIE_LEGGINGS.get()); basicItem(ModItems.PUMPKIN_PIE_BOOTS.get());
+
+        handheldItem(ModItems.MUSHROOM_SWORD); handheldItem(ModItems.MUSHROOM_PICKAXE);
+        handheldItem(ModItems.MUSHROOM_SHOVEL); handheldItem(ModItems.MUSHROOM_AXE); handheldItem(ModItems.MUSHROOM_HOE);
+        basicItem(ModItems.MUSHROOM_HELMET.get()); basicItem(ModItems.MUSHROOM_CHESTPLATE.get());
+        basicItem(ModItems.MUSHROOM_LEGGINGS.get()); basicItem(ModItems.MUSHROOM_BOOTS.get());
+
+        handheldItem(ModItems.PUFFERFISH_SWORD); handheldItem(ModItems.PUFFERFISH_PICKAXE);
+        handheldItem(ModItems.PUFFERFISH_SHOVEL); handheldItem(ModItems.PUFFERFISH_AXE); handheldItem(ModItems.PUFFERFISH_HOE);
+        basicItem(ModItems.PUFFERFISH_HELMET.get()); basicItem(ModItems.PUFFERFISH_CHESTPLATE.get());
+        basicItem(ModItems.PUFFERFISH_LEGGINGS.get()); basicItem(ModItems.PUFFERFISH_BOOTS.get());
+
+        handheldItem(ModItems.HONEY_SWORD); handheldItem(ModItems.HONEY_PICKAXE);
+        handheldItem(ModItems.HONEY_SHOVEL); handheldItem(ModItems.HONEY_AXE); handheldItem(ModItems.HONEY_HOE);
+        basicItem(ModItems.HONEY_HELMET.get()); basicItem(ModItems.HONEY_CHESTPLATE.get());
+        basicItem(ModItems.HONEY_LEGGINGS.get()); basicItem(ModItems.HONEY_BOOTS.get());
+
+        handheldItem(ModItems.CHORUS_FRUIT_SWORD); handheldItem(ModItems.CHORUS_FRUIT_PICKAXE);
+        handheldItem(ModItems.CHORUS_FRUIT_SHOVEL); handheldItem(ModItems.CHORUS_FRUIT_AXE); handheldItem(ModItems.CHORUS_FRUIT_HOE);
+        basicItem(ModItems.CHORUS_FRUIT_HELMET.get()); basicItem(ModItems.CHORUS_FRUIT_CHESTPLATE.get());
+        basicItem(ModItems.CHORUS_FRUIT_LEGGINGS.get()); basicItem(ModItems.CHORUS_FRUIT_BOOTS.get());
+
+        handheldItem(ModItems.GOLDEN_APPLE_SWORD); handheldItem(ModItems.GOLDEN_APPLE_PICKAXE);
+        handheldItem(ModItems.GOLDEN_APPLE_SHOVEL); handheldItem(ModItems.GOLDEN_APPLE_AXE); handheldItem(ModItems.GOLDEN_APPLE_HOE);
+        basicItem(ModItems.GOLDEN_APPLE_HELMET.get()); basicItem(ModItems.GOLDEN_APPLE_CHESTPLATE.get());
+        basicItem(ModItems.GOLDEN_APPLE_LEGGINGS.get()); basicItem(ModItems.GOLDEN_APPLE_BOOTS.get());
+
+        // Raw metal rough tools
+        handheldItem(ModItems.RRAW_GOLD_SWORD);
+        handheldItem(ModItems.RRAW_GOLD_PICKAXE);
+        handheldItem(ModItems.RRAW_GOLD_SHOVEL);
+        handheldItem(ModItems.RRAW_GOLD_AXE);
+        handheldItem(ModItems.RRAW_GOLD_HOE);
+
+        handheldItem(ModItems.RRAW_COPPER_SWORD);
+        handheldItem(ModItems.RRAW_COPPER_PICKAXE);
+        handheldItem(ModItems.RRAW_COPPER_SHOVEL);
+        handheldItem(ModItems.RRAW_COPPER_AXE);
+        handheldItem(ModItems.RRAW_COPPER_HOE);
+
+        handheldItem(ModItems.RRAW_IRON_SWORD);
+        handheldItem(ModItems.RRAW_IRON_PICKAXE);
+        handheldItem(ModItems.RRAW_IRON_SHOVEL);
+        handheldItem(ModItems.RRAW_IRON_AXE);
+        handheldItem(ModItems.RRAW_IRON_HOE);
+
+        handheldItem(ModItems.RRAW_RGOLD_SWORD);
+        handheldItem(ModItems.RRAW_RGOLD_PICKAXE);
+        handheldItem(ModItems.RRAW_RGOLD_SHOVEL);
+        handheldItem(ModItems.RRAW_RGOLD_AXE);
+        handheldItem(ModItems.RRAW_RGOLD_HOE);
+
+        handheldItem(ModItems.RSCRAP_SWORD);
+        handheldItem(ModItems.RSCRAP_PICKAXE);
+        handheldItem(ModItems.RSCRAP_SHOVEL);
+        handheldItem(ModItems.RSCRAP_AXE);
+        handheldItem(ModItems.RSCRAP_HOE);
 
         // Crystal / element material items
         basicItem(ModItems.CALCIFIED_AMETHYST.get());
@@ -228,12 +290,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.POLISHED_QUARTZ.get());
         basicItem(ModItems.POLISHED_PRISMARINE.get());
 
-        // Jagged crystal tools
-        handheldItem(ModItems.JAMETHYST_SWORD);
-        handheldItem(ModItems.JAMETHYST_PICKAXE);
-        handheldItem(ModItems.JAMETHYST_SHOVEL);
-        handheldItem(ModItems.JAMETHYST_AXE);
-        handheldItem(ModItems.JAMETHYST_HOE);
+        // Rough crystal tools
+        handheldItem(ModItems.RAMETHYST_SWORD);
+        handheldItem(ModItems.RAMETHYST_PICKAXE);
+        handheldItem(ModItems.RAMETHYST_SHOVEL);
+        handheldItem(ModItems.RAMETHYST_AXE);
+        handheldItem(ModItems.RAMETHYST_HOE);
 
         handheldItem(ModItems.SNOW_SWORD);
         handheldItem(ModItems.SNOW_PICKAXE);
@@ -241,19 +303,19 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SNOW_AXE);
         handheldItem(ModItems.SNOW_HOE);
 
-        handheldItem(ModItems.JQUARTZ_SWORD);
-        handheldItem(ModItems.JQUARTZ_PICKAXE);
-        handheldItem(ModItems.JQUARTZ_SHOVEL);
-        handheldItem(ModItems.JQUARTZ_AXE);
-        handheldItem(ModItems.JQUARTZ_HOE);
+        handheldItem(ModItems.RQUARTZ_SWORD);
+        handheldItem(ModItems.RQUARTZ_PICKAXE);
+        handheldItem(ModItems.RQUARTZ_SHOVEL);
+        handheldItem(ModItems.RQUARTZ_AXE);
+        handheldItem(ModItems.RQUARTZ_HOE);
 
-        handheldItem(ModItems.JPRISM_SWORD);
-        handheldItem(ModItems.JPRISM_PICKAXE);
-        handheldItem(ModItems.JPRISM_SHOVEL);
-        handheldItem(ModItems.JPRISM_AXE);
-        handheldItem(ModItems.JPRISM_HOE);
+        handheldItem(ModItems.RPRISM_SWORD);
+        handheldItem(ModItems.RPRISM_PICKAXE);
+        handheldItem(ModItems.RPRISM_SHOVEL);
+        handheldItem(ModItems.RPRISM_AXE);
+        handheldItem(ModItems.RPRISM_HOE);
 
-        // Smooth crystal tools + armor
+        // Polished crystal tools + armor
         handheldItem(ModItems.CAMETHYST_SWORD);
         handheldItem(ModItems.CAMETHYST_PICKAXE);
         handheldItem(ModItems.CAMETHYST_SHOVEL);
@@ -274,28 +336,28 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.ICE_LEGGINGS);
         trimmedArmorItem(ModItems.ICE_BOOTS);
 
-        handheldItem(ModItems.SQUARTZ_SWORD);
-        handheldItem(ModItems.SQUARTZ_PICKAXE);
-        handheldItem(ModItems.SQUARTZ_SHOVEL);
-        handheldItem(ModItems.SQUARTZ_AXE);
-        handheldItem(ModItems.SQUARTZ_HOE);
-        trimmedArmorItem(ModItems.SQUARTZ_HELMET);
-        trimmedArmorItem(ModItems.SQUARTZ_CHESTPLATE);
-        trimmedArmorItem(ModItems.SQUARTZ_LEGGINGS);
-        trimmedArmorItem(ModItems.SQUARTZ_BOOTS);
+        handheldItem(ModItems.PQUARTZ_SWORD);
+        handheldItem(ModItems.PQUARTZ_PICKAXE);
+        handheldItem(ModItems.PQUARTZ_SHOVEL);
+        handheldItem(ModItems.PQUARTZ_AXE);
+        handheldItem(ModItems.PQUARTZ_HOE);
+        trimmedArmorItem(ModItems.PQUARTZ_HELMET);
+        trimmedArmorItem(ModItems.PQUARTZ_CHESTPLATE);
+        trimmedArmorItem(ModItems.PQUARTZ_LEGGINGS);
+        trimmedArmorItem(ModItems.PQUARTZ_BOOTS);
 
-        handheldItem(ModItems.SPRISM_SWORD);
-        handheldItem(ModItems.SPRISM_PICKAXE);
-        handheldItem(ModItems.SPRISM_SHOVEL);
-        handheldItem(ModItems.SPRISM_AXE);
-        handheldItem(ModItems.SPRISM_HOE);
-        trimmedArmorItem(ModItems.SPRISM_HELMET);
-        trimmedArmorItem(ModItems.SPRISM_CHESTPLATE);
-        trimmedArmorItem(ModItems.SPRISM_LEGGINGS);
-        trimmedArmorItem(ModItems.SPRISM_BOOTS);
+        handheldItem(ModItems.PPRISM_SWORD);
+        handheldItem(ModItems.PPRISM_PICKAXE);
+        handheldItem(ModItems.PPRISM_SHOVEL);
+        handheldItem(ModItems.PPRISM_AXE);
+        handheldItem(ModItems.PPRISM_HOE);
+        trimmedArmorItem(ModItems.PPRISM_HELMET);
+        trimmedArmorItem(ModItems.PPRISM_CHESTPLATE);
+        trimmedArmorItem(ModItems.PPRISM_LEGGINGS);
+        trimmedArmorItem(ModItems.PPRISM_BOOTS);
 
         // Flint and FNI
-        handheldItem(ModItems.JFLINT_SWORD); handheldItem(ModItems.JFLINT_PICKAXE); handheldItem(ModItems.JFLINT_SHOVEL); handheldItem(ModItems.JFLINT_AXE); handheldItem(ModItems.JFLINT_HOE);
+        handheldItem(ModItems.RFLINT_SWORD); handheldItem(ModItems.RFLINT_PICKAXE); handheldItem(ModItems.RFLINT_SHOVEL); handheldItem(ModItems.RFLINT_AXE); handheldItem(ModItems.RFLINT_HOE);
         handheldItem(ModItems.FNI_SWORD); handheldItem(ModItems.FNI_PICKAXE); handheldItem(ModItems.FNI_SHOVEL); handheldItem(ModItems.FNI_AXE); handheldItem(ModItems.FNI_HOE);
         trimmedArmorItem(ModItems.FNI_HELMET);
         trimmedArmorItem(ModItems.FNI_CHESTPLATE);

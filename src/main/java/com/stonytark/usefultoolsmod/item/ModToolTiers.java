@@ -10,19 +10,19 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeTier;
 
 public class ModToolTiers {
-    public static final Tier JEMERALD = new ForgeTier(1361, 6, 4.5f, 22,
+    public static final Tier REMERALD = new ForgeTier(1361, 6, 4.5f, 22,
             ModTags.Blocks.NEEDS_JEM_TOOL, () -> Ingredient.of(Items.EMERALD),
             ModTags.Blocks.INCORRECT_JEM_TOOL);
 
-    public static final Tier SEMERALD = new ForgeTier(1561, 7, 3.2f, 30,
+    public static final Tier PEMERALD = new ForgeTier(1561, 7, 3.2f, 30,
             ModTags.Blocks.NEEDS_SEM_TOOL, () -> Ingredient.of(ModItems.SEM.get()),
             ModTags.Blocks.INCORRECT_SEM_TOOL);
 
-    public static final Tier JOBSIDIAN = new ForgeTier(1650, 9, 6f, 15,
+    public static final Tier ROBSIDIAN = new ForgeTier(1650, 9, 6f, 15,
             ModTags.Blocks.NEEDS_JOB_TOOL, () -> Ingredient.of(ModItems.OBSHARD.get()),
             ModTags.Blocks.INCORRECT_JOB_TOOL);
 
-    public static final Tier SOBSIDIAN = new ForgeTier(2031, 10, 5f, 18,
+    public static final Tier POBSIDIAN = new ForgeTier(2031, 10, 5f, 18,
             ModTags.Blocks.NEEDS_SOB_TOOL, () -> Ingredient.of(ModItems.OBINGOT.get()),
             ModTags.Blocks.INCORRECT_SOB_TOOL);
 
@@ -60,45 +60,45 @@ public class ModToolTiers {
             () -> Ingredient.of(ModItems.HARDENED_COAL.get()),
             BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
-    // ── Raw material jagged tiers ────────────────────────────────────────────
+    // ── Raw material rough tiers ────────────────────────────────────────────
 
-    /** Jagged Raw Gold — wood mining level, very fast but fragile and inaccurate. */
-    public static final Tier JRAW_GOLD = new ForgeTier(80, 12.0f, 0.0f, 25,
+    /** Rough Raw Gold — wood mining level, very fast but fragile and inaccurate. */
+    public static final Tier RRAW_GOLD = new ForgeTier(80, 12.0f, 0.0f, 25,
             BlockTags.NEEDS_STONE_TOOL,
             () -> Ingredient.of(Items.RAW_GOLD),
             BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
-    /** Jagged Raw Copper — stone mining level, decent all-rounder from raw ore. */
-    public static final Tier JRAW_COPPER = new ForgeTier(170, 5.0f, 1.0f, 10,
+    /** Rough Raw Copper — stone mining level, decent all-rounder from raw ore. */
+    public static final Tier RRAW_COPPER = new ForgeTier(170, 5.0f, 1.0f, 10,
             BlockTags.NEEDS_IRON_TOOL,
             () -> Ingredient.of(Items.RAW_COPPER),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
 
-    /** Jagged Raw Iron — iron mining level, slightly weaker than refined iron. */
-    public static final Tier JRAW_IRON = new ForgeTier(200, 5.5f, 1.5f, 10,
+    /** Rough Raw Iron — iron mining level, slightly weaker than refined iron. */
+    public static final Tier RRAW_IRON = new ForgeTier(200, 5.5f, 1.5f, 10,
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(Items.RAW_IRON),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
 
-    /** Jagged Raw Ferrous Gold — iron mining level, bridge between raw and refined rgold. */
-    public static final Tier JRAW_RGOLD = new ForgeTier(600, 7.0f, 2.0f, 14,
+    /** Rough Raw Ferrous Gold — iron mining level, bridge between raw and refined rgold. */
+    public static final Tier RRAW_RGOLD = new ForgeTier(600, 7.0f, 2.0f, 14,
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(ModItems.RAW_RGOLD.get()),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
 
-    /** Jagged Netherite Scrap — diamond mining level, partially processed ancient metal. */
-    public static final Tier JSCRAP = new ForgeTier(800, 7.5f, 2.5f, 12,
+    /** Rough Netherite Scrap — diamond mining level, partially processed ancient metal. */
+    public static final Tier RSCRAP = new ForgeTier(800, 7.5f, 2.5f, 12,
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(Items.NETHERITE_SCRAP),
             BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
 
-    // ── Crystal / element jagged tiers (tools-only) ────────────────────────────
+    // ── Crystal / element rough tiers (tools-only) ────────────────────────────
 
     /**
-     * Jagged Amethyst — stone mining level.
-     * Geode shards are mid-game but unrefined; comparable to JRAW_COPPER but enchantable.
+     * Rough Amethyst — stone mining level.
+     * Geode shards are mid-game but unrefined; comparable to RRAW_COPPER but enchantable.
      */
-    public static final Tier JAMETHYST = new ForgeTier(250, 5.0f, 1.5f, 12,
+    public static final Tier RAMETHYST = new ForgeTier(250, 5.0f, 1.5f, 12,
             BlockTags.NEEDS_IRON_TOOL,
             () -> Ingredient.of(Items.AMETHYST_SHARD),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
@@ -113,19 +113,19 @@ public class ModToolTiers {
             BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
     /**
-     * Jagged Quartz — stone mining level, slightly faster than amethyst.
+     * Rough Quartz — stone mining level, slightly faster than amethyst.
      * Nether quartz requires portal access, giving it a speed edge.
      */
-    public static final Tier JQUARTZ = new ForgeTier(310, 5.5f, 1.5f, 10,
+    public static final Tier RQUARTZ = new ForgeTier(310, 5.5f, 1.5f, 10,
             BlockTags.NEEDS_IRON_TOOL,
             () -> Ingredient.of(Items.QUARTZ),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
 
     /**
-     * Jagged Prismarine — stone mining level, slightly weaker than amethyst.
+     * Rough Prismarine — stone mining level, slightly weaker than amethyst.
      * Prismarine shards require defeating guardians but are still raw crystal.
      */
-    public static final Tier JPRISM = new ForgeTier(240, 4.5f, 1.5f, 8,
+    public static final Tier RPRISM = new ForgeTier(240, 4.5f, 1.5f, 8,
             BlockTags.NEEDS_IRON_TOOL,
             () -> Ingredient.of(Items.PRISMARINE_SHARD),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
@@ -261,10 +261,10 @@ public class ModToolTiers {
     // ── Flint / Flint-Iron tiers ─────────────────────────────────────────────────
 
     /**
-     * Jagged Flint — stone mining level, primitive but accessible.
-     * Chipped shards from flint nodules; worse stats than JAMETHYST but found near surface.
+     * Rough Flint — stone mining level, primitive but accessible.
+     * Chipped shards from flint nodules; worse stats than RAMETHYST but found near surface.
      */
-    public static final Tier JFLINT = new ForgeTier(200, 4.5f, 0.5f, 5,
+    public static final Tier RFLINT = new ForgeTier(200, 4.5f, 0.5f, 5,
             BlockTags.NEEDS_IRON_TOOL,
             () -> Ingredient.of(Items.FLINT),
             BlockTags.INCORRECT_FOR_STONE_TOOL);
@@ -278,7 +278,7 @@ public class ModToolTiers {
             () -> Ingredient.of(Items.FLINT),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
 
-    // ── Crystal / element smooth tiers (tools + armor) ─────────────────────────
+    // ── Crystal / element polished tiers (tools + armor) ─────────────────────────
 
     /**
      * Calcified Amethyst — iron mining level.
@@ -299,22 +299,33 @@ public class ModToolTiers {
             BlockTags.INCORRECT_FOR_STONE_TOOL);
 
     /**
-     * Smooth Quartz — iron mining level, best durability of the smooth set.
+     * Polished Quartz — iron mining level, best durability of the polished set.
      * Polished nether quartz; durable and reliable.
      */
-    public static final Tier SQUARTZ = new ForgeTier(640, 7.0f, 2.5f, 10,
+    public static final Tier PQUARTZ = new ForgeTier(640, 7.0f, 2.5f, 10,
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(ModItems.POLISHED_QUARTZ.get()),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
 
     /**
-     * Smooth Prismarine — iron mining level.
+     * Polished Prismarine — iron mining level.
      * Polished ocean crystal; balanced between camethyst and glacial.
      */
-    public static final Tier SPRISM = new ForgeTier(560, 6.5f, 2.0f, 12,
+    public static final Tier PPRISM = new ForgeTier(560, 6.5f, 2.0f, 12,
             BlockTags.NEEDS_DIAMOND_TOOL,
             () -> Ingredient.of(ModItems.POLISHED_PRISMARINE.get()),
             BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    // ── Leather tier ────────────────────────────────────────────────────────────
+
+    /**
+     * Leather — extremely weak, barely functional tools.
+     * Floppy and dull; worse than wood in every way. Repaired with leather.
+     */
+    public static final Tier LEATHER = new ForgeTier(15, 1.5f, 0.0f, 12,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.LEATHER),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
     // ── Cake tier ──────────────────────────────────────────────────────────────
 
@@ -327,14 +338,211 @@ public class ModToolTiers {
             () -> Ingredient.of(Items.CAKE),
             BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
+    // ── Food tiers (edible novelty sets) ──────────────────────────────────────
+
+    public static final Tier BREAD = new ForgeTier(25, 1.5f, 0.0f, 2,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.BREAD),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier DRIED_KELP = new ForgeTier(15, 1.0f, 0.5f, 1,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.DRIED_KELP),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier ROTTEN_FLESH = new ForgeTier(30, 0.5f, 0.0f, 3,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.ROTTEN_FLESH),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier MELON = new ForgeTier(50, 2.5f, 0.5f, 4,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.MELON_SLICE),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier SWEET_BERRIES = new ForgeTier(45, 2.0f, 1.0f, 5,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.SWEET_BERRIES),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier PUMPKIN_PIE = new ForgeTier(55, 2.0f, 0.5f, 7,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.PUMPKIN_PIE),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    public static final Tier MUSHROOM = new ForgeTier(100, 4.0f, 1.0f, 10,
+            BlockTags.INCORRECT_FOR_STONE_TOOL,
+            () -> Ingredient.of(Items.RED_MUSHROOM),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    public static final Tier PUFFERFISH = new ForgeTier(80, 3.5f, 1.5f, 8,
+            BlockTags.INCORRECT_FOR_STONE_TOOL,
+            () -> Ingredient.of(Items.PUFFERFISH),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    public static final Tier HONEY = new ForgeTier(120, 4.0f, 1.0f, 10,
+            BlockTags.INCORRECT_FOR_STONE_TOOL,
+            () -> Ingredient.of(Items.HONEY_BOTTLE),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    public static final Tier CHORUS_FRUIT = new ForgeTier(250, 6.0f, 2.0f, 15,
+            BlockTags.INCORRECT_FOR_IRON_TOOL,
+            () -> Ingredient.of(Items.CHORUS_FRUIT),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    public static final Tier GOLDEN_APPLE = new ForgeTier(300, 7.0f, 2.5f, 22,
+            BlockTags.INCORRECT_FOR_IRON_TOOL,
+            () -> Ingredient.of(Items.GOLDEN_APPLE),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    // ── Vanilla material tiers ────────────────────────────────────────────────────
+
+    /** Paper — ultra-weak novelty. Softer than tissue paper. */
+    public static final Tier PAPER = new ForgeTier(8, 1.0f, 0.0f, 8,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.PAPER),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Feather — ultra-weak novelty. Light and enchantable but useless in combat. */
+    public static final Tier FEATHER = new ForgeTier(10, 1.5f, 0.0f, 15,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.FEATHER),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Glass — extremely fragile but sharp and fast. Shatters spectacularly. */
+    public static final Tier GLASS = new ForgeTier(5, 5.0f, 1.0f, 1,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.GLASS_PANE),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Cactus — prickly wood-tier. Deals thorn damage on hit. */
+    public static final Tier CACTUS = new ForgeTier(70, 2.5f, 1.5f, 5,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.CACTUS),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Sponge — absorbent but terrible as a weapon. Can soak up water. */
+    public static final Tier SPONGE = new ForgeTier(40, 1.5f, 0.0f, 3,
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            () -> Ingredient.of(Items.SPONGE),
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+    /** Bone — low-mid tier, effective against undead. */
+    public static final Tier BONE = new ForgeTier(150, 3.5f, 1.0f, 6,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.BONE),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Clay — low-mid tier, malleable and enchantable. */
+    public static final Tier CLAY = new ForgeTier(90, 2.5f, 0.5f, 8,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.CLAY_BALL),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Nether Wart — low-mid tier, inflicts wither on hit. */
+    public static final Tier NETHER_WART = new ForgeTier(100, 3.0f, 0.5f, 10,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.NETHER_WART),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Brick — mid stone-tier, durable and reliable. */
+    public static final Tier BRICK = new ForgeTier(200, 4.0f, 1.5f, 5,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.BRICK),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Nether Brick — mid stone-tier, inflicts fire on hit. */
+    public static final Tier NETHER_BRICK = new ForgeTier(220, 4.0f, 1.5f, 5,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.NETHER_BRICK),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Pointed Dripstone — mid stone-tier, pierces armor. */
+    public static final Tier POINTED_DRIPSTONE = new ForgeTier(160, 4.5f, 2.0f, 4,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.POINTED_DRIPSTONE),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Copper — mid stone-tier, oxidizes over time. */
+    public static final Tier COPPER = new ForgeTier(200, 5.0f, 1.5f, 8,
+            BlockTags.NEEDS_IRON_TOOL,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+    /** Phantom Membrane — upper-mid tier, grants slow falling. */
+    public static final Tier PHANTOM_MEMBRANE = new ForgeTier(250, 5.0f, 1.5f, 12,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.PHANTOM_MEMBRANE),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Magma Cream — upper-mid tier, sets targets on fire. */
+    public static final Tier MAGMA_CREAM = new ForgeTier(200, 4.5f, 2.0f, 8,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.MAGMA_CREAM),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Slime — upper-mid tier, bouncy knockback. */
+    public static final Tier SLIME = new ForgeTier(180, 3.5f, 0.5f, 10,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.SLIME_BALL),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Blaze Rod — iron-level, auto-smelts and ignites. */
+    public static final Tier BLAZE_ROD = new ForgeTier(300, 6.0f, 2.0f, 10,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.BLAZE_ROD),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Nautilus Shell — iron-level, conduit affinity. */
+    public static final Tier NAUTILUS_SHELL = new ForgeTier(280, 5.5f, 2.0f, 14,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.NAUTILUS_SHELL),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Purpur — iron-level, ender resilience. */
+    public static final Tier PURPUR = new ForgeTier(320, 6.0f, 2.0f, 12,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.POPPED_CHORUS_FRUIT),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Ghast Tear — above-iron, regeneration. */
+    public static final Tier GHAST_TEAR = new ForgeTier(400, 6.5f, 2.5f, 18,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.GHAST_TEAR),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Eye of Ender — above-iron, ender sight. */
+    public static final Tier EYE_OF_ENDER = new ForgeTier(450, 7.0f, 2.5f, 20,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.ENDER_EYE),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Shulker Shell — above-iron, levitation shield. */
+    public static final Tier SHULKER_SHELL = new ForgeTier(500, 6.0f, 2.0f, 16,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.SHULKER_SHELL),
+            BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+    /** Echo Shard — diamond-adjacent, sculk resonance. */
+    public static final Tier ECHO_SHARD = new ForgeTier(600, 7.5f, 3.0f, 18,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.ECHO_SHARD),
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+    /** Dragon's Breath — diamond-adjacent endgame, draconic aura. */
+    public static final Tier DRAGON_BREATH = new ForgeTier(700, 8.0f, 3.5f, 20,
+            BlockTags.NEEDS_DIAMOND_TOOL,
+            () -> Ingredient.of(Items.DRAGON_BREATH),
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
     // ── Ectoplasm tiers ─────────────────────────────────────────────────────────
 
     /**
-     * Jagged Ectoplasm — stone mining level, raw spectral shards.
+     * Rough Ectoplasm — stone mining level, raw spectral shards.
      * Crude weapons carved from raw ectoplasm; come pre-infused
      * and can damage ghosts. Lower stats than refined ectoplasm tools.
      */
-    public static final Tier JECTO = new ForgeTier(150, 4.5f, 1.5f, 10,
+    public static final Tier RECTO = new ForgeTier(150, 4.5f, 1.5f, 10,
             ModTags.Blocks.NEEDS_ECTO_TOOL,
             () -> Ingredient.of(ModItems.ECTOPLASM.get()),
             ModTags.Blocks.INCORRECT_ECTO_TOOL);
