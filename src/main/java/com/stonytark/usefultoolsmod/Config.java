@@ -198,8 +198,8 @@ public class Config {
                 .define("enabled", true);
         GHOST_SPAWN_CHANCE = BUILDER
                 .comment("Fraction of natural ghost spawn attempts that actually succeed (0.0 - 1.0).",
-                         "Higher values make ghosts more common. Default is 0.65.")
-                .defineInRange("spawnChance", 0.65, 0.0, 1.0);
+                         "Higher values make ghosts more common. Default is 0.15.")
+                .defineInRange("spawnChance", 0.15, 0.0, 1.0);
         BUILDER.pop();
 
         BUILDER.push("spectralInfuser");
@@ -477,7 +477,7 @@ public class Config {
     // Effect flags
     public static boolean opToolEffectsEnabled = true;
     public static boolean opArmorEffectsEnabled = true;
-    public static double ghostSpawnChance = 0.65;
+    public static double ghostSpawnChance = 0.15;
     public static boolean snowMeltEffects = true;
     public static boolean iceEffects = true;
     public static boolean pprismWaterEffects = true;

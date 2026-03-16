@@ -13,6 +13,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 
 import java.util.ArrayList;
@@ -45,6 +46,12 @@ public class UsefulToolsJeiPlugin implements IModPlugin {
                 recipes.add(new SpectralInfuserRecipe(input, ectoplasm, output));
             }
         });
+
+        // Egg + Ectoplasm → Ghost Spawn Egg
+        recipes.add(new SpectralInfuserRecipe(
+                new ItemStack(Items.EGG),
+                ectoplasm,
+                new ItemStack(ModItems.GHOST_SPAWN_EGG.get())));
 
         registration.addRecipes(SpectralInfuserRecipeCategory.TYPE, recipes);
     }

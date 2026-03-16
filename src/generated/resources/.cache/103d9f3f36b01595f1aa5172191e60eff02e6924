@@ -1,8 +1,10 @@
-// 1.21.1	2026-03-05T00:02:44.35550282	Registries
+// 1.21.1	2026-03-15T23:18:12.712784779	Registries
 560e3d46fd0dccadaf034c420b0abbdf988f5730 data/usefultoolsmod/forge/biome_modifier/add_end_rgold_ore.json
 238246135065e70b6ea252f49f174057656fe65a data/usefultoolsmod/forge/biome_modifier/add_nether_rgold_ore.json
 8594b98a5eac3651eb15b2361243e9694565b5f2 data/usefultoolsmod/forge/biome_modifier/add_rgold_ore.json
-b2c7d03fed4cfd6933acfd4a45d23069eed9c4e4 data/usefultoolsmod/forge/biome_modifier/spawn_ghost.json
+51dd1cff3c601fe739e2498c136214edfb2e11f8 data/usefultoolsmod/forge/biome_modifier/spawn_ghost.json
+a9d38be1034fd734adcbf5bd7cdf4b4174b6461a data/usefultoolsmod/forge/biome_modifier/spawn_ghost_end.json
+cc397b854953b0b9b554756996be31cbb73b8b8c data/usefultoolsmod/forge/biome_modifier/spawn_ghost_nether.json
 1407105a450d50d1d64a18ecbe1f09f6a1158b14 data/usefultoolsmod/worldgen/configured_feature/end_rgold_ore.json
 0f697916a62921206590955fbb742f1739501f1e data/usefultoolsmod/worldgen/configured_feature/nether_rgold_ore.json
 8f9df8c3b6062c21d062ef72c5a9c07a321679cc data/usefultoolsmod/worldgen/configured_feature/rgold_ore.json

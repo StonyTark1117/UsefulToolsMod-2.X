@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -194,12 +195,19 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
 
     private void craftItem() {
         ItemStack input = itemHandler.getStackInSlot(0);
-        ItemStack result = input.copy();
-        // Reset durability to full
-        if (result.has(DataComponents.DAMAGE)) {
-            result.set(DataComponents.DAMAGE, 0);
+        ItemStack result;
+
+        if (input.is(Items.EGG)) {
+            // Egg + Ectoplasm → Ghost Spawn Egg
+            result = new ItemStack(ModItems.GHOST_SPAWN_EGG.get());
+        } else {
+            result = input.copy();
+            // Reset durability to full
+            if (result.has(DataComponents.DAMAGE)) {
+                result.set(DataComponents.DAMAGE, 0);
+            }
+            EctoplasmInfusionHelper.setInfused(result, true);
         }
-        EctoplasmInfusionHelper.setInfused(result, true);
 
         itemHandler.setStackInSlot(2, result);
         itemHandler.setStackInSlot(0, ItemStack.EMPTY);
@@ -213,6 +221,7 @@ public class SpectralInfuserBlockEntity extends BlockEntity implements MenuProvi
     public static boolean isInfusable(ItemStack stack) {
         if (stack.isEmpty()) return false;
         return stack.getItem() instanceof TieredItem
-                || stack.getItem() instanceof ArmorItem;
+                || stack.getItem() instanceof ArmorItem
+                || stack.is(Items.EGG);
     }
 }

@@ -695,6 +695,29 @@ public class ModEvents {
         return !stack.isEmpty() && stack.getItem() instanceof CoalArmorItem;
     }
 
+    private static boolean isOpTool(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        return stack.is(ModItems.OVERPOWER_SWORD.get())
+            || stack.is(ModItems.OVERPOWER_PICKAXE.get())
+            || stack.is(ModItems.OVERPOWER_SHOVEL.get())
+            || stack.is(ModItems.OVERPOWER_AXE.get());
+    }
+
+    private static boolean isOpArmor(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
+        return ModArmorMaterials.OVERPOWER_ARMOR_MATERIAL.is(armor.getMaterial());
+    }
+
+    private static boolean isFniArmor(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
+        return ModArmorMaterials.FNI_ARMOR_MATERIAL.is(armor.getMaterial());
+    }
+
+    private static boolean isEctoArmor(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof ArmorItem armor)) return false;
+        return ModArmorMaterials.ECTO_ARMOR_MATERIAL.is(armor.getMaterial());
+    }
+
     private static boolean isWearingAnyCoalArmor(Player player) {
         for (EquipmentSlot slot : ARMOR_SLOTS) {
             if (isCoalArmor(player.getItemBySlot(slot))) return true;
@@ -839,59 +862,226 @@ public class ModEvents {
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
+        List<Component> tips = event.getToolTip();
 
+        // --- Ectoplasm-infused items ---
         if (EctoplasmInfusionHelper.isInfused(stack)) {
-            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.ectoplasm_infused")
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ectoplasm_infused")
                     .withStyle(ChatFormatting.DARK_AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_can_damage_ghosts")
+                    .withStyle(ChatFormatting.GRAY));
             if (stack.getItem() instanceof PickaxeItem) {
-                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_sight")
+                tips.add(Component.translatable("tooltip.usefultoolsmod.spectral_sight")
                         .withStyle(ChatFormatting.GRAY));
             } else if (stack.getItem() instanceof ShovelItem) {
-                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_efficiency")
+                tips.add(Component.translatable("tooltip.usefultoolsmod.spectral_efficiency")
                         .withStyle(ChatFormatting.GRAY));
             } else if (stack.getItem() instanceof HoeItem) {
-                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.spectral_fortune")
+                tips.add(Component.translatable("tooltip.usefultoolsmod.spectral_fortune")
                         .withStyle(ChatFormatting.GRAY));
             }
         }
 
-        // Coal tools / armor
+        // --- Coal tools / armor ---
         if (isCoalTool(stack) || isCoalArmor(stack)) {
             if (CoalBurningHelper.isBurning(stack)) {
-                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.burning")
+                tips.add(Component.translatable("tooltip.usefultoolsmod.burning")
                         .withStyle(ChatFormatting.RED));
-                // Coal tools: -2 dur/s, coal armor: -1 dur/s
                 double drainPerSecond = isCoalTool(stack) ? 2.0 : 1.0;
                 addTimeRemaining(event, stack, drainPerSecond);
             } else {
-                event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.flammable")
+                tips.add(Component.translatable("tooltip.usefultoolsmod.flammable")
                         .withStyle(ChatFormatting.GOLD));
             }
         }
 
-        // Snow tools
+        // --- Snow tools ---
         if (isSnowTool(stack)) {
-            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
+            tips.add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
                     .withStyle(ChatFormatting.AQUA));
-            // -1 dur / 40 ticks = 0.5 dur/s
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fire_protection")
+                    .withStyle(ChatFormatting.GRAY));
             addTimeRemaining(event, stack, 0.5);
         }
 
-        // Ice tools
+        // --- Ice tools ---
         if (isIceTool(stack)) {
-            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
+            tips.add(Component.translatable("tooltip.usefultoolsmod.melts_when_held")
                     .withStyle(ChatFormatting.AQUA));
-            // -1 dur / 60 ticks = 1/3 dur/s
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fire_protection")
+                    .withStyle(ChatFormatting.GRAY));
             addTimeRemaining(event, stack, 1.0 / 3.0);
         }
 
-        // Ice armor
+        // --- Ice armor ---
         if (isIceArmor(stack)) {
-            event.getToolTip().add(Component.translatable("tooltip.usefultoolsmod.melts_when_worn")
+            tips.add(Component.translatable("tooltip.usefultoolsmod.melts_when_worn")
                     .withStyle(ChatFormatting.AQUA));
-            // -1 dur / 60 ticks = 1/3 dur/s
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ice_armor_fire_prot")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ice_armor_water")
+                    .withStyle(ChatFormatting.GRAY));
             addTimeRemaining(event, stack, 1.0 / 3.0);
         }
+
+        // --- OP tools ---
+        if (isOpTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.op_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            String key = stack.is(ModItems.OVERPOWER_SWORD.get()) ? "op_sword"
+                    : stack.is(ModItems.OVERPOWER_PICKAXE.get()) ? "op_pickaxe"
+                    : stack.is(ModItems.OVERPOWER_SHOVEL.get()) ? "op_shovel" : "op_axe";
+            tips.add(Component.translatable("tooltip.usefultoolsmod." + key)
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- OP armor ---
+        if (isOpArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.op_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.op_armor")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Polished Prismarine tools ---
+        if (isPprismTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.pprism_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.pprism_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Polished Prismarine armor ---
+        if (isPprismArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.pprism_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            addArmorSlotTooltip(tips, stack, "pprism");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.pprism_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- FNI tools ---
+        if (isFniTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fni_header")
+                    .withStyle(ChatFormatting.GOLD));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fni_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- FNI armor ---
+        if (isFniArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fni_header")
+                    .withStyle(ChatFormatting.GOLD));
+            if (stack.getItem() instanceof ArmorItem a) {
+                if (a.getType() == ArmorItem.Type.BOOTS) {
+                    tips.add(Component.translatable("tooltip.usefultoolsmod.fni_boots")
+                            .withStyle(ChatFormatting.GRAY));
+                }
+            }
+            tips.add(Component.translatable("tooltip.usefultoolsmod.fni_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Ecto armor ---
+        if (isEctoArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_ghost_avoid")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_wall_phase")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Cake armor ---
+        if (isCakeArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cake_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            addArmorSlotTooltip(tips, stack, "cake");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cake_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Food tools (on-hit effects) ---
+        addFoodToolTooltip(tips, stack);
+
+        // --- Food armor (per-slot + full set) ---
+        addFoodArmorTooltip(tips, stack);
+
+        // --- All food tools/armor: edible + hunger drain ---
+        if ((isFoodTool(stack) || isFoodArmor(stack)) && stack.isDamageableItem()) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.food_edible")
+                    .withStyle(ChatFormatting.GREEN));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.food_hunger_drain")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Grenade ---
+        if (stack.is(ModItems.GRENADE.get())) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.grenade_throw")
+                    .withStyle(ChatFormatting.RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.grenade_radius")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Dynamite ---
+        if (stack.is(ModItems.DYNAMITE.get())) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dynamite_use")
+                    .withStyle(ChatFormatting.DARK_RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dynamite_radius")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dynamite_warning")
+                    .withStyle(ChatFormatting.RED));
+        }
+    }
+
+    private static void addArmorSlotTooltip(List<Component> tips, ItemStack stack, String prefix) {
+        if (!(stack.getItem() instanceof ArmorItem armor)) return;
+        String slot = switch (armor.getType()) {
+            case BOOTS -> "boots";
+            case LEGGINGS -> "leggings";
+            case CHESTPLATE -> "chestplate";
+            case HELMET -> "helmet";
+            default -> null;
+        };
+        if (slot != null) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod." + prefix + "_" + slot)
+                    .withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    private static void addFoodToolTooltip(List<Component> tips, ItemStack stack) {
+        String key = null;
+        if (isHoneyTool(stack)) key = "honey_tool";
+        else if (isPufferfishTool(stack)) key = "pufferfish_tool";
+        else if (isSweetBerryTool(stack)) key = "sweet_berry_tool";
+        else if (isRottenFleshTool(stack)) key = "rotten_flesh_tool";
+        else if (isMushroomTool(stack)) key = "mushroom_tool";
+        else if (isChorusFruitTool(stack)) key = "chorus_fruit_tool";
+        if (key != null) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod." + key)
+                    .withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    private static void addFoodArmorTooltip(List<Component> tips, ItemStack stack) {
+        String prefix = null;
+        ChatFormatting color = ChatFormatting.YELLOW;
+        if (isBreadArmor(stack))         prefix = "bread";
+        else if (isDriedKelpArmor(stack)) { prefix = "dried_kelp"; color = ChatFormatting.GREEN; }
+        else if (isRottenFleshArmor(stack)) { prefix = "rotten_flesh"; color = ChatFormatting.DARK_RED; }
+        else if (isMelonArmor(stack))    { prefix = "melon"; color = ChatFormatting.GREEN; }
+        else if (isSweetBerryArmor(stack)) { prefix = "sweet_berry"; color = ChatFormatting.RED; }
+        else if (isPumpkinPieArmor(stack)) { prefix = "pumpkin_pie"; color = ChatFormatting.GOLD; }
+        else if (isMushroomArmor(stack)) { prefix = "mushroom"; color = ChatFormatting.RED; }
+        else if (isPufferfishArmor(stack)) { prefix = "pufferfish"; color = ChatFormatting.YELLOW; }
+        else if (isHoneyArmor(stack))    { prefix = "honey"; color = ChatFormatting.GOLD; }
+        else if (isChorusFruitArmor(stack)) { prefix = "chorus_fruit"; color = ChatFormatting.LIGHT_PURPLE; }
+        else if (isGoldenAppleArmor(stack)) { prefix = "golden_apple"; color = ChatFormatting.GOLD; }
+        if (prefix == null) return;
+
+        addArmorSlotTooltip(tips, stack, prefix);
+        tips.add(Component.translatable("tooltip.usefultoolsmod." + prefix + "_full_set")
+                .withStyle(ChatFormatting.DARK_GREEN));
     }
 
     private static void addTimeRemaining(ItemTooltipEvent event, ItemStack stack, double drainPerSecond) {
@@ -919,99 +1109,91 @@ public class ModEvents {
     /** Tracks which players are currently phasing through walls. */
     private static final Set<UUID> PHASING_PLAYERS = new HashSet<>();
 
+    /** Cooldown to prevent spamming the phase teleport (ticks). */
+    private static final Map<UUID, Integer> PHASE_COOLDOWNS = new HashMap<>();
+
     /**
      * Full ecto armor set allows the player to phase through walls ≤ 3 blocks thick.
-     * When inside a solid block: noPhysics=true, Slowness I, SOUL_FIRE_FLAME particles.
-     * If the player loses armor while inside a wall, they are teleported to safety.
+     * Sneak while walking into a wall to teleport to the other side.
+     * Uses teleportation because Player.tick() resets noPhysics every tick.
      */
     private static void handleEctoWallPhasing(Player player) {
         boolean hasFullSet = EctoplasmArmorHelper.hasFullEctoArmorSet(player);
-        boolean isPhasing = PHASING_PLAYERS.contains(player.getUUID());
+        if (!hasFullSet || !player.isShiftKeyDown()) return;
+
+        UUID uuid = player.getUUID();
+        int cooldown = PHASE_COOLDOWNS.getOrDefault(uuid, 0);
+        if (cooldown > 0) {
+            PHASE_COOLDOWNS.put(uuid, cooldown - 1);
+            return;
+        }
+
         Level level = player.level();
         BlockPos feetPos = player.blockPosition();
-        BlockPos headPos = feetPos.above();
+        Direction dir = getHorizontalLookDirection(player);
+        BlockPos ahead = feetPos.relative(dir);
 
-        boolean inSolid = !level.getBlockState(feetPos).getCollisionShape(level, feetPos).isEmpty()
-                       || !level.getBlockState(headPos).getCollisionShape(level, headPos).isEmpty();
-
-        if (hasFullSet && inSolid && (isPhasing || player.isShiftKeyDown())) {
-            // Must sneak to initiate phasing; once inside, continue until exit
-            if (!isPhasing) {
-                // Entering wall — check thickness
-                int thickness = measureWallThickness(player, level);
-                if (thickness > 3 || thickness == 0) {
-                    // Wall too thick or couldn't find exit; deny entry
-                    player.noPhysics = false;
-                    return;
-                }
-            }
-
-            // Allow phasing
-            player.noPhysics = true;
-            PHASING_PLAYERS.add(player.getUUID());
-
-            // Apply Slowness I while phasing
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 0, false, false, true));
-
-            // Spawn particles
-            if (level instanceof ServerLevel serverLevel && player.tickCount % 4 == 0) {
-                serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
-                        player.getX(), player.getY() + 1.0, player.getZ(),
-                        3, 0.3, 0.5, 0.3, 0.01);
-            }
-        } else if (isPhasing) {
-            // Player left the wall or lost armor
-            player.noPhysics = false;
-            PHASING_PLAYERS.remove(player.getUUID());
-
-            if (!hasFullSet && inSolid) {
-                // Lost armor while inside wall — teleport to safety
-                teleportToSafety(player, level);
-            }
-        } else {
-            // Not phasing, not in solid — ensure noPhysics is off
-            player.noPhysics = false;
+        // Check if the player is pushing into a wall (block directly ahead is solid)
+        if (!hasCollision(level, ahead) && !hasCollision(level, ahead.above())) {
+            return; // No wall ahead
         }
+
+        // Measure wall thickness and find the exit position
+        int thickness = 0;
+        BlockPos exitPos = null;
+        for (int i = 1; i <= 3; i++) {
+            BlockPos check = feetPos.relative(dir, i);
+            if (hasCollision(level, check) || hasCollision(level, check.above())) {
+                thickness++;
+            } else {
+                // Found open air — this is the exit
+                // Also verify head clearance
+                if (!hasCollision(level, check.above())) {
+                    exitPos = check;
+                }
+                break;
+            }
+        }
+
+        if (exitPos == null || thickness == 0) return; // No valid exit or wall too thick
+
+        // Teleport to the center of the exit block
+        double tx = exitPos.getX() + 0.5;
+        double ty = exitPos.getY();
+        double tz = exitPos.getZ() + 0.5;
+        player.teleportTo(tx, ty, tz);
+
+        // Effects
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 0, false, false, true));
+
+        if (level instanceof ServerLevel serverLevel) {
+            // Particles at entry
+            serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                    player.xo, player.yo + 1.0, player.zo,
+                    8, 0.3, 0.5, 0.3, 0.02);
+            // Particles at exit
+            serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                    tx, ty + 1.0, tz,
+                    8, 0.3, 0.5, 0.3, 0.02);
+        }
+
+        // Cooldown: 10 ticks (half second) before next phase
+        PHASE_COOLDOWNS.put(uuid, 10);
     }
 
-    /**
-     * Measures how many consecutive solid blocks exist from the player's position
-     * outward in their horizontal look direction. Returns 0 if no exit found within 4 blocks.
-     */
-    private static int measureWallThickness(Player player, Level level) {
-        // Get horizontal look direction as a unit vector
+    private static Direction getHorizontalLookDirection(Player player) {
         float yaw = player.getYRot();
         double dx = -Math.sin(Math.toRadians(yaw));
         double dz = Math.cos(Math.toRadians(yaw));
-
-        // Normalize to dominant axis for block scanning
-        Direction dir;
         if (Math.abs(dx) > Math.abs(dz)) {
-            dir = dx > 0 ? Direction.EAST : Direction.WEST;
+            return dx > 0 ? Direction.EAST : Direction.WEST;
         } else {
-            dir = dz > 0 ? Direction.SOUTH : Direction.NORTH;
+            return dz > 0 ? Direction.SOUTH : Direction.NORTH;
         }
+    }
 
-        BlockPos checkPos = player.blockPosition();
-        int solidCount = 0;
-
-        for (int i = 0; i < 4; i++) {
-            checkPos = checkPos.relative(dir);
-            BlockPos checkHead = checkPos.above();
-
-            boolean feetSolid = !level.getBlockState(checkPos).getCollisionShape(level, checkPos).isEmpty();
-            boolean headSolid = !level.getBlockState(checkHead).getCollisionShape(level, checkHead).isEmpty();
-
-            if (feetSolid || headSolid) {
-                solidCount++;
-            } else {
-                // Found exit
-                return solidCount;
-            }
-        }
-
-        // No exit within 4 blocks
-        return 0;
+    private static boolean hasCollision(Level level, BlockPos pos) {
+        return !level.getBlockState(pos).getCollisionShape(level, pos).isEmpty();
     }
 
     // -----------------------------------------------------------------------

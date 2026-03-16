@@ -125,6 +125,16 @@ repositories {
         content { includeGroup "mezz.jei" }
     }
 
+    // WTHIT (What The Hell Is That)
+    maven {
+        name = "bai's maven"
+        url = "https://maven2.bai.lol"
+        content {
+            includeGroup "lol.bai"
+            includeGroup "mcp.mobius.waila"
+        }
+    }
+
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     // flatDir {
@@ -143,6 +153,11 @@ dependencies {
     // JEI — compile against API only, full jar at runtime
     compileOnly "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+
+    // WTHIT — compile against API only, full jar at runtime
+    compileOnly fg.deobf("mcp.mobius.waila:wthit-api:forge-${wthit_version}")
+    runtimeOnly fg.deobf("mcp.mobius.waila:wthit:forge-${wthit_version}")
+    runtimeOnly fg.deobf("lol.bai:badpackets:forge-${badpackets_version}")
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

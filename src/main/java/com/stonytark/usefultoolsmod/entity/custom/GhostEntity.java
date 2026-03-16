@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -27,7 +28,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -102,6 +105,20 @@ public class GhostEntity extends Animal {
                 .add(Attributes.FLYING_SPEED, 0.6D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D);
+    }
+
+    /* --------------- Spawn rules --------------- */
+
+    public static boolean checkGhostSpawnRules(EntityType<? extends Animal> type, LevelAccessor level,
+                                               MobSpawnType reason, BlockPos pos, RandomSource random) {
+        // Allow spawning anywhere — no block or light restrictions.
+        // Night-time propensity: 3× more likely at night (light level 0-3) vs daytime.
+        int skyLight = level.getMaxLocalRawBrightness(pos);
+        if (skyLight > 3) {
+            // Daytime / bright area — only 1-in-3 attempts succeed
+            return random.nextInt(3) == 0;
+        }
+        return true;
     }
 
     /* --------------- Immunities / Physics --------------- */

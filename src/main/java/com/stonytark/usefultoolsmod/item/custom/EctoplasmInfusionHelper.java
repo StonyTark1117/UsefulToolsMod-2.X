@@ -17,9 +17,20 @@ public final class EctoplasmInfusionHelper {
 
     public static boolean isInfused(ItemStack stack) {
         if (stack.isEmpty()) return false;
+        // Ecto tools are inherently infused — no tag check needed
+        if (isEctoItem(stack.getItem())) return true;
         CustomData data = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
         if (data.isEmpty()) return false;
         return data.copyTag().getBoolean(TAG_KEY);
+    }
+
+    /** Returns true if the item is an ecto tool class (always considered infused). */
+    public static boolean isEctoItem(net.minecraft.world.item.Item item) {
+        return item instanceof EctoSwordItem
+            || item instanceof EctoPickaxeItem
+            || item instanceof EctoAxeItem
+            || item instanceof EctoShovelItem
+            || item instanceof EctoHoeItem;
     }
 
     public static void setInfused(ItemStack stack, boolean infused) {

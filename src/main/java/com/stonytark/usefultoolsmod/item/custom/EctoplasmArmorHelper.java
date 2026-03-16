@@ -36,7 +36,7 @@ public final class EctoplasmArmorHelper {
         for (ItemStack armorStack : player.getArmorSlots()) {
             if (armorStack.isEmpty()) return false;
             if (!(armorStack.getItem() instanceof ArmorItem armor)) return false;
-            if (armor.getMaterial() != ModArmorMaterials.ECTO_ARMOR_MATERIAL) return false;
+            if (!ModArmorMaterials.ECTO_ARMOR_MATERIAL.is(armor.getMaterial())) return false;
         }
         return true;
     }
