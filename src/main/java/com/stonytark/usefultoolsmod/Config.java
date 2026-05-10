@@ -87,6 +87,57 @@ public class Config {
     // --- Stone Variants (13 stone-type tool sets) ---
     private static final ForgeConfigSpec.BooleanValue STONE_VARIANTS_ENABLED;
 
+    // --- Vanilla Material Sets (25 individual sets) ---
+    private static final ForgeConfigSpec.BooleanValue PAPER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue PAPER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue FEATHER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue FEATHER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue GLASS_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue GLASS_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue RABBIT_HIDE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue RABBIT_HIDE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue CACTUS_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue CACTUS_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue SPONGE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue SPONGE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue BONE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue BONE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue CLAY_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue CLAY_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue NETHER_WART_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue NETHER_WART_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue BRICK_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue NETHER_BRICK_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue NETHER_BRICK_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue POINTED_DRIPSTONE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue POINTED_DRIPSTONE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue COPPER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue COPPER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue PHANTOM_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue PHANTOM_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue MAGMA_CREAM_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue MAGMA_CREAM_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue SLIME_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue SLIME_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue BLAZE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue BLAZE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue NAUTILUS_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue NAUTILUS_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue PURPUR_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue PURPUR_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue GHAST_TEAR_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue GHAST_TEAR_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue EYE_OF_ENDER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue EYE_OF_ENDER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue SHULKER_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue SHULKER_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue TURTLE_SCUTE_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue TURTLE_SCUTE_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue ECHO_SHARD_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue ECHO_SHARD_EFFECTS;
+    private static final ForgeConfigSpec.BooleanValue DRAGON_BREATH_ENABLED;
+    private static final ForgeConfigSpec.BooleanValue DRAGON_BREATH_EFFECTS;
+
     // --- Leather (tools only) ---
     private static final ForgeConfigSpec.BooleanValue LEATHER_ENABLED;
 
@@ -310,6 +361,130 @@ public class Config {
                 .define("enabled", true);
         BUILDER.pop();
 
+        BUILDER.push("paper");
+        PAPER_ENABLED = BUILDER.comment("Enable the Paper tool set.").define("enabled", true);
+        PAPER_EFFECTS = BUILDER.comment("Paper tool effects (shatter chance, paper cuts, Weakness).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("feather");
+        FEATHER_ENABLED = BUILDER.comment("Enable the Feather tool set.").define("enabled", true);
+        FEATHER_EFFECTS = BUILDER.comment("Feather tool effects (Slow Falling, Levitation on hit).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("glass");
+        GLASS_ENABLED = BUILDER.comment("Enable the Glass tool set.").define("enabled", true);
+        GLASS_EFFECTS = BUILDER.comment("Glass tool effects (bonus damage, shatter AoE).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("rabbitHide");
+        RABBIT_HIDE_ENABLED = BUILDER.comment("Enable the Rabbit Hide armor set.").define("enabled", true);
+        RABBIT_HIDE_EFFECTS = BUILDER.comment("Rabbit Hide armor effects (Jump Boost, Speed, no fall damage full set).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("cactus");
+        CACTUS_ENABLED = BUILDER.comment("Enable the Cactus set (tools + armor).").define("enabled", true);
+        CACTUS_EFFECTS = BUILDER.comment("Cactus effects (Poison on hit, thorns, hostile aura).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("sponge");
+        SPONGE_ENABLED = BUILDER.comment("Enable the Sponge tool set.").define("enabled", true);
+        SPONGE_EFFECTS = BUILDER.comment("Sponge tool effects (water absorption, bonus water damage).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("bone");
+        BONE_ENABLED = BUILDER.comment("Enable the Bone set (tools + armor).").define("enabled", true);
+        BONE_EFFECTS = BUILDER.comment("Bone effects (undead bonus damage, Weakness aura vs undead).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("clay");
+        CLAY_ENABLED = BUILDER.comment("Enable the Clay set (tools + armor).").define("enabled", true);
+        CLAY_EFFECTS = BUILDER.comment("Clay armor effects (Speed, Jump, Resistance, Luck, Absorption full set).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("netherWart");
+        NETHER_WART_ENABLED = BUILDER.comment("Enable the Nether Wart tool set.").define("enabled", true);
+        NETHER_WART_EFFECTS = BUILDER.comment("Nether Wart effects (Wither on hit, Hunger while held).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("brick");
+        BRICK_ENABLED = BUILDER.comment("Enable the Brick set (tools + armor). Stats only, no special effects.").define("enabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("netherBrick");
+        NETHER_BRICK_ENABLED = BUILDER.comment("Enable the Nether Brick set (tools + armor).").define("enabled", true);
+        NETHER_BRICK_EFFECTS = BUILDER.comment("Nether Brick effects (fire on hit, Fire Resistance, reactive fire).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("pointedDripstone");
+        POINTED_DRIPSTONE_ENABLED = BUILDER.comment("Enable the Pointed Dripstone tool set.").define("enabled", true);
+        POINTED_DRIPSTONE_EFFECTS = BUILDER.comment("Pointed Dripstone effects (armor piercing, enhanced crits).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("copper");
+        COPPER_ENABLED = BUILDER.comment("Enable the Copper set (tools + armor).").define("enabled", true);
+        COPPER_EFFECTS = BUILDER.comment("Copper armor effects (rain/thunderstorm buffs).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("phantom");
+        PHANTOM_ENABLED = BUILDER.comment("Enable the Phantom Membrane set (tools + armor).").define("enabled", true);
+        PHANTOM_EFFECTS = BUILDER.comment("Phantom effects (Slow Falling, night bonuses, Phantoms ignore full set).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("magmaCream");
+        MAGMA_CREAM_ENABLED = BUILDER.comment("Enable the Magma Cream set (tools + armor).").define("enabled", true);
+        MAGMA_CREAM_EFFECTS = BUILDER.comment("Magma Cream effects (fire + Slowness on hit, Fire Resistance, reactive fire).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("slime");
+        SLIME_ENABLED = BUILDER.comment("Enable the Slime set (tools + armor).").define("enabled", true);
+        SLIME_EFFECTS = BUILDER.comment("Slime effects (knockback, bouncing, no fall damage, reactive knockback).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("blaze");
+        BLAZE_ENABLED = BUILDER.comment("Enable the Blaze Rod set (tools + armor).").define("enabled", true);
+        BLAZE_EFFECTS = BUILDER.comment("Blaze effects (fire on hit, Fire Resistance, Strength full set, reactive fire).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("nautilus");
+        NAUTILUS_ENABLED = BUILDER.comment("Enable the Nautilus Shell set (tools + armor).").define("enabled", true);
+        NAUTILUS_EFFECTS = BUILDER.comment("Nautilus effects (Conduit Power, Water Breathing, Dolphins Grace, aquatic mobs ignore).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("purpur");
+        PURPUR_ENABLED = BUILDER.comment("Enable the Purpur set (tools + armor).").define("enabled", true);
+        PURPUR_EFFECTS = BUILDER.comment("Purpur effects (teleport on hit, dodge, no fall damage, Night Vision).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("ghastTear");
+        GHAST_TEAR_ENABLED = BUILDER.comment("Enable the Ghast Tear set (tools + armor).").define("enabled", true);
+        GHAST_TEAR_EFFECTS = BUILDER.comment("Ghast Tear effects (lifesteal, Regeneration, Absorption).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("eyeOfEnder");
+        EYE_OF_ENDER_ENABLED = BUILDER.comment("Enable the Eye of Ender set (tools + armor).").define("enabled", true);
+        EYE_OF_ENDER_EFFECTS = BUILDER.comment("Eye of Ender effects (Blindness on hit, Night Vision, Endermen neutral, entity Glowing).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("shulker");
+        SHULKER_ENABLED = BUILDER.comment("Enable the Shulker Shell set (tools + armor).").define("enabled", true);
+        SHULKER_EFFECTS = BUILDER.comment("Shulker effects (Levitation on hit, quasi-flight, reactive Levitation).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("turtleScute");
+        TURTLE_SCUTE_ENABLED = BUILDER.comment("Enable the Turtle Scute armor set.").define("enabled", true);
+        TURTLE_SCUTE_EFFECTS = BUILDER.comment("Turtle Scute armor effects (Water Breathing, Conduit Power, Guardians ignore).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("echoShard");
+        ECHO_SHARD_ENABLED = BUILDER.comment("Enable the Echo Shard set (tools + armor).").define("enabled", true);
+        ECHO_SHARD_EFFECTS = BUILDER.comment("Echo Shard effects (Darkness on hit, entity Glowing, Warden neutral, reactive Darkness).").define("effectsEnabled", true);
+        BUILDER.pop();
+
+        BUILDER.push("dragonBreath");
+        DRAGON_BREATH_ENABLED = BUILDER.comment("Enable the Dragon's Breath set (tools + armor).").define("enabled", true);
+        DRAGON_BREATH_EFFECTS = BUILDER.comment("Dragon's Breath effects (Wither + Poison on hit, AoE cloud, Strength, reactive Wither + fire).").define("effectsEnabled", true);
+        BUILDER.pop();
+
         BUILDER.push("leather");
         LEATHER_ENABLED = BUILDER
                 .comment("Enable the Leather tool set (tools only, very weak).")
@@ -439,6 +614,55 @@ public class Config {
     public static boolean fniEnabled = true;
     public static boolean woodVariantsEnabled = true;
     public static boolean stoneVariantsEnabled = true;
+    public static boolean paperEnabled = true;
+    public static boolean paperEffects = true;
+    public static boolean featherEnabled = true;
+    public static boolean featherEffects = true;
+    public static boolean glassEnabled = true;
+    public static boolean glassEffects = true;
+    public static boolean rabbitHideEnabled = true;
+    public static boolean rabbitHideEffects = true;
+    public static boolean cactusEnabled = true;
+    public static boolean cactusEffects = true;
+    public static boolean spongeEnabled = true;
+    public static boolean spongeEffects = true;
+    public static boolean boneEnabled = true;
+    public static boolean boneEffects = true;
+    public static boolean clayEnabled = true;
+    public static boolean clayEffects = true;
+    public static boolean netherWartEnabled = true;
+    public static boolean netherWartEffects = true;
+    public static boolean brickEnabled = true;
+    public static boolean netherBrickEnabled = true;
+    public static boolean netherBrickEffects = true;
+    public static boolean dripstoneEnabled = true;
+    public static boolean dripstoneEffects = true;
+    public static boolean copperEnabled = true;
+    public static boolean copperEffects = true;
+    public static boolean phantomEnabled = true;
+    public static boolean phantomEffects = true;
+    public static boolean magmaCreamEnabled = true;
+    public static boolean magmaCreamEffects = true;
+    public static boolean slimeEnabled = true;
+    public static boolean slimeEffects = true;
+    public static boolean blazeEnabled = true;
+    public static boolean blazeEffects = true;
+    public static boolean nautilusEnabled = true;
+    public static boolean nautilusEffects = true;
+    public static boolean purpurEnabled = true;
+    public static boolean purpurEffects = true;
+    public static boolean ghastTearEnabled = true;
+    public static boolean ghastTearEffects = true;
+    public static boolean eyeOfEnderEnabled = true;
+    public static boolean eyeOfEnderEffects = true;
+    public static boolean shulkerEnabled = true;
+    public static boolean shulkerEffects = true;
+    public static boolean turtleScuteEnabled = true;
+    public static boolean turtleScuteEffects = true;
+    public static boolean echoShardEnabled = true;
+    public static boolean echoShardEffects = true;
+    public static boolean dragonBreathEnabled = true;
+    public static boolean dragonBreathEffects = true;
     public static boolean leatherEnabled = true;
     public static boolean coalEnabled = true;
     public static boolean cakeEnabled = true;
@@ -512,6 +736,55 @@ public class Config {
         fniEnabled               = FNI_ENABLED.get();
         woodVariantsEnabled      = WOOD_VARIANTS_ENABLED.get();
         stoneVariantsEnabled     = STONE_VARIANTS_ENABLED.get();
+        paperEnabled             = PAPER_ENABLED.get();
+        paperEffects             = PAPER_EFFECTS.get();
+        featherEnabled           = FEATHER_ENABLED.get();
+        featherEffects           = FEATHER_EFFECTS.get();
+        glassEnabled             = GLASS_ENABLED.get();
+        glassEffects             = GLASS_EFFECTS.get();
+        rabbitHideEnabled        = RABBIT_HIDE_ENABLED.get();
+        rabbitHideEffects        = RABBIT_HIDE_EFFECTS.get();
+        cactusEnabled            = CACTUS_ENABLED.get();
+        cactusEffects            = CACTUS_EFFECTS.get();
+        spongeEnabled            = SPONGE_ENABLED.get();
+        spongeEffects            = SPONGE_EFFECTS.get();
+        boneEnabled              = BONE_ENABLED.get();
+        boneEffects              = BONE_EFFECTS.get();
+        clayEnabled              = CLAY_ENABLED.get();
+        clayEffects              = CLAY_EFFECTS.get();
+        netherWartEnabled        = NETHER_WART_ENABLED.get();
+        netherWartEffects        = NETHER_WART_EFFECTS.get();
+        brickEnabled             = BRICK_ENABLED.get();
+        netherBrickEnabled       = NETHER_BRICK_ENABLED.get();
+        netherBrickEffects       = NETHER_BRICK_EFFECTS.get();
+        dripstoneEnabled         = POINTED_DRIPSTONE_ENABLED.get();
+        dripstoneEffects         = POINTED_DRIPSTONE_EFFECTS.get();
+        copperEnabled            = COPPER_ENABLED.get();
+        copperEffects            = COPPER_EFFECTS.get();
+        phantomEnabled           = PHANTOM_ENABLED.get();
+        phantomEffects           = PHANTOM_EFFECTS.get();
+        magmaCreamEnabled        = MAGMA_CREAM_ENABLED.get();
+        magmaCreamEffects        = MAGMA_CREAM_EFFECTS.get();
+        slimeEnabled             = SLIME_ENABLED.get();
+        slimeEffects             = SLIME_EFFECTS.get();
+        blazeEnabled             = BLAZE_ENABLED.get();
+        blazeEffects             = BLAZE_EFFECTS.get();
+        nautilusEnabled          = NAUTILUS_ENABLED.get();
+        nautilusEffects          = NAUTILUS_EFFECTS.get();
+        purpurEnabled            = PURPUR_ENABLED.get();
+        purpurEffects            = PURPUR_EFFECTS.get();
+        ghastTearEnabled         = GHAST_TEAR_ENABLED.get();
+        ghastTearEffects         = GHAST_TEAR_EFFECTS.get();
+        eyeOfEnderEnabled        = EYE_OF_ENDER_ENABLED.get();
+        eyeOfEnderEffects        = EYE_OF_ENDER_EFFECTS.get();
+        shulkerEnabled           = SHULKER_ENABLED.get();
+        shulkerEffects           = SHULKER_EFFECTS.get();
+        turtleScuteEnabled       = TURTLE_SCUTE_ENABLED.get();
+        turtleScuteEffects       = TURTLE_SCUTE_EFFECTS.get();
+        echoShardEnabled         = ECHO_SHARD_ENABLED.get();
+        echoShardEffects         = ECHO_SHARD_EFFECTS.get();
+        dragonBreathEnabled      = DRAGON_BREATH_ENABLED.get();
+        dragonBreathEffects      = DRAGON_BREATH_EFFECTS.get();
         leatherEnabled           = LEATHER_ENABLED.get();
         coalEnabled              = COAL_ENABLED.get();
         cakeEnabled              = CAKE_ENABLED.get();

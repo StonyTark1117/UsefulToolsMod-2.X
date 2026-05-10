@@ -30,11 +30,16 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.warden.Warden;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -144,6 +149,29 @@ public class ModEvents {
             if (Config.honeyEnabled && Config.honeyArmorEffects) handleHoneyArmorEffects(player);
             if (Config.chorusFruitEnabled && Config.chorusFruitArmorEffects) handleChorusFruitArmorEffects(player);
             if (Config.goldenAppleEnabled && Config.goldenAppleArmorEffects) handleGoldenAppleArmorEffects(player);
+            // Vanilla material set effects
+            if (Config.paperEnabled && Config.paperEffects) handlePaperPassive(player);
+            if (Config.featherEnabled && Config.featherEffects) handleFeatherPassive(player);
+            if (Config.spongeEnabled && Config.spongeEffects) handleSpongePassive(player);
+            if (Config.netherWartEnabled && Config.netherWartEffects) handleNetherWartPassive(player);
+            if (Config.rabbitHideEnabled && Config.rabbitHideEffects) handleRabbitHideArmor(player);
+            if (Config.cactusEnabled && Config.cactusEffects) handleCactusAura(player);
+            if (Config.boneEnabled && Config.boneEffects) handleBoneArmor(player);
+            if (Config.clayEnabled && Config.clayEffects) handleClayArmor(player);
+            if (Config.netherBrickEnabled && Config.netherBrickEffects) handleNetherBrickArmor(player);
+            if (Config.copperEnabled && Config.copperEffects) handleCopperArmor(player);
+            if (Config.phantomEnabled && Config.phantomEffects) handlePhantomEffects(player);
+            if (Config.magmaCreamEnabled && Config.magmaCreamEffects) handleMagmaCreamArmor(player);
+            if (Config.slimeEnabled && Config.slimeEffects) handleSlimeEffects(player);
+            if (Config.blazeEnabled && Config.blazeEffects) handleBlazeArmor(player);
+            if (Config.nautilusEnabled && Config.nautilusEffects) handleNautilusEffects(player);
+            if (Config.purpurEnabled && Config.purpurEffects) handlePurpurEffects(player);
+            if (Config.ghastTearEnabled && Config.ghastTearEffects) handleGhastTearEffects(player);
+            if (Config.eyeOfEnderEnabled && Config.eyeOfEnderEffects) handleEyeOfEnderEffects(player);
+            if (Config.shulkerEnabled && Config.shulkerEffects) handleShulkerEffects(player);
+            if (Config.turtleScuteEnabled && Config.turtleScuteEffects) handleTurtleScuteArmor(player);
+            if (Config.echoShardEnabled && Config.echoShardEffects) handleEchoShardEffects(player);
+            if (Config.dragonBreathEnabled && Config.dragonBreathEffects) handleDragonBreathEffects(player);
         }
     }
 
@@ -452,8 +480,18 @@ public class ModEvents {
     @SubscribeEvent
     public static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
         if (!(event.getEntity() instanceof GhostEntity)) return;
-        if (!Config.ghostEnabled
-                || event.getLevel().getRandom().nextDouble() > Config.ghostSpawnChance) {
+        if (!Config.ghostEnabled) {
+            event.setResult(Event.Result.DENY);
+            return;
+        }
+        var reason = event.getSpawnType();
+        boolean isNaturalSpawn = reason == MobSpawnType.NATURAL
+                || reason == MobSpawnType.CHUNK_GENERATION
+                || reason == MobSpawnType.SPAWNER
+                || reason == MobSpawnType.STRUCTURE
+                || reason == MobSpawnType.PATROL
+                || reason == MobSpawnType.TRIAL_SPAWNER;
+        if (isNaturalSpawn && event.getLevel().getRandom().nextDouble() > Config.ghostSpawnChance) {
             event.setResult(Event.Result.DENY);
         }
     }
@@ -868,8 +906,13 @@ public class ModEvents {
         if (EctoplasmInfusionHelper.isInfused(stack)) {
             tips.add(Component.translatable("tooltip.usefultoolsmod.ectoplasm_infused")
                     .withStyle(ChatFormatting.DARK_AQUA));
-            tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_can_damage_ghosts")
-                    .withStyle(ChatFormatting.GRAY));
+            if (stack.getItem() instanceof ArmorItem) {
+                tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_armor_invisibility")
+                        .withStyle(ChatFormatting.DARK_GREEN));
+            } else {
+                tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_can_damage_ghosts")
+                        .withStyle(ChatFormatting.GRAY));
+            }
             if (stack.getItem() instanceof PickaxeItem) {
                 tips.add(Component.translatable("tooltip.usefultoolsmod.spectral_sight")
                         .withStyle(ChatFormatting.GRAY));
@@ -987,7 +1030,7 @@ public class ModEvents {
             tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_header")
                     .withStyle(ChatFormatting.DARK_AQUA));
             tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_ghost_avoid")
-                    .withStyle(ChatFormatting.GRAY));
+                    .withStyle(ChatFormatting.DARK_GREEN));
             tips.add(Component.translatable("tooltip.usefultoolsmod.ecto_wall_phase")
                     .withStyle(ChatFormatting.DARK_GREEN));
         }
@@ -1031,6 +1074,332 @@ public class ModEvents {
                     .withStyle(ChatFormatting.GRAY));
             tips.add(Component.translatable("tooltip.usefultoolsmod.dynamite_warning")
                     .withStyle(ChatFormatting.RED));
+        }
+
+        // --- Paper tools ---
+        if (isPaperTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.paper_header")
+                    .withStyle(ChatFormatting.WHITE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.paper_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Feather tools ---
+        if (isFeatherTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.feather_header")
+                    .withStyle(ChatFormatting.WHITE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.feather_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Glass tools ---
+        if (isGlassTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.glass_header")
+                    .withStyle(ChatFormatting.AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.glass_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Sponge tools ---
+        if (isSpongeTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.sponge_header")
+                    .withStyle(ChatFormatting.YELLOW));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.sponge_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Nether Wart tools ---
+        if (isNetherWartTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_wart_header")
+                    .withStyle(ChatFormatting.DARK_RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_wart_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Pointed Dripstone tools ---
+        if (isDripstoneTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dripstone_header")
+                    .withStyle(ChatFormatting.GOLD));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dripstone_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Rabbit Hide armor ---
+        if (isRabbitHideArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.rabbit_hide_header")
+                    .withStyle(ChatFormatting.GOLD));
+            addArmorSlotTooltip(tips, stack, "rabbit_hide");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.rabbit_hide_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Cactus tools ---
+        if (isCactusTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cactus_header")
+                    .withStyle(ChatFormatting.GREEN));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cactus_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Cactus armor ---
+        if (isCactusArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cactus_header")
+                    .withStyle(ChatFormatting.GREEN));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cactus_armor")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.cactus_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Bone tools ---
+        if (isBoneTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.bone_header")
+                    .withStyle(ChatFormatting.WHITE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.bone_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Bone armor ---
+        if (isBoneArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.bone_header")
+                    .withStyle(ChatFormatting.WHITE));
+            addArmorSlotTooltip(tips, stack, "bone");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.bone_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Clay armor ---
+        if (isClayArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.clay_header")
+                    .withStyle(ChatFormatting.GOLD));
+            addArmorSlotTooltip(tips, stack, "clay");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.clay_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Nether Brick tools ---
+        if (isNetherBrickTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_brick_header")
+                    .withStyle(ChatFormatting.DARK_RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_brick_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Nether Brick armor ---
+        if (isNetherBrickArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_brick_header")
+                    .withStyle(ChatFormatting.DARK_RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_brick_armor")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nether_brick_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Copper armor ---
+        if (isCopperArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.copper_header")
+                    .withStyle(ChatFormatting.GOLD));
+            addArmorSlotTooltip(tips, stack, "copper");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.copper_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Phantom tools ---
+        if (isPhantomTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.phantom_header")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.phantom_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Phantom armor ---
+        if (isPhantomArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.phantom_header")
+                    .withStyle(ChatFormatting.GRAY));
+            addArmorSlotTooltip(tips, stack, "phantom");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.phantom_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Magma Cream tools ---
+        if (isMagmaCreamTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.magma_cream_header")
+                    .withStyle(ChatFormatting.RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.magma_cream_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Magma Cream armor ---
+        if (isMagmaCreamArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.magma_cream_header")
+                    .withStyle(ChatFormatting.RED));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.magma_cream_armor")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.magma_cream_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Slime tools ---
+        if (isSlimeTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.slime_header")
+                    .withStyle(ChatFormatting.GREEN));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.slime_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Slime armor ---
+        if (isSlimeArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.slime_header")
+                    .withStyle(ChatFormatting.GREEN));
+            addArmorSlotTooltip(tips, stack, "slime");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.slime_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Blaze tools ---
+        if (isBlazeTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.blaze_header")
+                    .withStyle(ChatFormatting.GOLD));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.blaze_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Blaze armor ---
+        if (isBlazeArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.blaze_header")
+                    .withStyle(ChatFormatting.GOLD));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.blaze_armor")
+                    .withStyle(ChatFormatting.GRAY));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.blaze_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Nautilus tools ---
+        if (isNautilusTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nautilus_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nautilus_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Nautilus armor ---
+        if (isNautilusArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nautilus_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            addArmorSlotTooltip(tips, stack, "nautilus");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.nautilus_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Purpur tools ---
+        if (isPurpurTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.purpur_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.purpur_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Purpur armor ---
+        if (isPurpurArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.purpur_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            addArmorSlotTooltip(tips, stack, "purpur");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.purpur_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Ghast Tear tools ---
+        if (isGhastTearTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ghast_tear_header")
+                    .withStyle(ChatFormatting.WHITE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ghast_tear_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Ghast Tear armor ---
+        if (isGhastTearArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ghast_tear_header")
+                    .withStyle(ChatFormatting.WHITE));
+            addArmorSlotTooltip(tips, stack, "ghast_tear");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.ghast_tear_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Eye of Ender tools ---
+        if (isEyeOfEnderTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.eye_of_ender_header")
+                    .withStyle(ChatFormatting.GREEN));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.eye_of_ender_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Eye of Ender armor ---
+        if (isEyeOfEnderArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.eye_of_ender_header")
+                    .withStyle(ChatFormatting.GREEN));
+            addArmorSlotTooltip(tips, stack, "eye_of_ender");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.eye_of_ender_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Shulker tools ---
+        if (isShulkerTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.shulker_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.shulker_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Shulker armor ---
+        if (isShulkerArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.shulker_header")
+                    .withStyle(ChatFormatting.LIGHT_PURPLE));
+            addArmorSlotTooltip(tips, stack, "shulker");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.shulker_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Turtle Scute armor ---
+        if (isTurtleScuteArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.turtle_scute_header")
+                    .withStyle(ChatFormatting.GREEN));
+            addArmorSlotTooltip(tips, stack, "turtle_scute");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.turtle_scute_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Echo Shard tools ---
+        if (isEchoShardTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.echo_shard_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.echo_shard_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Echo Shard armor ---
+        if (isEchoShardArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.echo_shard_header")
+                    .withStyle(ChatFormatting.DARK_AQUA));
+            addArmorSlotTooltip(tips, stack, "echo_shard");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.echo_shard_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
+        }
+
+        // --- Dragon's Breath tools ---
+        if (isDragonBreathTool(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dragon_breath_header")
+                    .withStyle(ChatFormatting.DARK_PURPLE));
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dragon_breath_tool")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+
+        // --- Dragon's Breath armor ---
+        if (isDragonBreathArmor(stack)) {
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dragon_breath_header")
+                    .withStyle(ChatFormatting.DARK_PURPLE));
+            addArmorSlotTooltip(tips, stack, "dragon_breath");
+            tips.add(Component.translatable("tooltip.usefultoolsmod.dragon_breath_full_set")
+                    .withStyle(ChatFormatting.DARK_GREEN));
         }
     }
 
@@ -1661,6 +2030,102 @@ public class ModEvents {
                     teleportRandomly(event.getEntity(), 3, 8);
                 }
             }
+            // Vanilla material tool on-hit effects
+            if (Config.paperEnabled && Config.paperEffects && isPaperTool(held)) {
+                if (attacker.level().random.nextFloat() < 0.05f)
+                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 20, 0));
+                if (attacker.level().random.nextFloat() < 0.25f)
+                    held.hurtAndBreak(held.getMaxDamage() - held.getDamageValue(), attacker, EquipmentSlot.MAINHAND);
+            }
+            if (Config.featherEnabled && Config.featherEffects && isFeatherTool(held)) {
+                LivingEntity target = event.getEntity();
+                var dir = target.position().subtract(attacker.position()).normalize();
+                target.setDeltaMovement(target.getDeltaMovement().add(dir.x * 0.3, 0.8, dir.z * 0.3));
+                target.hurtMarked = true;
+            }
+            if (Config.glassEnabled && Config.glassEffects && isGlassTool(held)) {
+                event.setAmount(event.getAmount() + 2.0f);
+                if (held.getDamageValue() >= held.getMaxDamage() - 1 && attacker.level() instanceof ServerLevel sl) {
+                    for (LivingEntity nearby : sl.getEntitiesOfClass(LivingEntity.class,
+                            attacker.getBoundingBox().inflate(3.0), e -> e != attacker)) {
+                        nearby.hurt(attacker.damageSources().playerAttack(attacker), 3.0f);
+                    }
+                    sl.sendParticles(ParticleTypes.CRIT, attacker.getX(), attacker.getY() + 1, attacker.getZ(), 20, 1, 1, 1, 0.2);
+                }
+            }
+            if (Config.spongeEnabled && Config.spongeEffects && isSpongeTool(held)) {
+                if (event.getEntity().isInWater()) event.setAmount(event.getAmount() + 3.0f);
+            }
+            if (Config.netherWartEnabled && Config.netherWartEffects && isNetherWartTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 0));
+            }
+            if (Config.dripstoneEnabled && Config.dripstoneEffects && isDripstoneTool(held)) {
+                event.setAmount(event.getAmount() * 1.3f);
+                if (attacker.fallDistance > 0 && !attacker.onGround())
+                    event.setAmount(event.getAmount() * 1.5f);
+            }
+            if (Config.cactusEnabled && Config.cactusEffects && isCactusTool(held)) {
+                event.setAmount(event.getAmount() + 1.0f);
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.POISON, 40, 0));
+            }
+            if (Config.boneEnabled && Config.boneEffects && isBoneTool(held)) {
+                if (event.getEntity() instanceof Mob mob && mob.isInvertedHealAndHarm())
+                    event.setAmount(event.getAmount() * 1.5f);
+            }
+            if (Config.netherBrickEnabled && Config.netherBrickEffects && isNetherBrickTool(held)) {
+                event.getEntity().setRemainingFireTicks(80);
+            }
+            if (Config.magmaCreamEnabled && Config.magmaCreamEffects && isMagmaCreamTool(held)) {
+                event.getEntity().setRemainingFireTicks(100);
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0));
+            }
+            if (Config.slimeEnabled && Config.slimeEffects && isSlimeTool(held)) {
+                LivingEntity target = event.getEntity();
+                var dir = target.position().subtract(attacker.position()).normalize();
+                target.setDeltaMovement(target.getDeltaMovement().add(dir.x * 1.5, 0.4, dir.z * 1.5));
+                target.hurtMarked = true;
+            }
+            if (Config.blazeEnabled && Config.blazeEffects && isBlazeTool(held)) {
+                event.getEntity().setRemainingFireTicks(120);
+            }
+            if (Config.purpurEnabled && Config.purpurEffects && isPurpurTool(held)) {
+                if (attacker.level().random.nextFloat() < 0.1f)
+                    teleportRandomly(event.getEntity(), 5, 10);
+            }
+            if (Config.ghastTearEnabled && Config.ghastTearEffects && isGhastTearTool(held)) {
+                attacker.heal(2.0f);
+            }
+            if (Config.eyeOfEnderEnabled && Config.eyeOfEnderEffects && isEyeOfEnderTool(held)) {
+                if (attacker.level().random.nextFloat() < 0.15f)
+                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 0));
+            }
+            if (Config.shulkerEnabled && Config.shulkerEffects && isShulkerTool(held)) {
+                LivingEntity target = event.getEntity();
+                target.setDeltaMovement(target.getDeltaMovement().add(0, 1.2, 0));
+                target.hurtMarked = true;
+            }
+            if (Config.echoShardEnabled && Config.echoShardEffects && isEchoShardTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100, 0));
+            }
+            if (Config.dragonBreathEnabled && Config.dragonBreathEffects && isDragonBreathTool(held)) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.POISON, 60, 0));
+                if (attacker.level() instanceof ServerLevel sl && attacker.level().random.nextFloat() < 0.3f) {
+                    AreaEffectCloud cloud = new AreaEffectCloud(sl, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ());
+                    cloud.setRadius(1.5f);
+                    cloud.setDuration(40);
+                    cloud.setRadiusPerTick(-1.5f / 40f);
+                    cloud.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 0));
+                    cloud.setOwner(attacker);
+                    sl.addFreshEntity(cloud);
+                }
+            }
+            if (Config.phantomEnabled && Config.phantomEffects && isPhantomTool(held)) {
+                if (!attacker.level().isDay()) event.setAmount(event.getAmount() + 2.0f);
+            }
+            if (Config.nautilusEnabled && Config.nautilusEffects && isNautilusTool(held)) {
+                // Nautilus tool on-hit: nothing special, passive effects only
+            }
         }
 
         // --- Armor reactive effects (player is the target) ---
@@ -1682,6 +2147,58 @@ public class ModEvents {
                     teleportRandomly(victim, 3, 8);
                     event.setCanceled(true);
                 }
+            }
+            // Vanilla material armor reactive effects
+            if (Config.cactusEnabled && Config.cactusEffects) {
+                int cactusPieces = 0;
+                for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET})
+                    if (isCactusArmor(victim.getItemBySlot(slot))) cactusPieces++;
+                if (cactusPieces > 0)
+                    attacker.hurt(victim.damageSources().thorns(victim), cactusPieces * 0.5f);
+            }
+            if (Config.netherBrickEnabled && Config.netherBrickEffects
+                    && isWearingFullSet(victim, ModEvents::isNetherBrickArmor)) {
+                attacker.setRemainingFireTicks(40);
+            }
+            if (Config.magmaCreamEnabled && Config.magmaCreamEffects
+                    && isWearingFullSet(victim, ModEvents::isMagmaCreamArmor)) {
+                attacker.setRemainingFireTicks(60);
+                attacker.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0));
+            }
+            if (Config.slimeEnabled && Config.slimeEffects
+                    && isWearingFullSet(victim, ModEvents::isSlimeArmor)) {
+                var dir = attacker.position().subtract(victim.position()).normalize();
+                attacker.setDeltaMovement(attacker.getDeltaMovement().add(dir.x * 2.0, 0.5, dir.z * 2.0));
+                attacker.hurtMarked = true;
+            }
+            if (Config.blazeEnabled && Config.blazeEffects
+                    && isWearingFullSet(victim, ModEvents::isBlazeArmor)) {
+                attacker.setRemainingFireTicks(80);
+            }
+            if (Config.purpurEnabled && Config.purpurEffects
+                    && isWearingFullSet(victim, ModEvents::isPurpurArmor)) {
+                if (victim.level().random.nextFloat() < 0.20f) {
+                    teleportRandomly(victim, 3, 8);
+                    event.setCanceled(true);
+                }
+            }
+            if (Config.shulkerEnabled && Config.shulkerEffects
+                    && isWearingFullSet(victim, ModEvents::isShulkerArmor)) {
+                if (attacker instanceof Player) {
+                    attacker.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 40, 0));
+                } else {
+                    attacker.setDeltaMovement(attacker.getDeltaMovement().add(0, 1.2, 0));
+                    attacker.hurtMarked = true;
+                }
+            }
+            if (Config.echoShardEnabled && Config.echoShardEffects
+                    && isWearingFullSet(victim, ModEvents::isEchoShardArmor)) {
+                attacker.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 0));
+            }
+            if (Config.dragonBreathEnabled && Config.dragonBreathEffects
+                    && isWearingFullSet(victim, ModEvents::isDragonBreathArmor)) {
+                attacker.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 0));
+                attacker.setRemainingFireTicks(60);
             }
         }
     }
@@ -1709,6 +2226,61 @@ public class ModEvents {
                 && isPumpkinPieArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
             if (event.getEntity() instanceof EnderMan) {
                 event.setCanceled(true);
+            }
+        }
+
+        // Bone helmet — undead reduced detection
+        if (Config.boneEnabled && Config.boneEffects
+                && isBoneArmor(player.getItemBySlot(EquipmentSlot.HEAD))) {
+            if ((event.getEntity() instanceof Zombie || event.getEntity() instanceof AbstractSkeleton)
+                    && event.getEntity().distanceTo(player) > 16) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Phantom membrane full set — phantoms ignore
+        if (Config.phantomEnabled && Config.phantomEffects
+                && isWearingFullSet(player, ModEvents::isPhantomArmor)) {
+            if (event.getEntity() instanceof Phantom) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Nautilus full set — aquatic mobs ignore
+        if (Config.nautilusEnabled && Config.nautilusEffects
+                && isWearingFullSet(player, ModEvents::isNautilusArmor)) {
+            if (event.getEntity() instanceof Guardian || event.getEntity() instanceof Drowned) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Eye of Ender full set — endermen neutral
+        if (Config.eyeOfEnderEnabled && Config.eyeOfEnderEffects
+                && isWearingFullSet(player, ModEvents::isEyeOfEnderArmor)) {
+            if (event.getEntity() instanceof EnderMan) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Echo Shard full set — warden neutral
+        if (Config.echoShardEnabled && Config.echoShardEffects
+                && isWearingFullSet(player, ModEvents::isEchoShardArmor)) {
+            if (event.getEntity() instanceof Warden) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
+        // Turtle Scute full set — guardians ignore
+        if (Config.turtleScuteEnabled && Config.turtleScuteEffects
+                && isWearingFullSet(player, ModEvents::isTurtleScuteArmor)) {
+            if (event.getEntity() instanceof Guardian) {
+                event.setCanceled(true);
+                return;
             }
         }
     }
@@ -1745,6 +2317,434 @@ public class ModEvents {
                     return;
                 }
             }
+        }
+    }
+
+    // =======================================================================
+    // Vanilla Material Set helpers
+    // =======================================================================
+
+    private static boolean isPaperTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.PAPER_SWORD.get()) || s.is(ModItems.PAPER_PICKAXE.get()) || s.is(ModItems.PAPER_SHOVEL.get()) || s.is(ModItems.PAPER_AXE.get()) || s.is(ModItems.PAPER_HOE.get()));
+    }
+    private static boolean isFeatherTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.FEATHER_SWORD.get()) || s.is(ModItems.FEATHER_PICKAXE.get()) || s.is(ModItems.FEATHER_SHOVEL.get()) || s.is(ModItems.FEATHER_AXE.get()) || s.is(ModItems.FEATHER_HOE.get()));
+    }
+    private static boolean isGlassTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.GLASS_SWORD.get()) || s.is(ModItems.GLASS_PICKAXE.get()) || s.is(ModItems.GLASS_SHOVEL.get()) || s.is(ModItems.GLASS_AXE.get()) || s.is(ModItems.GLASS_HOE.get()));
+    }
+    private static boolean isSpongeTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.SPONGE_SWORD.get()) || s.is(ModItems.SPONGE_PICKAXE.get()) || s.is(ModItems.SPONGE_SHOVEL.get()) || s.is(ModItems.SPONGE_AXE.get()) || s.is(ModItems.SPONGE_HOE.get()));
+    }
+    private static boolean isNetherWartTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.NETHER_WART_SWORD.get()) || s.is(ModItems.NETHER_WART_PICKAXE.get()) || s.is(ModItems.NETHER_WART_SHOVEL.get()) || s.is(ModItems.NETHER_WART_AXE.get()) || s.is(ModItems.NETHER_WART_HOE.get()));
+    }
+    private static boolean isDripstoneTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.POINTED_DRIPSTONE_SWORD.get()) || s.is(ModItems.POINTED_DRIPSTONE_PICKAXE.get()) || s.is(ModItems.POINTED_DRIPSTONE_SHOVEL.get()) || s.is(ModItems.POINTED_DRIPSTONE_AXE.get()) || s.is(ModItems.POINTED_DRIPSTONE_HOE.get()));
+    }
+    private static boolean isCactusTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.CACTUS_SWORD.get()) || s.is(ModItems.CACTUS_PICKAXE.get()) || s.is(ModItems.CACTUS_SHOVEL.get()) || s.is(ModItems.CACTUS_AXE.get()) || s.is(ModItems.CACTUS_HOE.get()));
+    }
+    private static boolean isCactusArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.CACTUS_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isBoneTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.BONE_SWORD.get()) || s.is(ModItems.BONE_PICKAXE.get()) || s.is(ModItems.BONE_SHOVEL.get()) || s.is(ModItems.BONE_AXE.get()) || s.is(ModItems.BONE_HOE.get()));
+    }
+    private static boolean isBoneArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.BONE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isClayArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.CLAY_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isNetherBrickTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.NETHER_BRICK_SWORD.get()) || s.is(ModItems.NETHER_BRICK_PICKAXE.get()) || s.is(ModItems.NETHER_BRICK_SHOVEL.get()) || s.is(ModItems.NETHER_BRICK_AXE.get()) || s.is(ModItems.NETHER_BRICK_HOE.get()));
+    }
+    private static boolean isNetherBrickArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.NETHER_BRICK_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isCopperArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.COPPER_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isPhantomTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.PHANTOM_SWORD.get()) || s.is(ModItems.PHANTOM_PICKAXE.get()) || s.is(ModItems.PHANTOM_SHOVEL.get()) || s.is(ModItems.PHANTOM_AXE.get()) || s.is(ModItems.PHANTOM_HOE.get()));
+    }
+    private static boolean isPhantomArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.PHANTOM_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isMagmaCreamTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.MAGMA_CREAM_SWORD.get()) || s.is(ModItems.MAGMA_CREAM_PICKAXE.get()) || s.is(ModItems.MAGMA_CREAM_SHOVEL.get()) || s.is(ModItems.MAGMA_CREAM_AXE.get()) || s.is(ModItems.MAGMA_CREAM_HOE.get()));
+    }
+    private static boolean isMagmaCreamArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.MAGMA_CREAM_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isSlimeTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.SLIME_SWORD.get()) || s.is(ModItems.SLIME_PICKAXE.get()) || s.is(ModItems.SLIME_SHOVEL.get()) || s.is(ModItems.SLIME_AXE.get()) || s.is(ModItems.SLIME_HOE.get()));
+    }
+    private static boolean isSlimeArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.SLIME_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isBlazeTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.BLAZE_SWORD.get()) || s.is(ModItems.BLAZE_PICKAXE.get()) || s.is(ModItems.BLAZE_SHOVEL.get()) || s.is(ModItems.BLAZE_AXE.get()) || s.is(ModItems.BLAZE_HOE.get()));
+    }
+    private static boolean isBlazeArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.BLAZE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isNautilusTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.NAUTILUS_SWORD.get()) || s.is(ModItems.NAUTILUS_PICKAXE.get()) || s.is(ModItems.NAUTILUS_SHOVEL.get()) || s.is(ModItems.NAUTILUS_AXE.get()) || s.is(ModItems.NAUTILUS_HOE.get()));
+    }
+    private static boolean isNautilusArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.NAUTILUS_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isPurpurTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.PURPUR_SWORD.get()) || s.is(ModItems.PURPUR_PICKAXE.get()) || s.is(ModItems.PURPUR_SHOVEL.get()) || s.is(ModItems.PURPUR_AXE.get()) || s.is(ModItems.PURPUR_HOE.get()));
+    }
+    private static boolean isPurpurArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.PURPUR_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isGhastTearTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.GHAST_TEAR_SWORD.get()) || s.is(ModItems.GHAST_TEAR_PICKAXE.get()) || s.is(ModItems.GHAST_TEAR_SHOVEL.get()) || s.is(ModItems.GHAST_TEAR_AXE.get()) || s.is(ModItems.GHAST_TEAR_HOE.get()));
+    }
+    private static boolean isGhastTearArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.GHAST_TEAR_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isEyeOfEnderTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.EYE_OF_ENDER_SWORD.get()) || s.is(ModItems.EYE_OF_ENDER_PICKAXE.get()) || s.is(ModItems.EYE_OF_ENDER_SHOVEL.get()) || s.is(ModItems.EYE_OF_ENDER_AXE.get()) || s.is(ModItems.EYE_OF_ENDER_HOE.get()));
+    }
+    private static boolean isEyeOfEnderArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.EYE_OF_ENDER_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isShulkerTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.SHULKER_SWORD.get()) || s.is(ModItems.SHULKER_PICKAXE.get()) || s.is(ModItems.SHULKER_SHOVEL.get()) || s.is(ModItems.SHULKER_AXE.get()) || s.is(ModItems.SHULKER_HOE.get()));
+    }
+    private static boolean isShulkerArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.SHULKER_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isTurtleScuteArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.TURTLE_SCUTE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isEchoShardTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.ECHO_SHARD_SWORD.get()) || s.is(ModItems.ECHO_SHARD_PICKAXE.get()) || s.is(ModItems.ECHO_SHARD_SHOVEL.get()) || s.is(ModItems.ECHO_SHARD_AXE.get()) || s.is(ModItems.ECHO_SHARD_HOE.get()));
+    }
+    private static boolean isEchoShardArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.ECHO_SHARD_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isDragonBreathTool(ItemStack s) {
+        return !s.isEmpty() && (s.is(ModItems.DRAGON_BREATH_SWORD.get()) || s.is(ModItems.DRAGON_BREATH_PICKAXE.get()) || s.is(ModItems.DRAGON_BREATH_SHOVEL.get()) || s.is(ModItems.DRAGON_BREATH_AXE.get()) || s.is(ModItems.DRAGON_BREATH_HOE.get()));
+    }
+    private static boolean isDragonBreathArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.DRAGON_BREATH_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+    private static boolean isRabbitHideArmor(ItemStack s) {
+        if (s.isEmpty() || !(s.getItem() instanceof ArmorItem a)) return false;
+        return ModArmorMaterials.RABBIT_HIDE_ARMOR_MATERIAL.is(a.getMaterial());
+    }
+
+    // =======================================================================
+    // Vanilla Material Set tick handlers
+    // =======================================================================
+
+    private static void handlePaperPassive(Player player) {
+        if (isPaperTool(player.getMainHandItem()) || isPaperTool(player.getOffhandItem()))
+            player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0, false, false, true));
+    }
+
+    private static void handleFeatherPassive(Player player) {
+        if (isFeatherTool(player.getMainHandItem()) || isFeatherTool(player.getOffhandItem()))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+    }
+
+    private static void handleSpongePassive(Player player) {
+        if (!isSpongeTool(player.getMainHandItem())) return;
+        if (player.tickCount % 20 != 0) return;
+        if (!player.isInWater() && !player.level().isRainingAt(player.blockPosition())) return;
+        ItemStack held = player.getMainHandItem();
+        BlockPos center = player.blockPosition();
+        int repaired = 0;
+        for (BlockPos pos : BlockPos.betweenClosed(center.offset(-3, -1, -3), center.offset(3, 1, 3))) {
+            if (repaired >= 5) break;
+            if (player.level().getBlockState(pos).is(Blocks.WATER)) {
+                player.level().setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+                repaired++;
+            }
+        }
+        if (repaired > 0 && held.isDamaged())
+            held.setDamageValue(Math.max(0, held.getDamageValue() - repaired));
+    }
+
+    private static void handleNetherWartPassive(Player player) {
+        if (isNetherWartTool(player.getMainHandItem()) || isNetherWartTool(player.getOffhandItem()))
+            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 60, 0, false, false, true));
+    }
+
+    private static void handleRabbitHideArmor(Player player) {
+        if (isRabbitHideArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isRabbitHideArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isRabbitHideArmor)) {
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 2, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+            player.fallDistance = 0;
+        }
+    }
+
+    private static void handleCactusAura(Player player) {
+        if (!isWearingFullSet(player, ModEvents::isCactusArmor)) return;
+        if (player.tickCount % 40 != 0) return;
+        if (!(player.level() instanceof ServerLevel sl)) return;
+        for (LivingEntity mob : sl.getEntitiesOfClass(LivingEntity.class,
+                player.getBoundingBox().inflate(2.0), e -> e != player && e instanceof Mob)) {
+            mob.hurt(player.damageSources().thorns(player), 1.0f);
+        }
+    }
+
+    private static void handleBoneArmor(Player player) {
+        if (isWearingFullSet(player, ModEvents::isBoneArmor) && player.tickCount % 20 == 0) {
+            if (!(player.level() instanceof ServerLevel sl)) return;
+            for (LivingEntity mob : sl.getEntitiesOfClass(LivingEntity.class,
+                    player.getBoundingBox().inflate(8.0), e -> e instanceof Mob m && m.isInvertedHealAndHarm())) {
+                mob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, 0, false, false, false));
+            }
+        }
+    }
+
+    private static void handleClayArmor(Player player) {
+        if (isClayArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isClayArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isClayArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isClayArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.LUCK, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isClayArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 0, false, false, true));
+    }
+
+    private static void handleNetherBrickArmor(Player player) {
+        for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET}) {
+            if (isNetherBrickArmor(player.getItemBySlot(slot))) {
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+                break;
+            }
+        }
+    }
+
+    private static void handleCopperArmor(Player player) {
+        boolean inRain = player.level().isRainingAt(player.blockPosition());
+        if (!inRain) return;
+        if (isCopperArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isCopperArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isCopperArmor) && player.level().isThundering())
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0, false, false, true));
+    }
+
+    private static void handlePhantomEffects(Player player) {
+        ItemStack held = player.getMainHandItem();
+        if (isPhantomTool(held))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        boolean night = !player.level().isDay();
+        if (isPhantomArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (night && isPhantomArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (night && isPhantomArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isPhantomArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+    }
+
+    private static void handleMagmaCreamArmor(Player player) {
+        if (isMagmaCreamArmor(player.getItemBySlot(EquipmentSlot.FEET)) || isMagmaCreamArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        if (isMagmaCreamArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+    }
+
+    private static void handleSlimeEffects(Player player) {
+        if (isSlimeArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 1, false, false, true));
+        if (isSlimeArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isSlimeArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isSlimeArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isSlimeArmor))
+            player.fallDistance = 0;
+    }
+
+    private static void handleBlazeArmor(Player player) {
+        for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET}) {
+            if (isBlazeArmor(player.getItemBySlot(slot))) {
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+                break;
+            }
+        }
+        if (isWearingFullSet(player, ModEvents::isBlazeArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0, false, false, true));
+    }
+
+    private static void handleNautilusEffects(Player player) {
+        if (isNautilusTool(player.getMainHandItem()) && player.isInWater())
+            player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 0, false, false, true));
+        if (!player.isInWater()) return;
+        if (isNautilusArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isNautilusArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 0, false, false, true));
+        if (isNautilusArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isNautilusArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 220, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isNautilusArmor))
+            player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 60, 0, false, false, true));
+    }
+
+    private static void handlePurpurEffects(Player player) {
+        if (isPurpurTool(player.getMainHandItem()))
+            player.fallDistance = 0;
+        if (isPurpurArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isPurpurArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isPurpurArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isPurpurArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+    }
+
+    private static void handleGhastTearEffects(Player player) {
+        if (isGhastTearTool(player.getMainHandItem()))
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        if (isGhastTearArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isGhastTearArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, false, false, true));
+        if (isGhastTearArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isGhastTearArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isGhastTearArmor)) {
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60, 1, false, false, true));
+        }
+    }
+
+    private static void handleEyeOfEnderEffects(Player player) {
+        if (isEyeOfEnderTool(player.getMainHandItem()))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+        if (isEyeOfEnderArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isEyeOfEnderArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 0, false, false, true));
+        if (isEyeOfEnderArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isEyeOfEnderArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isEyeOfEnderArmor) && player.tickCount % 20 == 0) {
+            if (player.level() instanceof ServerLevel sl) {
+                for (LivingEntity mob : sl.getEntitiesOfClass(LivingEntity.class,
+                        player.getBoundingBox().inflate(16.0), e -> e != player))
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 0, false, false, false));
+            }
+        }
+    }
+
+    private static void handleShulkerEffects(Player player) {
+        if (isShulkerTool(player.getMainHandItem()) && !player.onGround())
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 60, 0, false, false, true));
+        if (isShulkerArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+        if (isShulkerArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 1, false, false, true));
+        if (isShulkerArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isShulkerArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isShulkerArmor)) {
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 60, 2, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 0, false, false, true));
+            player.fallDistance = 0;
+        }
+    }
+
+    private static void handleTurtleScuteArmor(Player player) {
+        if (isTurtleScuteArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 220, 0, false, false, true));
+        if (player.isInWater()) {
+            if (isTurtleScuteArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+            if (isTurtleScuteArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+            if (isTurtleScuteArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+                player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 0, false, false, true));
+            if (isWearingFullSet(player, ModEvents::isTurtleScuteArmor)) {
+                player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 60, 1, false, false, true));
+                player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 60, 0, false, false, true));
+            }
+        } else if (isWearingFullSet(player, ModEvents::isTurtleScuteArmor)) {
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0, false, false, true));
+        }
+    }
+
+    private static void handleEchoShardEffects(Player player) {
+        if (isEchoShardArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isEchoShardArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0, false, false, true));
+        if (isEchoShardArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 1, false, false, true));
+        if (isEchoShardArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, true));
+        boolean toolHeld = isEchoShardTool(player.getMainHandItem());
+        boolean fullSet = isWearingFullSet(player, ModEvents::isEchoShardArmor);
+        if ((toolHeld || fullSet) && player.tickCount % 20 == 0) {
+            if (player.level() instanceof ServerLevel sl) {
+                for (LivingEntity mob : sl.getEntitiesOfClass(LivingEntity.class,
+                        player.getBoundingBox().inflate(16.0), e -> e != player))
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 0, false, false, false));
+            }
+        }
+    }
+
+    private static void handleDragonBreathEffects(Player player) {
+        if (isDragonBreathTool(player.getMainHandItem())) {
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        }
+        if (isDragonBreathArmor(player.getItemBySlot(EquipmentSlot.FEET)))
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0, false, false, true));
+        if (isDragonBreathArmor(player.getItemBySlot(EquipmentSlot.LEGS)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0, false, false, true));
+        if (isDragonBreathArmor(player.getItemBySlot(EquipmentSlot.CHEST)))
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 1, false, false, true));
+        if (isDragonBreathArmor(player.getItemBySlot(EquipmentSlot.HEAD)))
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, false, false, true));
+        if (isWearingFullSet(player, ModEvents::isDragonBreathArmor)) {
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 1, false, false, true));
         }
     }
 }

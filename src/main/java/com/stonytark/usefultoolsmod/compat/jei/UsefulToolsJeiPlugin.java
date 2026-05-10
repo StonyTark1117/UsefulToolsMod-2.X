@@ -11,10 +11,10 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.TieredItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class UsefulToolsJeiPlugin implements IModPlugin {
         ItemStack ectoplasm = new ItemStack(ModItems.ECTOPLASM.get());
 
         BuiltInRegistries.ITEM.forEach(item -> {
-            if (item instanceof SwordItem || item instanceof AxeItem) {
+            if (item instanceof TieredItem || item instanceof ArmorItem) {
                 ItemStack input = new ItemStack(item);
                 ItemStack output = input.copy();
                 EctoplasmInfusionHelper.setInfused(output, true);

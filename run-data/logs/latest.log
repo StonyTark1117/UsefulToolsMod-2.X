@@ -1,33 +1,41 @@
-[15Mar2026 23:18:09.169] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, /home/braydon/.gradle/caches/forge_gradle/assets, --gameDir, ., --mod, usefultoolsmod, --all, --output, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/generated/resources, --existing, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/main/resources]
-[15Mar2026 23:18:09.171] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Arch Linux OpenJDK 64-Bit Server VM 21.0.10+7
-[15Mar2026 23:18:09.172] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.10 by Arch Linux; OS Linux arch amd64 version 6.19.8-zen1-1-zen
-[15Mar2026 23:18:09.217] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
-[15Mar2026 23:18:09.261] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///home/braydon/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
-[15Mar2026 23:18:09.699] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[15Mar2026 23:18:10.038] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, /home/braydon/.gradle/caches/forge_gradle/assets, --assetIndex, 17, --mod, usefultoolsmod, --all, --output, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/generated/resources, --existing, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/main/resources]
-[15Mar2026 23:18:12.126] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.10, for MC 1.21.1 with MCP 20240808.132146
-[15Mar2026 23:18:12.126] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.10 Initialized
-[15Mar2026 23:18:12.146] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
-[15Mar2026 23:18:12.171] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
-[15Mar2026 23:18:12.173] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 1.615 milliseconds
-[15Mar2026 23:18:12.276] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [usefultoolsmod]
-[15Mar2026 23:18:12.301] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/braydon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
-[15Mar2026 23:18:12.301] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/braydon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
-[15Mar2026 23:18:12.374] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[15Mar2026 23:18:12.469] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 94 ms
-[15Mar2026 23:18:12.469] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[15Mar2026 23:18:12.575] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 106 ms
-[15Mar2026 23:18:12.576] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id usefultoolsmod
-[15Mar2026 23:18:12.580] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id usefultoolsmod finished after 4 ms
-[15Mar2026 23:18:12.580] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id usefultoolsmod
-[15Mar2026 23:18:12.581] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id usefultoolsmod finished after 0 ms
-[15Mar2026 23:18:12.581] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: usefultoolsmod
-[15Mar2026 23:18:12.631] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: usefultoolsmod finished after 50 ms
-[15Mar2026 23:18:12.631] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: usefultoolsmod
-[15Mar2026 23:18:12.679] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: usefultoolsmod finished after 47 ms
-[15Mar2026 23:18:12.679] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
-[15Mar2026 23:18:12.681] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 1 ms
-[15Mar2026 23:18:12.681] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
-[15Mar2026 23:18:12.709] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 27 ms
-[15Mar2026 23:18:12.709] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 335 ms
-[15Mar2026 23:18:12.722] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 2649, old count: 2647, new count: 2650, removed stale: 0, written: 3
+[09May2026 18:33:23.355] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, /home/braydon/.gradle/caches/forge_gradle/assets, --gameDir, ., --mod, usefultoolsmod, --all, --output, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/generated/resources, --existing, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/main/resources]
+[09May2026 18:33:23.357] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.8+9-LTS
+[09May2026 18:33:23.357] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.8 by Eclipse Adoptium; OS Linux arch amd64 version 7.0.3-zen1-2-zen
+[09May2026 18:33:23.400] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
+[09May2026 18:33:23.445] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///home/braydon/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
+[09May2026 18:33:23.912] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[09May2026 18:33:24.391] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, /home/braydon/.gradle/caches/forge_gradle/assets, --assetIndex, 17, --mod, usefultoolsmod, --all, --output, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/generated/resources, --existing, /home/braydon/Useful-Tools/UsefulToolsMod-2.X/src/main/resources]
+[09May2026 18:33:24.461] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[09May2026 18:33:24.461] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[09May2026 18:33:24.488] [main/WARN] [mixin/]: Error loading class: net/neoforged/neoforge/common/SimpleTier (java.lang.ClassNotFoundException: net.neoforged.neoforge.common.SimpleTier)
+[09May2026 18:33:24.488] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[09May2026 18:33:24.495] [main/WARN] [mixin/]: Error loading class: net/neoforged/neoforge/common/SimpleTier (java.lang.ClassNotFoundException: net.neoforged.neoforge.common.SimpleTier)
+[09May2026 18:33:24.495] [main/WARN] [mixin/]: Error loading class: net/neoforged/neoforge/common/SimpleTier (java.lang.ClassNotFoundException: net.neoforged.neoforge.common.SimpleTier)
+[09May2026 18:33:24.651] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.3.5).
+[09May2026 18:33:26.591] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.10, for MC 1.21.1 with MCP 20240808.132146
+[09May2026 18:33:26.591] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.10 Initialized
+[09May2026 18:33:26.608] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
+[09May2026 18:33:26.636] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[09May2026 18:33:26.638] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 1.476 milliseconds
+[09May2026 18:33:26.675] [main/WARN] [mixin/]: Error loading class: net/neoforged/neoforge/common/SimpleTier (java.lang.ClassNotFoundException: net.neoforged.neoforge.common.SimpleTier)
+[09May2026 18:33:26.742] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [usefultoolsmod]
+[09May2026 18:33:26.765] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/braydon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
+[09May2026 18:33:26.765] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/braydon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.10_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
+[09May2026 18:33:26.826] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[09May2026 18:33:26.944] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 117 ms
+[09May2026 18:33:26.944] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[09May2026 18:33:27.052] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 108 ms
+[09May2026 18:33:27.052] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id usefultoolsmod
+[09May2026 18:33:27.056] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id usefultoolsmod finished after 3 ms
+[09May2026 18:33:27.056] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id usefultoolsmod
+[09May2026 18:33:27.057] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id usefultoolsmod finished after 0 ms
+[09May2026 18:33:27.057] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: usefultoolsmod
+[09May2026 18:33:27.139] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: usefultoolsmod finished after 82 ms
+[09May2026 18:33:27.140] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: usefultoolsmod
+[09May2026 18:33:27.188] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: usefultoolsmod finished after 47 ms
+[09May2026 18:33:27.188] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[09May2026 18:33:27.190] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 2 ms
+[09May2026 18:33:27.191] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
+[09May2026 18:33:27.224] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 33 ms
+[09May2026 18:33:27.224] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 398 ms
+[09May2026 18:33:27.235] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 3600, old count: 3600, new count: 3601, removed stale: 0, written: 0

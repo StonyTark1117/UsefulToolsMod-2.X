@@ -325,6 +325,30 @@ POLISHED_TOOL_CONFIGS = {
     # Diamond-based food tools
     "chorus_fruit": ("diamond", {"target_hue": 290, "sat_set": 0.55, "val_mult": 0.70}),
     "golden_apple": ("diamond", {"target_hue": 50, "sat_set": 0.85, "val_mult": 0.90}),
+    # Vanilla material tools
+    "paper": ("wooden", {"target_hue": 45, "sat_set": 0.08, "val_mult": 1.3, "val_add": 0.1}),
+    "feather": ("wooden", {"target_hue": 0, "sat_set": 0.03, "val_mult": 1.35, "val_add": 0.15}),
+    "glass": ("wooden", {"target_hue": 200, "sat_set": 0.15, "val_mult": 1.4, "val_add": 0.1}),
+    "cactus": ("wooden", {"target_hue": 120, "sat_set": 0.65, "val_mult": 0.55}),
+    "sponge": ("wooden", {"target_hue": 50, "sat_set": 0.70, "val_mult": 0.85}),
+    "bone": ("wooden", {"target_hue": 45, "sat_set": 0.10, "val_mult": 1.15, "val_add": 0.05}),
+    "clay": ("wooden", {"target_hue": 20, "sat_set": 0.20, "val_mult": 0.70}),
+    "nether_wart": ("wooden", {"target_hue": 350, "sat_set": 0.70, "val_mult": 0.40}),
+    "brick": ("iron", {"target_hue": 15, "sat_set": 0.65, "val_mult": 0.65}),
+    "nether_brick": ("iron", {"target_hue": 330, "sat_set": 0.40, "val_mult": 0.35}),
+    "pointed_dripstone": ("iron", {"target_hue": 30, "sat_set": 0.35, "val_mult": 0.75}),
+    "copper": ("iron", {"target_hue": 25, "sat_set": 0.70, "val_mult": 0.80}),
+    "phantom": ("iron", {"target_hue": 140, "sat_set": 0.15, "val_mult": 1.05, "val_add": 0.05}),
+    "magma_cream": ("iron", {"target_hue": 30, "sat_set": 0.80, "val_mult": 0.85}),
+    "slime": ("iron", {"target_hue": 90, "sat_set": 0.70, "val_mult": 0.80}),
+    "blaze": ("iron", {"target_hue": 35, "sat_set": 0.80, "val_mult": 0.95}),
+    "nautilus": ("iron", {"target_hue": 20, "sat_set": 0.40, "val_mult": 0.75}),
+    "purpur": ("iron", {"target_hue": 290, "sat_set": 0.50, "val_mult": 0.70}),
+    "ghast_tear": ("diamond", {"target_hue": 200, "sat_set": 0.10, "val_mult": 1.3, "val_add": 0.1}),
+    "eye_of_ender": ("diamond", {"target_hue": 160, "sat_set": 0.70, "val_mult": 0.70}),
+    "shulker": ("diamond", {"target_hue": 310, "sat_set": 0.45, "val_mult": 0.70}),
+    "echo_shard": ("diamond", {"target_hue": 180, "sat_set": 0.55, "val_mult": 0.45}),
+    "dragon_breath": ("diamond", {"target_hue": 320, "sat_set": 0.70, "val_mult": 0.65}),
 }
 
 
@@ -363,6 +387,26 @@ ARMOR_CONFIGS = {
     "honey": ("iron", "iron", {"target_hue": 40, "sat_set": 0.80, "val_mult": 0.90}),
     "chorus_fruit": ("diamond", "diamond", {"target_hue": 290, "sat_set": 0.55, "val_mult": 0.70}),
     "golden_apple": ("diamond", "diamond", {"target_hue": 50, "sat_set": 0.85, "val_mult": 0.90}),
+    # Vanilla material armor
+    "rabbit_hide": ("leather", "leather", {"target_hue": 30, "sat_set": 0.35, "val_mult": 0.60}),
+    "cactus": ("leather", "leather", {"target_hue": 120, "sat_set": 0.65, "val_mult": 0.55}),
+    "bone": ("iron", "iron", {"target_hue": 45, "sat_set": 0.10, "val_mult": 1.15, "val_add": 0.05}),
+    "clay": ("iron", "iron", {"target_hue": 20, "sat_set": 0.20, "val_mult": 0.70}),
+    "brick": ("iron", "iron", {"target_hue": 15, "sat_set": 0.65, "val_mult": 0.65}),
+    "nether_brick": ("iron", "iron", {"target_hue": 330, "sat_set": 0.40, "val_mult": 0.35}),
+    "copper": ("iron", "iron", {"target_hue": 25, "sat_set": 0.70, "val_mult": 0.80}),
+    "phantom": ("iron", "iron", {"target_hue": 140, "sat_set": 0.15, "val_mult": 1.05, "val_add": 0.05}),
+    "magma_cream": ("iron", "iron", {"target_hue": 30, "sat_set": 0.80, "val_mult": 0.85}),
+    "slime": ("iron", "iron", {"target_hue": 90, "sat_set": 0.70, "val_mult": 0.80}),
+    "blaze": ("iron", "iron", {"target_hue": 35, "sat_set": 0.80, "val_mult": 0.95}),
+    "nautilus": ("iron", "iron", {"target_hue": 20, "sat_set": 0.40, "val_mult": 0.75}),
+    "purpur": ("iron", "iron", {"target_hue": 290, "sat_set": 0.50, "val_mult": 0.70}),
+    "ghast_tear": ("diamond", "diamond", {"target_hue": 200, "sat_set": 0.10, "val_mult": 1.3, "val_add": 0.1}),
+    "eye_of_ender": ("diamond", "diamond", {"target_hue": 160, "sat_set": 0.70, "val_mult": 0.70}),
+    "shulker": ("diamond", "diamond", {"target_hue": 310, "sat_set": 0.45, "val_mult": 0.70}),
+    "turtle_scute": ("diamond", "diamond", {"target_hue": 100, "sat_set": 0.50, "val_mult": 0.70}),
+    "echo_shard": ("diamond", "diamond", {"target_hue": 180, "sat_set": 0.55, "val_mult": 0.45}),
+    "dragon_breath": ("diamond", "diamond", {"target_hue": 320, "sat_set": 0.70, "val_mult": 0.65}),
 }
 
 # Food armor names mapped to their vanilla food item texture filename

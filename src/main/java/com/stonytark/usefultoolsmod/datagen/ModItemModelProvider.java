@@ -364,6 +364,117 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.FNI_LEGGINGS);
         trimmedArmorItem(ModItems.FNI_BOOTS);
 
+        // Vanilla Material Sets (25 sets)
+        // ── Paper (tools only) ──
+        handheldItem(ModItems.PAPER_SWORD); handheldItem(ModItems.PAPER_PICKAXE);
+        handheldItem(ModItems.PAPER_SHOVEL); handheldItem(ModItems.PAPER_AXE); handheldItem(ModItems.PAPER_HOE);
+        // ── Feather (tools only) ──
+        handheldItem(ModItems.FEATHER_SWORD); handheldItem(ModItems.FEATHER_PICKAXE);
+        handheldItem(ModItems.FEATHER_SHOVEL); handheldItem(ModItems.FEATHER_AXE); handheldItem(ModItems.FEATHER_HOE);
+        // ── Glass (tools only) ──
+        handheldItem(ModItems.GLASS_SWORD); handheldItem(ModItems.GLASS_PICKAXE);
+        handheldItem(ModItems.GLASS_SHOVEL); handheldItem(ModItems.GLASS_AXE); handheldItem(ModItems.GLASS_HOE);
+        // ── Rabbit Hide (armor only) ──
+        trimmedArmorItem(ModItems.RABBIT_HIDE_HELMET); trimmedArmorItem(ModItems.RABBIT_HIDE_CHESTPLATE);
+        trimmedArmorItem(ModItems.RABBIT_HIDE_LEGGINGS); trimmedArmorItem(ModItems.RABBIT_HIDE_BOOTS);
+        // ── Cactus (tools + armor) ──
+        handheldItem(ModItems.CACTUS_SWORD); handheldItem(ModItems.CACTUS_PICKAXE);
+        handheldItem(ModItems.CACTUS_SHOVEL); handheldItem(ModItems.CACTUS_AXE); handheldItem(ModItems.CACTUS_HOE);
+        trimmedArmorItem(ModItems.CACTUS_HELMET); trimmedArmorItem(ModItems.CACTUS_CHESTPLATE);
+        trimmedArmorItem(ModItems.CACTUS_LEGGINGS); trimmedArmorItem(ModItems.CACTUS_BOOTS);
+        // ── Sponge (tools only) ──
+        handheldItem(ModItems.SPONGE_SWORD); handheldItem(ModItems.SPONGE_PICKAXE);
+        handheldItem(ModItems.SPONGE_SHOVEL); handheldItem(ModItems.SPONGE_AXE); handheldItem(ModItems.SPONGE_HOE);
+        // ── Bone (tools + armor) ──
+        handheldItem(ModItems.BONE_SWORD); handheldItem(ModItems.BONE_PICKAXE);
+        handheldItem(ModItems.BONE_SHOVEL); handheldItem(ModItems.BONE_AXE); handheldItem(ModItems.BONE_HOE);
+        trimmedArmorItem(ModItems.BONE_HELMET); trimmedArmorItem(ModItems.BONE_CHESTPLATE);
+        trimmedArmorItem(ModItems.BONE_LEGGINGS); trimmedArmorItem(ModItems.BONE_BOOTS);
+        // ── Clay (tools + armor) ──
+        handheldItem(ModItems.CLAY_SWORD); handheldItem(ModItems.CLAY_PICKAXE);
+        handheldItem(ModItems.CLAY_SHOVEL); handheldItem(ModItems.CLAY_AXE); handheldItem(ModItems.CLAY_HOE);
+        trimmedArmorItem(ModItems.CLAY_HELMET); trimmedArmorItem(ModItems.CLAY_CHESTPLATE);
+        trimmedArmorItem(ModItems.CLAY_LEGGINGS); trimmedArmorItem(ModItems.CLAY_BOOTS);
+        // ── Nether Wart (tools only) ──
+        handheldItem(ModItems.NETHER_WART_SWORD); handheldItem(ModItems.NETHER_WART_PICKAXE);
+        handheldItem(ModItems.NETHER_WART_SHOVEL); handheldItem(ModItems.NETHER_WART_AXE); handheldItem(ModItems.NETHER_WART_HOE);
+        // ── Brick (tools + armor) ──
+        handheldItem(ModItems.BRICK_SWORD); handheldItem(ModItems.BRICK_PICKAXE);
+        handheldItem(ModItems.BRICK_SHOVEL); handheldItem(ModItems.BRICK_AXE); handheldItem(ModItems.BRICK_HOE);
+        trimmedArmorItem(ModItems.BRICK_HELMET); trimmedArmorItem(ModItems.BRICK_CHESTPLATE);
+        trimmedArmorItem(ModItems.BRICK_LEGGINGS); trimmedArmorItem(ModItems.BRICK_BOOTS);
+        // ── Nether Brick (tools + armor) ──
+        handheldItem(ModItems.NETHER_BRICK_SWORD); handheldItem(ModItems.NETHER_BRICK_PICKAXE);
+        handheldItem(ModItems.NETHER_BRICK_SHOVEL); handheldItem(ModItems.NETHER_BRICK_AXE); handheldItem(ModItems.NETHER_BRICK_HOE);
+        trimmedArmorItem(ModItems.NETHER_BRICK_HELMET); trimmedArmorItem(ModItems.NETHER_BRICK_CHESTPLATE);
+        trimmedArmorItem(ModItems.NETHER_BRICK_LEGGINGS); trimmedArmorItem(ModItems.NETHER_BRICK_BOOTS);
+        // ── Pointed Dripstone (tools only) ──
+        handheldItem(ModItems.POINTED_DRIPSTONE_SWORD); handheldItem(ModItems.POINTED_DRIPSTONE_PICKAXE);
+        handheldItem(ModItems.POINTED_DRIPSTONE_SHOVEL); handheldItem(ModItems.POINTED_DRIPSTONE_AXE); handheldItem(ModItems.POINTED_DRIPSTONE_HOE);
+        // ── Copper (tools + armor) ──
+        handheldItem(ModItems.COPPER_SWORD); handheldItem(ModItems.COPPER_PICKAXE);
+        handheldItem(ModItems.COPPER_SHOVEL); handheldItem(ModItems.COPPER_AXE); handheldItem(ModItems.COPPER_HOE);
+        trimmedArmorItem(ModItems.COPPER_HELMET); trimmedArmorItem(ModItems.COPPER_CHESTPLATE);
+        trimmedArmorItem(ModItems.COPPER_LEGGINGS); trimmedArmorItem(ModItems.COPPER_BOOTS);
+        // ── Phantom Membrane (tools + armor) ──
+        handheldItem(ModItems.PHANTOM_SWORD); handheldItem(ModItems.PHANTOM_PICKAXE);
+        handheldItem(ModItems.PHANTOM_SHOVEL); handheldItem(ModItems.PHANTOM_AXE); handheldItem(ModItems.PHANTOM_HOE);
+        trimmedArmorItem(ModItems.PHANTOM_HELMET); trimmedArmorItem(ModItems.PHANTOM_CHESTPLATE);
+        trimmedArmorItem(ModItems.PHANTOM_LEGGINGS); trimmedArmorItem(ModItems.PHANTOM_BOOTS);
+        // ── Magma Cream (tools + armor) ──
+        handheldItem(ModItems.MAGMA_CREAM_SWORD); handheldItem(ModItems.MAGMA_CREAM_PICKAXE);
+        handheldItem(ModItems.MAGMA_CREAM_SHOVEL); handheldItem(ModItems.MAGMA_CREAM_AXE); handheldItem(ModItems.MAGMA_CREAM_HOE);
+        trimmedArmorItem(ModItems.MAGMA_CREAM_HELMET); trimmedArmorItem(ModItems.MAGMA_CREAM_CHESTPLATE);
+        trimmedArmorItem(ModItems.MAGMA_CREAM_LEGGINGS); trimmedArmorItem(ModItems.MAGMA_CREAM_BOOTS);
+        // ── Slime (tools + armor) ──
+        handheldItem(ModItems.SLIME_SWORD); handheldItem(ModItems.SLIME_PICKAXE);
+        handheldItem(ModItems.SLIME_SHOVEL); handheldItem(ModItems.SLIME_AXE); handheldItem(ModItems.SLIME_HOE);
+        trimmedArmorItem(ModItems.SLIME_HELMET); trimmedArmorItem(ModItems.SLIME_CHESTPLATE);
+        trimmedArmorItem(ModItems.SLIME_LEGGINGS); trimmedArmorItem(ModItems.SLIME_BOOTS);
+        // ── Blaze Rod (tools + armor) ──
+        handheldItem(ModItems.BLAZE_SWORD); handheldItem(ModItems.BLAZE_PICKAXE);
+        handheldItem(ModItems.BLAZE_SHOVEL); handheldItem(ModItems.BLAZE_AXE); handheldItem(ModItems.BLAZE_HOE);
+        trimmedArmorItem(ModItems.BLAZE_HELMET); trimmedArmorItem(ModItems.BLAZE_CHESTPLATE);
+        trimmedArmorItem(ModItems.BLAZE_LEGGINGS); trimmedArmorItem(ModItems.BLAZE_BOOTS);
+        // ── Nautilus Shell (tools + armor) ──
+        handheldItem(ModItems.NAUTILUS_SWORD); handheldItem(ModItems.NAUTILUS_PICKAXE);
+        handheldItem(ModItems.NAUTILUS_SHOVEL); handheldItem(ModItems.NAUTILUS_AXE); handheldItem(ModItems.NAUTILUS_HOE);
+        trimmedArmorItem(ModItems.NAUTILUS_HELMET); trimmedArmorItem(ModItems.NAUTILUS_CHESTPLATE);
+        trimmedArmorItem(ModItems.NAUTILUS_LEGGINGS); trimmedArmorItem(ModItems.NAUTILUS_BOOTS);
+        // ── Purpur (tools + armor) ──
+        handheldItem(ModItems.PURPUR_SWORD); handheldItem(ModItems.PURPUR_PICKAXE);
+        handheldItem(ModItems.PURPUR_SHOVEL); handheldItem(ModItems.PURPUR_AXE); handheldItem(ModItems.PURPUR_HOE);
+        trimmedArmorItem(ModItems.PURPUR_HELMET); trimmedArmorItem(ModItems.PURPUR_CHESTPLATE);
+        trimmedArmorItem(ModItems.PURPUR_LEGGINGS); trimmedArmorItem(ModItems.PURPUR_BOOTS);
+        // ── Ghast Tear (tools + armor) ──
+        handheldItem(ModItems.GHAST_TEAR_SWORD); handheldItem(ModItems.GHAST_TEAR_PICKAXE);
+        handheldItem(ModItems.GHAST_TEAR_SHOVEL); handheldItem(ModItems.GHAST_TEAR_AXE); handheldItem(ModItems.GHAST_TEAR_HOE);
+        trimmedArmorItem(ModItems.GHAST_TEAR_HELMET); trimmedArmorItem(ModItems.GHAST_TEAR_CHESTPLATE);
+        trimmedArmorItem(ModItems.GHAST_TEAR_LEGGINGS); trimmedArmorItem(ModItems.GHAST_TEAR_BOOTS);
+        // ── Eye of Ender (tools + armor) ──
+        handheldItem(ModItems.EYE_OF_ENDER_SWORD); handheldItem(ModItems.EYE_OF_ENDER_PICKAXE);
+        handheldItem(ModItems.EYE_OF_ENDER_SHOVEL); handheldItem(ModItems.EYE_OF_ENDER_AXE); handheldItem(ModItems.EYE_OF_ENDER_HOE);
+        trimmedArmorItem(ModItems.EYE_OF_ENDER_HELMET); trimmedArmorItem(ModItems.EYE_OF_ENDER_CHESTPLATE);
+        trimmedArmorItem(ModItems.EYE_OF_ENDER_LEGGINGS); trimmedArmorItem(ModItems.EYE_OF_ENDER_BOOTS);
+        // ── Shulker Shell (tools + armor) ──
+        handheldItem(ModItems.SHULKER_SWORD); handheldItem(ModItems.SHULKER_PICKAXE);
+        handheldItem(ModItems.SHULKER_SHOVEL); handheldItem(ModItems.SHULKER_AXE); handheldItem(ModItems.SHULKER_HOE);
+        trimmedArmorItem(ModItems.SHULKER_HELMET); trimmedArmorItem(ModItems.SHULKER_CHESTPLATE);
+        trimmedArmorItem(ModItems.SHULKER_LEGGINGS); trimmedArmorItem(ModItems.SHULKER_BOOTS);
+        // ── Turtle Scute (armor only) ──
+        trimmedArmorItem(ModItems.TURTLE_SCUTE_HELMET); trimmedArmorItem(ModItems.TURTLE_SCUTE_CHESTPLATE);
+        trimmedArmorItem(ModItems.TURTLE_SCUTE_LEGGINGS); trimmedArmorItem(ModItems.TURTLE_SCUTE_BOOTS);
+        // ── Echo Shard (tools + armor) ──
+        handheldItem(ModItems.ECHO_SHARD_SWORD); handheldItem(ModItems.ECHO_SHARD_PICKAXE);
+        handheldItem(ModItems.ECHO_SHARD_SHOVEL); handheldItem(ModItems.ECHO_SHARD_AXE); handheldItem(ModItems.ECHO_SHARD_HOE);
+        trimmedArmorItem(ModItems.ECHO_SHARD_HELMET); trimmedArmorItem(ModItems.ECHO_SHARD_CHESTPLATE);
+        trimmedArmorItem(ModItems.ECHO_SHARD_LEGGINGS); trimmedArmorItem(ModItems.ECHO_SHARD_BOOTS);
+        // ── Dragon's Breath (tools + armor) ──
+        handheldItem(ModItems.DRAGON_BREATH_SWORD); handheldItem(ModItems.DRAGON_BREATH_PICKAXE);
+        handheldItem(ModItems.DRAGON_BREATH_SHOVEL); handheldItem(ModItems.DRAGON_BREATH_AXE); handheldItem(ModItems.DRAGON_BREATH_HOE);
+        trimmedArmorItem(ModItems.DRAGON_BREATH_HELMET); trimmedArmorItem(ModItems.DRAGON_BREATH_CHESTPLATE);
+        trimmedArmorItem(ModItems.DRAGON_BREATH_LEGGINGS); trimmedArmorItem(ModItems.DRAGON_BREATH_BOOTS);
+
         // Stone Rock Variants
         handheldItem(ModItems.ANDESITE_SWORD); handheldItem(ModItems.ANDESITE_PICKAXE); handheldItem(ModItems.ANDESITE_SHOVEL); handheldItem(ModItems.ANDESITE_AXE); handheldItem(ModItems.ANDESITE_HOE);
         handheldItem(ModItems.BASALT_SWORD); handheldItem(ModItems.BASALT_PICKAXE); handheldItem(ModItems.BASALT_SHOVEL); handheldItem(ModItems.BASALT_AXE); handheldItem(ModItems.BASALT_HOE);

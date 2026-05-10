@@ -499,6 +499,194 @@ public class ModCreativeModeTabs {
                         }
 
                         // =============================================================
+                        //  VANILLA MATERIAL SETS (25 sets, ordered by power tier)
+                        // =============================================================
+
+                        // --- Paper (tools only) ---
+                        if (Config.paperEnabled) {
+                            output.accept(ModItems.PAPER_SWORD.get()); output.accept(ModItems.PAPER_PICKAXE.get());
+                            output.accept(ModItems.PAPER_SHOVEL.get()); output.accept(ModItems.PAPER_AXE.get()); output.accept(ModItems.PAPER_HOE.get());
+                        }
+
+                        // --- Feather (tools only) ---
+                        if (Config.featherEnabled) {
+                            output.accept(ModItems.FEATHER_SWORD.get()); output.accept(ModItems.FEATHER_PICKAXE.get());
+                            output.accept(ModItems.FEATHER_SHOVEL.get()); output.accept(ModItems.FEATHER_AXE.get()); output.accept(ModItems.FEATHER_HOE.get());
+                        }
+
+                        // --- Glass (tools only) ---
+                        if (Config.glassEnabled) {
+                            output.accept(ModItems.GLASS_SWORD.get()); output.accept(ModItems.GLASS_PICKAXE.get());
+                            output.accept(ModItems.GLASS_SHOVEL.get()); output.accept(ModItems.GLASS_AXE.get()); output.accept(ModItems.GLASS_HOE.get());
+                        }
+
+                        // --- Rabbit Hide (armor only) ---
+                        if (Config.rabbitHideEnabled) {
+                            output.accept(ModItems.RABBIT_HIDE_HELMET.get()); output.accept(ModItems.RABBIT_HIDE_CHESTPLATE.get());
+                            output.accept(ModItems.RABBIT_HIDE_LEGGINGS.get()); output.accept(ModItems.RABBIT_HIDE_BOOTS.get());
+                        }
+
+                        // --- Cactus (tools + armor) ---
+                        if (Config.cactusEnabled) {
+                            output.accept(ModItems.CACTUS_SWORD.get()); output.accept(ModItems.CACTUS_PICKAXE.get());
+                            output.accept(ModItems.CACTUS_SHOVEL.get()); output.accept(ModItems.CACTUS_AXE.get()); output.accept(ModItems.CACTUS_HOE.get());
+                            output.accept(ModItems.CACTUS_HELMET.get()); output.accept(ModItems.CACTUS_CHESTPLATE.get());
+                            output.accept(ModItems.CACTUS_LEGGINGS.get()); output.accept(ModItems.CACTUS_BOOTS.get());
+                        }
+
+                        // --- Sponge (tools only) ---
+                        if (Config.spongeEnabled) {
+                            output.accept(ModItems.SPONGE_SWORD.get()); output.accept(ModItems.SPONGE_PICKAXE.get());
+                            output.accept(ModItems.SPONGE_SHOVEL.get()); output.accept(ModItems.SPONGE_AXE.get()); output.accept(ModItems.SPONGE_HOE.get());
+                        }
+
+                        // --- Bone (tools + armor) ---
+                        if (Config.boneEnabled) {
+                            output.accept(ModItems.BONE_SWORD.get()); output.accept(ModItems.BONE_PICKAXE.get());
+                            output.accept(ModItems.BONE_SHOVEL.get()); output.accept(ModItems.BONE_AXE.get()); output.accept(ModItems.BONE_HOE.get());
+                            output.accept(ModItems.BONE_HELMET.get()); output.accept(ModItems.BONE_CHESTPLATE.get());
+                            output.accept(ModItems.BONE_LEGGINGS.get()); output.accept(ModItems.BONE_BOOTS.get());
+                        }
+
+                        // --- Clay (tools + armor) ---
+                        if (Config.clayEnabled) {
+                            output.accept(ModItems.CLAY_SWORD.get()); output.accept(ModItems.CLAY_PICKAXE.get());
+                            output.accept(ModItems.CLAY_SHOVEL.get()); output.accept(ModItems.CLAY_AXE.get()); output.accept(ModItems.CLAY_HOE.get());
+                            output.accept(ModItems.CLAY_HELMET.get()); output.accept(ModItems.CLAY_CHESTPLATE.get());
+                            output.accept(ModItems.CLAY_LEGGINGS.get()); output.accept(ModItems.CLAY_BOOTS.get());
+                        }
+
+                        // --- Nether Wart (tools only) ---
+                        if (Config.netherWartEnabled) {
+                            output.accept(ModItems.NETHER_WART_SWORD.get()); output.accept(ModItems.NETHER_WART_PICKAXE.get());
+                            output.accept(ModItems.NETHER_WART_SHOVEL.get()); output.accept(ModItems.NETHER_WART_AXE.get()); output.accept(ModItems.NETHER_WART_HOE.get());
+                        }
+
+                        // --- Brick (tools + armor) ---
+                        if (Config.brickEnabled) {
+                            output.accept(ModItems.BRICK_SWORD.get()); output.accept(ModItems.BRICK_PICKAXE.get());
+                            output.accept(ModItems.BRICK_SHOVEL.get()); output.accept(ModItems.BRICK_AXE.get()); output.accept(ModItems.BRICK_HOE.get());
+                            output.accept(ModItems.BRICK_HELMET.get()); output.accept(ModItems.BRICK_CHESTPLATE.get());
+                            output.accept(ModItems.BRICK_LEGGINGS.get()); output.accept(ModItems.BRICK_BOOTS.get());
+                        }
+
+                        // --- Nether Brick (tools + armor) ---
+                        if (Config.netherBrickEnabled) {
+                            output.accept(ModItems.NETHER_BRICK_SWORD.get()); output.accept(ModItems.NETHER_BRICK_PICKAXE.get());
+                            output.accept(ModItems.NETHER_BRICK_SHOVEL.get()); output.accept(ModItems.NETHER_BRICK_AXE.get()); output.accept(ModItems.NETHER_BRICK_HOE.get());
+                            output.accept(ModItems.NETHER_BRICK_HELMET.get()); output.accept(ModItems.NETHER_BRICK_CHESTPLATE.get());
+                            output.accept(ModItems.NETHER_BRICK_LEGGINGS.get()); output.accept(ModItems.NETHER_BRICK_BOOTS.get());
+                        }
+
+                        // --- Pointed Dripstone (tools only) ---
+                        if (Config.dripstoneEnabled) {
+                            output.accept(ModItems.POINTED_DRIPSTONE_SWORD.get()); output.accept(ModItems.POINTED_DRIPSTONE_PICKAXE.get());
+                            output.accept(ModItems.POINTED_DRIPSTONE_SHOVEL.get()); output.accept(ModItems.POINTED_DRIPSTONE_AXE.get()); output.accept(ModItems.POINTED_DRIPSTONE_HOE.get());
+                        }
+
+                        // --- Copper (tools + armor) ---
+                        if (Config.copperEnabled) {
+                            output.accept(ModItems.COPPER_SWORD.get()); output.accept(ModItems.COPPER_PICKAXE.get());
+                            output.accept(ModItems.COPPER_SHOVEL.get()); output.accept(ModItems.COPPER_AXE.get()); output.accept(ModItems.COPPER_HOE.get());
+                            output.accept(ModItems.COPPER_HELMET.get()); output.accept(ModItems.COPPER_CHESTPLATE.get());
+                            output.accept(ModItems.COPPER_LEGGINGS.get()); output.accept(ModItems.COPPER_BOOTS.get());
+                        }
+
+                        // --- Phantom Membrane (tools + armor) ---
+                        if (Config.phantomEnabled) {
+                            output.accept(ModItems.PHANTOM_SWORD.get()); output.accept(ModItems.PHANTOM_PICKAXE.get());
+                            output.accept(ModItems.PHANTOM_SHOVEL.get()); output.accept(ModItems.PHANTOM_AXE.get()); output.accept(ModItems.PHANTOM_HOE.get());
+                            output.accept(ModItems.PHANTOM_HELMET.get()); output.accept(ModItems.PHANTOM_CHESTPLATE.get());
+                            output.accept(ModItems.PHANTOM_LEGGINGS.get()); output.accept(ModItems.PHANTOM_BOOTS.get());
+                        }
+
+                        // --- Magma Cream (tools + armor) ---
+                        if (Config.magmaCreamEnabled) {
+                            output.accept(ModItems.MAGMA_CREAM_SWORD.get()); output.accept(ModItems.MAGMA_CREAM_PICKAXE.get());
+                            output.accept(ModItems.MAGMA_CREAM_SHOVEL.get()); output.accept(ModItems.MAGMA_CREAM_AXE.get()); output.accept(ModItems.MAGMA_CREAM_HOE.get());
+                            output.accept(ModItems.MAGMA_CREAM_HELMET.get()); output.accept(ModItems.MAGMA_CREAM_CHESTPLATE.get());
+                            output.accept(ModItems.MAGMA_CREAM_LEGGINGS.get()); output.accept(ModItems.MAGMA_CREAM_BOOTS.get());
+                        }
+
+                        // --- Slime (tools + armor) ---
+                        if (Config.slimeEnabled) {
+                            output.accept(ModItems.SLIME_SWORD.get()); output.accept(ModItems.SLIME_PICKAXE.get());
+                            output.accept(ModItems.SLIME_SHOVEL.get()); output.accept(ModItems.SLIME_AXE.get()); output.accept(ModItems.SLIME_HOE.get());
+                            output.accept(ModItems.SLIME_HELMET.get()); output.accept(ModItems.SLIME_CHESTPLATE.get());
+                            output.accept(ModItems.SLIME_LEGGINGS.get()); output.accept(ModItems.SLIME_BOOTS.get());
+                        }
+
+                        // --- Blaze Rod (tools + armor) ---
+                        if (Config.blazeEnabled) {
+                            output.accept(ModItems.BLAZE_SWORD.get()); output.accept(ModItems.BLAZE_PICKAXE.get());
+                            output.accept(ModItems.BLAZE_SHOVEL.get()); output.accept(ModItems.BLAZE_AXE.get()); output.accept(ModItems.BLAZE_HOE.get());
+                            output.accept(ModItems.BLAZE_HELMET.get()); output.accept(ModItems.BLAZE_CHESTPLATE.get());
+                            output.accept(ModItems.BLAZE_LEGGINGS.get()); output.accept(ModItems.BLAZE_BOOTS.get());
+                        }
+
+                        // --- Nautilus Shell (tools + armor) ---
+                        if (Config.nautilusEnabled) {
+                            output.accept(ModItems.NAUTILUS_SWORD.get()); output.accept(ModItems.NAUTILUS_PICKAXE.get());
+                            output.accept(ModItems.NAUTILUS_SHOVEL.get()); output.accept(ModItems.NAUTILUS_AXE.get()); output.accept(ModItems.NAUTILUS_HOE.get());
+                            output.accept(ModItems.NAUTILUS_HELMET.get()); output.accept(ModItems.NAUTILUS_CHESTPLATE.get());
+                            output.accept(ModItems.NAUTILUS_LEGGINGS.get()); output.accept(ModItems.NAUTILUS_BOOTS.get());
+                        }
+
+                        // --- Purpur (tools + armor) ---
+                        if (Config.purpurEnabled) {
+                            output.accept(ModItems.PURPUR_SWORD.get()); output.accept(ModItems.PURPUR_PICKAXE.get());
+                            output.accept(ModItems.PURPUR_SHOVEL.get()); output.accept(ModItems.PURPUR_AXE.get()); output.accept(ModItems.PURPUR_HOE.get());
+                            output.accept(ModItems.PURPUR_HELMET.get()); output.accept(ModItems.PURPUR_CHESTPLATE.get());
+                            output.accept(ModItems.PURPUR_LEGGINGS.get()); output.accept(ModItems.PURPUR_BOOTS.get());
+                        }
+
+                        // --- Ghast Tear (tools + armor) ---
+                        if (Config.ghastTearEnabled) {
+                            output.accept(ModItems.GHAST_TEAR_SWORD.get()); output.accept(ModItems.GHAST_TEAR_PICKAXE.get());
+                            output.accept(ModItems.GHAST_TEAR_SHOVEL.get()); output.accept(ModItems.GHAST_TEAR_AXE.get()); output.accept(ModItems.GHAST_TEAR_HOE.get());
+                            output.accept(ModItems.GHAST_TEAR_HELMET.get()); output.accept(ModItems.GHAST_TEAR_CHESTPLATE.get());
+                            output.accept(ModItems.GHAST_TEAR_LEGGINGS.get()); output.accept(ModItems.GHAST_TEAR_BOOTS.get());
+                        }
+
+                        // --- Eye of Ender (tools + armor) ---
+                        if (Config.eyeOfEnderEnabled) {
+                            output.accept(ModItems.EYE_OF_ENDER_SWORD.get()); output.accept(ModItems.EYE_OF_ENDER_PICKAXE.get());
+                            output.accept(ModItems.EYE_OF_ENDER_SHOVEL.get()); output.accept(ModItems.EYE_OF_ENDER_AXE.get()); output.accept(ModItems.EYE_OF_ENDER_HOE.get());
+                            output.accept(ModItems.EYE_OF_ENDER_HELMET.get()); output.accept(ModItems.EYE_OF_ENDER_CHESTPLATE.get());
+                            output.accept(ModItems.EYE_OF_ENDER_LEGGINGS.get()); output.accept(ModItems.EYE_OF_ENDER_BOOTS.get());
+                        }
+
+                        // --- Shulker Shell (tools + armor) ---
+                        if (Config.shulkerEnabled) {
+                            output.accept(ModItems.SHULKER_SWORD.get()); output.accept(ModItems.SHULKER_PICKAXE.get());
+                            output.accept(ModItems.SHULKER_SHOVEL.get()); output.accept(ModItems.SHULKER_AXE.get()); output.accept(ModItems.SHULKER_HOE.get());
+                            output.accept(ModItems.SHULKER_HELMET.get()); output.accept(ModItems.SHULKER_CHESTPLATE.get());
+                            output.accept(ModItems.SHULKER_LEGGINGS.get()); output.accept(ModItems.SHULKER_BOOTS.get());
+                        }
+
+                        // --- Turtle Scute (armor only) ---
+                        if (Config.turtleScuteEnabled) {
+                            output.accept(ModItems.TURTLE_SCUTE_HELMET.get()); output.accept(ModItems.TURTLE_SCUTE_CHESTPLATE.get());
+                            output.accept(ModItems.TURTLE_SCUTE_LEGGINGS.get()); output.accept(ModItems.TURTLE_SCUTE_BOOTS.get());
+                        }
+
+                        // --- Echo Shard (tools + armor) ---
+                        if (Config.echoShardEnabled) {
+                            output.accept(ModItems.ECHO_SHARD_SWORD.get()); output.accept(ModItems.ECHO_SHARD_PICKAXE.get());
+                            output.accept(ModItems.ECHO_SHARD_SHOVEL.get()); output.accept(ModItems.ECHO_SHARD_AXE.get()); output.accept(ModItems.ECHO_SHARD_HOE.get());
+                            output.accept(ModItems.ECHO_SHARD_HELMET.get()); output.accept(ModItems.ECHO_SHARD_CHESTPLATE.get());
+                            output.accept(ModItems.ECHO_SHARD_LEGGINGS.get()); output.accept(ModItems.ECHO_SHARD_BOOTS.get());
+                        }
+
+                        // --- Dragon's Breath (tools + armor) ---
+                        if (Config.dragonBreathEnabled) {
+                            output.accept(ModItems.DRAGON_BREATH_SWORD.get()); output.accept(ModItems.DRAGON_BREATH_PICKAXE.get());
+                            output.accept(ModItems.DRAGON_BREATH_SHOVEL.get()); output.accept(ModItems.DRAGON_BREATH_AXE.get()); output.accept(ModItems.DRAGON_BREATH_HOE.get());
+                            output.accept(ModItems.DRAGON_BREATH_HELMET.get()); output.accept(ModItems.DRAGON_BREATH_CHESTPLATE.get());
+                            output.accept(ModItems.DRAGON_BREATH_LEGGINGS.get()); output.accept(ModItems.DRAGON_BREATH_BOOTS.get());
+                        }
+
+                        // =============================================================
                         //  FOOD SETS (edible novelty — weakest to strongest)
                         // =============================================================
 
